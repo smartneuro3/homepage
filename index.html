@@ -25,6 +25,7 @@
   a { color:oklch(46% 0.13 248); text-decoration:none; }
   a:hover { color:oklch(38% 0.13 248); }
   html { scroll-behavior:smooth; }
+  section[id] { scroll-margin-top:152px !important; }
   ::placeholder { color:oklch(60% 0.01 250); }
 
   @media (max-width: 860px) {
@@ -62,7 +63,7 @@
 </style>
 </helmet>
 
-<div style="color:oklch(24% 0.02 250); line-height:1.6; overflow-x:hidden;">
+<div style="color:oklch(24% 0.02 250); line-height:1.6; overflow-x:clip;">
 
   <!-- HEADER -->
   <header class="site-header" style="position:sticky; top:0; z-index:100; background:oklch(99% 0.004 90 / 0.96); backdrop-filter:blur(6px); border-bottom:1px solid oklch(89% 0.008 250); display:flex; align-items:center; justify-content:space-between; padding:16px 32px; gap:16px;">
@@ -90,7 +91,7 @@
   </header>
 
   <sc-if value="{{ mobileMenuOpen }}" hint-placeholder-val="{{ false }}">
-    <nav class="mobile-nav-panel" style="display:none; flex-direction:column; position:sticky; top:65px; z-index:99; background:oklch(99% 0.005 90); border-bottom:1px solid oklch(89% 0.008 250); box-shadow:0 8px 16px oklch(0% 0 0 / 0.06);">
+    <nav class="mobile-nav-panel" style="display:none; flex-direction:column; position:sticky; top:133px; z-index:99; background:oklch(99% 0.005 90); border-bottom:1px solid oklch(89% 0.008 250); box-shadow:0 8px 16px oklch(0% 0 0 / 0.06);">
       <a href="#about" onClick="{{ closeMobileMenu }}" style="padding:16px 24px; font-size:16px; font-weight:500; color:oklch(24% 0.02 250); border-bottom:1px solid oklch(93% 0.006 90);">병원소개</a>
       <a href="#doctors" onClick="{{ closeMobileMenu }}" style="padding:16px 24px; font-size:16px; font-weight:500; color:oklch(24% 0.02 250); border-bottom:1px solid oklch(93% 0.006 90);">의료진</a>
       <a href="#specialties" onClick="{{ closeMobileMenu }}" style="padding:16px 24px; font-size:16px; font-weight:500; color:oklch(24% 0.02 250); border-bottom:1px solid oklch(93% 0.006 90);">진료과목</a>
@@ -467,7 +468,7 @@ class Component extends DCLogic {
         { year: '2025', text: '박재현 원장, 삼성스마트신경과 서울점 개원' },
         { year: '2025', text: '황재춘 원장, 여승현 원장 삼성스마트신경과 부산점 전담' },
         { year: '2026', text: '삼성스마트신경과 부산, 서울, 천안, 판교, 광교점 협력체제 구축' },
-        { year: '2026', text: '9월 은정익 원장 합류 · 신경과 전문의 3인 진료' },
+        { year: '2026', text: '9월 은정익 원장 진료 시작 · 신경과 전문의 3인 진료' },
       ],
 
 
@@ -518,7 +519,7 @@ class Component extends DCLogic {
           name: '은정익 원장',
           title: '신경과 전문의',
           tag: '두통·뇌전증·신경면역질환·임상신경생리',
-          badge: '2026년 9월 합류',
+          badge: '2026년 9월 진료 시작',
           hasSchedule: true,
           scheduleNote: '화요일 오전 · 목요일 오후 휴진, 토요일은 매주 진료합니다.',
           schedule: [
