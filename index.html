@@ -1,315 +1,550 @@
 <!DOCTYPE html>
-<html lang="ko">
+<html>
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>삼성스마트신경과 부산점</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@400;500;600;700&family=Pretendard:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-<style>
-  :root{
-    --navy: #142A3D;
-    --navy-deep: #0D1E2C;
-    --sage: #5C8374;
-    --sage-light: #E8EDE9;
-    --ivory: #F6F4EE;
-    --ink: #2A2E32;
-    --gold: #B99A5B;
-    --line: rgba(20,42,61,0.12);
-  }
-  *{margin:0;padding:0;box-sizing:border-box;}
-  html{scroll-behavior:smooth;}
-  body{
-    font-family:'Pretendard', -apple-system, sans-serif;
-    background:var(--ivory);
-    color:var(--ink);
-    line-height:1.7;
-    overflow-x:hidden;
-  }
-  h1,h2,h3,.serif{font-family:'Noto Serif KR', serif;}
-  a{text-decoration:none;color:inherit;}
-  .wrap{max-width:1120px;margin:0 auto;padding:0 32px;}
-
-  /* Header */
-  header{
-    position:sticky;top:0;z-index:50;
-    background:rgba(246,244,238,0.92);
-    backdrop-filter:blur(8px);
-    border-bottom:1px solid var(--line);
-  }
-  .nav{display:flex;align-items:center;justify-content:space-between;padding:20px 32px;max-width:1120px;margin:0 auto;}
-  .logo{font-family:'Noto Serif KR',serif;font-weight:700;font-size:19px;color:var(--navy);letter-spacing:-0.3px;}
-  .logo span{color:var(--sage);}
-  .nav-links{display:flex;gap:36px;font-size:14.5px;font-weight:500;color:var(--navy);}
-  .nav-cta{
-    background:var(--navy);color:#fff;padding:10px 22px;border-radius:2px;
-    font-size:14px;font-weight:500;letter-spacing:0.3px;
-  }
-  .nav-cta:hover{background:var(--navy-deep);}
-
-  /* Hero */
-  .hero{
-    position:relative;
-    padding:110px 32px 90px;
-    background:var(--navy);
-    color:#fff;
-    overflow:hidden;
-  }
-  .hero-inner{max-width:1120px;margin:0 auto;position:relative;z-index:2;}
-  .eyebrow{
-    display:inline-flex;align-items:center;gap:8px;
-    font-size:13px;letter-spacing:2px;color:var(--gold);
-    text-transform:uppercase;margin-bottom:24px;font-weight:500;
-  }
-  .eyebrow::before{content:'';width:24px;height:1px;background:var(--gold);}
-  .hero h1{
-    font-size:52px;line-height:1.35;font-weight:600;
-    max-width:680px;margin-bottom:24px;letter-spacing:-0.5px;
-  }
-  .hero p{font-size:17px;color:rgba(255,255,255,0.72);max-width:520px;margin-bottom:40px;font-weight:300;}
-  .hero-actions{display:flex;gap:14px;}
-  .btn-primary{
-    background:var(--sage);color:#fff;padding:15px 30px;border-radius:2px;
-    font-size:15px;font-weight:500;display:inline-block;transition:background .2s;
-  }
-  .btn-primary:hover{background:#4d7062;}
-  .btn-ghost{
-    border:1px solid rgba(255,255,255,0.3);color:#fff;padding:15px 30px;border-radius:2px;
-    font-size:15px;font-weight:500;display:inline-block;transition:border-color .2s;
-  }
-  .btn-ghost:hover{border-color:rgba(255,255,255,0.7);}
-
-  /* EEG signature line */
-  .eeg{position:absolute;bottom:0;left:0;width:100%;opacity:0.55;z-index:1;}
-  .eeg path{
-    stroke:var(--sage);stroke-width:1.5;fill:none;
-    stroke-dasharray:2000;stroke-dashoffset:2000;
-    animation:draw 3.2s ease-out forwards;
-  }
-  @keyframes draw{to{stroke-dashoffset:0;}}
-
-  /* Section shared */
-  section{padding:96px 0;}
-  .section-head{margin-bottom:56px;max-width:600px;}
-  .section-eyebrow{font-size:13px;letter-spacing:2px;color:var(--sage);text-transform:uppercase;font-weight:600;margin-bottom:14px;}
-  .section-head h2{font-size:34px;font-weight:600;color:var(--navy);letter-spacing:-0.4px;}
-  .section-head p{margin-top:14px;color:#5A6068;font-size:15.5px;}
-
-  /* 진료과목 */
-  .dept-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line);border:1px solid var(--line);}
-  .dept-card{background:var(--ivory);padding:38px 32px;transition:background .25s;}
-  .dept-card:hover{background:#fff;}
-  .dept-num{font-family:'Noto Serif KR',serif;font-size:13px;color:var(--gold);letter-spacing:1px;margin-bottom:18px;}
-  .dept-card h3{font-size:19px;font-weight:600;color:var(--navy);margin-bottom:10px;}
-  .dept-card p{font-size:14px;color:#666;line-height:1.65;}
-
-  /* 의료진 */
-  .doctors{background:var(--navy-deep);}
-  .doctors .section-head h2, .doctors .section-eyebrow{color:#fff;}
-  .doctors .section-eyebrow{color:var(--gold);}
-  .doctors .section-head p{color:rgba(255,255,255,0.6);}
-  .doctor-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:28px;}
-  .doctor-card{background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.1);padding:0;}
-  .doctor-photo{
-    width:100%;aspect-ratio:4/5;
-    background:linear-gradient(160deg, #24425a, #1a3247);
-    display:flex;align-items:center;justify-content:center;
-  }
-  .doctor-photo svg{width:56px;height:56px;opacity:0.35;}
-  .doctor-info{padding:24px 26px;}
-  .doctor-info .role{font-size:12px;color:var(--gold);letter-spacing:1px;text-transform:uppercase;margin-bottom:8px;}
-  .doctor-info h3{font-family:'Noto Serif KR',serif;font-size:20px;color:#fff;font-weight:600;margin-bottom:6px;}
-  .doctor-info p{font-size:13.5px;color:rgba(255,255,255,0.55);}
-
-  /* 신뢰 지표 */
-  .trust{padding:80px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line);}
-  .trust-grid{display:grid;grid-template-columns:repeat(4,1fr);text-align:center;}
-  .trust-grid > div{padding:0 20px;border-right:1px solid var(--line);}
-  .trust-grid > div:last-child{border-right:none;}
-  .trust-num{font-family:'Noto Serif KR',serif;font-size:38px;color:var(--navy);font-weight:600;}
-  .trust-label{font-size:13.5px;color:#777;margin-top:8px;}
-
-  /* 오시는길 */
-  .contact{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:start;}
-  .contact-info h3{font-size:16px;font-weight:600;color:var(--navy);margin-bottom:6px;}
-  .contact-info .item{margin-bottom:28px;}
-  .contact-info .item p{color:#666;font-size:14.5px;}
-  .map-placeholder{
-    background:var(--sage-light);border:1px solid var(--line);
-    aspect-ratio:4/3;display:flex;align-items:center;justify-content:center;
-    color:#7a8b83;font-size:13px;letter-spacing:1px;
-  }
-
-  footer{background:var(--navy-deep);color:rgba(255,255,255,0.5);padding:40px 32px;font-size:13px;}
-  .footer-inner{max-width:1120px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;}
-
-  @media(max-width:860px){
-    .hero h1{font-size:34px;}
-    .dept-grid, .doctor-grid{grid-template-columns:1fr;}
-    .trust-grid{grid-template-columns:repeat(2,1fr);row-gap:32px;}
-    .trust-grid > div:nth-child(2n){border-right:none;}
-    .contact{grid-template-columns:1fr;}
-    .nav-links{display:none;}
-  }
-  @media (prefers-reduced-motion: reduce){
-    .eeg path{animation:none;stroke-dashoffset:0;}
-  }
-</style>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
 </head>
 <body>
-
-<header>
-  <div class="nav">
-    <div class="logo">삼성스마트<span>신경과</span> 부산점</div>
-    <div class="nav-links">
-      <a href="#depts">진료과목</a>
-      <a href="#doctors">의료진</a>
-      <a href="#contact">오시는길</a>
-    </div>
-    <a href="#contact" class="nav-cta">진료 예약 문의</a>
-  </div>
-</header>
-
-<section class="hero">
-  <div class="hero-inner">
-    <div class="eyebrow">부산 · 신경과 전문의원</div>
-    <h1>정확한 진단이<br>편안한 치료의 시작입니다</h1>
-    <p>뇌졸중, 두통, 어지럼증, 파킨슨병, 치매까지 — 신경계 질환을 전문적으로 진료합니다. 부산 지역 신경과 전문의가 처음부터 끝까지 함께합니다.</p>
-    <div class="hero-actions">
-      <a href="#contact" class="btn-primary">진료 예약하기</a>
-      <a href="#depts" class="btn-ghost">진료과목 보기</a>
-    </div>
-  </div>
-  <svg class="eeg" viewBox="0 0 1120 120" preserveAspectRatio="none">
-    <path d="M0,80 L120,80 L140,30 L160,110 L180,80 L260,80 L280,50 L300,90 L320,80 L440,80 L460,20 L480,120 L500,80 L620,80 L640,55 L660,85 L680,80 L800,80 L820,35 L840,105 L860,80 L980,80 L1000,60 L1020,90 L1040,80 L1120,80" />
+<x-dc>
+<helmet>
+<x-import component-from-global-scope="image-slot" from="./image-slot.js"></x-import>
+<template id="__bundler_thumbnail" data-bg-color="#f5f4f0">
+  <svg viewBox="0 0 1200 800" xmlns="http://www.w3.org/2000/svg">
+    <rect width="1200" height="800" fill="#f5f4f0"/>
+    <circle cx="600" cy="360" r="150" fill="#1f4fa3"/>
+    <text x="600" y="380" font-family="sans-serif" font-size="120" font-weight="900" fill="#f5f4f0" text-anchor="middle">삼</text>
   </svg>
-</section>
+</template>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&display=swap" rel="stylesheet">
+<style>
+  body { margin:0; background:oklch(99% 0.004 90); }
+  * { box-sizing:border-box; font-family:'Noto Sans KR', sans-serif; word-break:keep-all; overflow-wrap:break-word; }
+  h1, h2, .brand-font { font-weight:900; }
+  a { color:oklch(46% 0.13 248); text-decoration:none; }
+  a:hover { color:oklch(38% 0.13 248); }
+  html { scroll-behavior:smooth; }
+  ::placeholder { color:oklch(60% 0.01 250); }
 
-<section id="depts">
-  <div class="wrap">
-    <div class="section-head">
-      <div class="section-eyebrow">Departments</div>
-      <h2>진료과목</h2>
-      <p>신경계 질환의 특성상 정밀한 문진과 검사가 중요합니다. 증상별 맞춤 진료를 제공합니다.</p>
-    </div>
-  </div>
-  <div class="dept-grid wrap" style="padding:0 32px;">
-    <div class="dept-card">
-      <div class="dept-num">01</div>
-      <h3>두통클리닉</h3>
-      <p>원인이 다양한 두통을 전문적인 진찰과 정밀 검사 장비로 정확하게 진단하고, 치료 계획을 세워 상담을 진행합니다.</p>
-    </div>
-    <div class="dept-card">
-      <div class="dept-num">02</div>
-      <h3>어지럼클리닉</h3>
-      <p>흔하지만 원인 규명이 중요한 어지럼증을 정확히 진단하고 그에 맞는 치료를 제공합니다.</p>
-    </div>
-    <div class="dept-card">
-      <div class="dept-num">03</div>
-      <h3>자율신경장애 · 뇌신경질환</h3>
-      <p>자율신경계 이상과 뇌신경 관련 질환을 폭넓게 진료합니다.</p>
-    </div>
-    <div class="dept-card">
-      <div class="dept-num">04</div>
-      <h3>수면다원검사 · 수면질환</h3>
-      <p>정밀 수면검사 장비를 통해 불면증, 수면무호흡 등 수면 관련 질환을 진단하고 관리합니다.</p>
-    </div>
-    <div class="dept-card">
-      <div class="dept-num">05</div>
-      <h3>통증치료클리닉</h3>
-      <p>도수치료, 운동치료 등 질환별 맞춤 프로그램으로 통증의 원인을 관리합니다.</p>
-    </div>
-    <div class="dept-card">
-      <div class="dept-num">06</div>
-      <h3>정밀한 검사</h3>
-      <p>신경전도검사 등 대학병원 수준의 정밀 검사 장비로 정확한 진단을 돕습니다.</p>
-    </div>
-  </div>
-</section>
+  @media (max-width: 860px) {
+    .site-header { padding:14px 20px !important; }
+    .desktop-nav { display:none !important; }
+    .mobile-menu-btn { display:flex !important; }
+    .mobile-nav-panel { display:flex !important; }
+    .section-pad { padding-left:24px !important; padding-right:24px !important; }
+    .section-pad-top { padding-top:56px !important; padding-bottom:56px !important; }
+    .hero-grid { grid-template-columns:1fr !important; min-height:auto !important; }
+    .hero-text { padding:40px 24px !important; }
+    .hero-image { min-height:220px !important; order:-1; }
+    .hero-title { font-size:30px !important; }
+    .trust-strip { grid-template-columns:1fr 1fr !important; gap:16px !important; padding:24px 20px !important; }
+    .about-grid, .location-grid, .community-grid { grid-template-columns:1fr !important; gap:40px !important; }
+    .doctor-card { grid-template-columns:1fr !important; }
+    .doctor-photo { min-height:220px !important; }
+    .cards-grid-3 { grid-template-columns:1fr !important; }
+    .linkrow-grid { grid-template-columns:1fr !important; }
+    .type-grid-3 { grid-template-columns:1fr !important; }
+    .process-grid-4 { grid-template-columns:1fr 1fr !important; }
+    .fab-menu a { width:48px !important; height:48px !important; font-size:10px !important; }
+    .clamp-2 { display:-webkit-box !important; -webkit-line-clamp:2 !important; -webkit-box-orient:vertical !important; overflow:hidden !important; }
+    .nonpayment-row { flex-direction:column !important; gap:16px !important; }
 
-<section class="doctors" id="doctors">
-  <div class="wrap">
-    <div class="section-head">
-      <div class="section-eyebrow">Medical Staff</div>
-      <h2>의료진 소개</h2>
-      <p>신경과 전문의 2인이 초진부터 경과 관찰까지 함께 진료합니다. 2019년 개원.</p>
+    h1 { font-size:28px !important; line-height:1.35 !important; }
+    h2 { font-size:24px !important; }
+    p { font-size:15px !important; line-height:1.7 !important; }
+    .site-header span:first-child { font-size:18px !important; }
+    .hero-text p { max-width:100% !important; }
+    .doctor-card > div:last-child { padding:24px !important; }
+    .doctor-card div[style*="font-size:22px"] { font-size:19px !important; }
+    section[id] > div > div > p { font-size:15px !important; }
+  }
+</style>
+</helmet>
+
+<div style="color:oklch(24% 0.02 250); line-height:1.6; overflow-x:hidden;">
+
+  <!-- HEADER -->
+  <header class="site-header" style="position:sticky; top:0; z-index:100; background:oklch(99% 0.004 90 / 0.96); backdrop-filter:blur(6px); border-bottom:1px solid oklch(89% 0.008 250); display:flex; align-items:center; justify-content:space-between; padding:16px 32px; gap:16px;">
+    <div style="display:flex; align-items:center; gap:2px;">
+      <img src="./assets/logo.jpeg" alt="삼성스마트신경과 로고" style="height:104px; width:104px; object-fit:contain; flex-shrink:0;">
+      <span class="brand-font" style="font-size:30px; font-weight:900; color:oklch(30% 0.1 248); letter-spacing:-0.5px; margin-left:-24px;">삼성스마트신경과</span>
+      <span style="font-size:18px; font-weight:700; color:oklch(58% 0.09 195); margin-left:8px;">부산점</span>
     </div>
-    <div class="doctor-grid" style="grid-template-columns:repeat(2,1fr);max-width:640px;margin:0 auto;">
-      <div class="doctor-card">
-        <div class="doctor-photo"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.5-7 8-7s8 3 8 7"/></svg></div>
-        <div class="doctor-info">
-          <div class="role">대표원장 · 신경과 전문의</div>
-          <h3>황재춘 원장</h3>
-          <p>성균관대학교 졸업 · 삼성서울병원 전공의·전임의 · 경북대학교 교수 역임 · 삼성서울병원과 동일한 원칙으로 진료</p>
+    <nav style="display:flex; align-items:center; gap:32px;" class="desktop-nav">
+      <a href="#about" style="font-size:15px; font-weight:500; color:oklch(24% 0.02 250);">병원소개</a>
+      <a href="#doctors" style="font-size:15px; font-weight:500; color:oklch(24% 0.02 250);">의료진</a>
+      <a href="#specialties" style="font-size:15px; font-weight:500; color:oklch(24% 0.02 250);">진료과목</a>
+      <a href="#equipment" style="font-size:15px; font-weight:500; color:oklch(24% 0.02 250);">정밀검사</a>
+      <a href="#community" style="font-size:15px; font-weight:500; color:oklch(24% 0.02 250);">공지·건강정보</a>
+    </nav>
+    <div style="display:flex; align-items:center; gap:12px;">
+      <a href="tel:051-558-5898" style="font-size:14px; font-weight:700; color:oklch(30% 0.1 248); display:none;" class="phone-label">051-000-0000</a>
+      <a href="#reserve" style="background:oklch(46% 0.13 248); color:oklch(99% 0.005 90); padding:10px 20px; border-radius:4px; font-size:14px; font-weight:700; white-space:nowrap;" style-hover="background:oklch(38% 0.13 248);">진료상담</a>
+      <button onClick="{{ toggleMobileMenu }}" class="mobile-menu-btn" style="display:none; width:36px; height:36px; border:1px solid oklch(85% 0.008 250); border-radius:4px; background:oklch(99% 0.005 90); align-items:center; justify-content:center; flex-direction:column; gap:4px; cursor:pointer; padding:0;">
+        <span style="width:18px; height:2px; background:oklch(30% 0.02 250);"></span>
+        <span style="width:18px; height:2px; background:oklch(30% 0.02 250);"></span>
+        <span style="width:18px; height:2px; background:oklch(30% 0.02 250);"></span>
+      </button>
+    </div>
+  </header>
+
+  <sc-if value="{{ mobileMenuOpen }}" hint-placeholder-val="{{ false }}">
+    <nav class="mobile-nav-panel" style="display:none; flex-direction:column; position:sticky; top:65px; z-index:99; background:oklch(99% 0.005 90); border-bottom:1px solid oklch(89% 0.008 250); box-shadow:0 8px 16px oklch(0% 0 0 / 0.06);">
+      <a href="#about" onClick="{{ closeMobileMenu }}" style="padding:16px 24px; font-size:16px; font-weight:500; color:oklch(24% 0.02 250); border-bottom:1px solid oklch(93% 0.006 90);">병원소개</a>
+      <a href="#doctors" onClick="{{ closeMobileMenu }}" style="padding:16px 24px; font-size:16px; font-weight:500; color:oklch(24% 0.02 250); border-bottom:1px solid oklch(93% 0.006 90);">의료진</a>
+      <a href="#specialties" onClick="{{ closeMobileMenu }}" style="padding:16px 24px; font-size:16px; font-weight:500; color:oklch(24% 0.02 250); border-bottom:1px solid oklch(93% 0.006 90);">진료과목</a>
+      <a href="#equipment" onClick="{{ closeMobileMenu }}" style="padding:16px 24px; font-size:16px; font-weight:500; color:oklch(24% 0.02 250); border-bottom:1px solid oklch(93% 0.006 90);">정밀검사</a>
+      <a href="#community" onClick="{{ closeMobileMenu }}" style="padding:16px 24px; font-size:16px; font-weight:500; color:oklch(24% 0.02 250);">공지·건강정보</a>
+    </nav>
+  </sc-if>
+
+  <!-- HERO -->
+  <section class="hero-grid" style="display:grid; grid-template-columns:1fr 1fr; min-height:560px; background:oklch(96% 0.006 90);">
+    <div class="hero-text" style="display:flex; flex-direction:column; justify-content:center; gap:24px; padding:64px 64px;">
+      <div style="display:inline-block; background:oklch(93% 0.03 195); color:oklch(34% 0.09 195); font-size:12px; font-weight:800; letter-spacing:0.5px; padding:5px 14px; border-radius:20px;">SAMSUNG SMART NEUROLOGY CLINIC · BUSAN</div>
+      <h1 class="hero-title brand-font" style="font-size:44px; font-weight:900; line-height:1.3; margin:0; letter-spacing:-1px;">경청하는 진료,<br>정확하게 진단합니다</h1>
+      <p style="font-size:17px; color:oklch(45% 0.02 250); max-width:440px; margin:0;">두통·어지럼증·수면장애·치매까지, 신경과 전문의가 충분한 문진과 정밀 검사로 원인을 찾아드립니다.</p>
+      <div style="display:flex; gap:12px; margin-top:8px;">
+        <a href="#reserve" style="background:oklch(46% 0.13 248); color:oklch(99% 0.005 90); padding:14px 28px; border-radius:4px; font-size:16px; font-weight:700;" style-hover="background:oklch(38% 0.13 248);">진료상담 문의</a>
+        <a href="#location" style="background:transparent; color:oklch(24% 0.02 250); padding:14px 28px; border-radius:4px; font-size:16px; font-weight:700; border:1px solid oklch(80% 0.01 250);" style-hover="border-color:oklch(46% 0.13 248); color:oklch(46% 0.13 248);">오시는길</a>
+      </div>
+    </div>
+    <div class="hero-image" style="min-height:320px; position:relative;">
+      <sc-for list="{{ heroPhotos }}" as="photo" hint-placeholder-count="3">
+        <div style="position:absolute; inset:0; opacity:{{ photo.opacity }}; transition:opacity 1s ease; pointer-events:{{ photo.pointerEvents }};">
+          <x-import component-from-global-scope="image-slot" from="./image-slot.js" hint-size="100%,320px" id="{{ photo.id }}" src="./assets/photos/{{ photo.id }}.webp" shape="rect" placeholder="병원 전경 사진 {{ photo.n }}"></x-import>
+        </div>
+      </sc-for>
+      <div style="position:absolute; bottom:16px; left:50%; transform:translateX(-50%); display:flex; gap:8px; z-index:5;">
+        <sc-for list="{{ heroPhotos }}" as="photo" hint-placeholder-count="3">
+          <button onClick="{{ photo.onSelect }}" style="width:8px; height:8px; border-radius:50%; border:none; background:{{ photo.dotColor }}; cursor:pointer; padding:0;"></button>
+        </sc-for>
+      </div>
+    </div>
+  </section>
+
+  <!-- TRUST STRIP -->
+  <section class="trust-strip" style="display:grid; grid-template-columns:repeat(4, 1fr); gap:20px; padding:40px 64px; border-bottom:1px solid oklch(89% 0.008 250); max-width:1280px; margin:0 auto;">
+    <div style="text-align:center; padding:20px 12px; border-top:3px solid oklch(46% 0.13 248); background:oklch(97% 0.004 90); border-radius:0 0 8px 8px;">
+      <div style="width:36px; height:36px; border-radius:50%; background:oklch(93% 0.045 248); display:flex; align-items:center; justify-content:center; margin:0 auto 10px;"><div style="width:10px; height:10px; border-radius:50%; background:oklch(46% 0.13 248);"></div></div>
+      <div style="font-size:15px; font-weight:800;">교수 출신 전문의 진료</div><div style="font-size:13px; color:oklch(48% 0.015 250); margin-top:2px;">신경과 전문의 2인 진료</div>
+    </div>
+    <div style="text-align:center; padding:20px 12px; border-top:3px solid oklch(58% 0.09 195); background:oklch(97% 0.004 90); border-radius:0 0 8px 8px;">
+      <div style="width:36px; height:36px; border-radius:50%; background:oklch(93% 0.03 195); display:flex; align-items:center; justify-content:center; margin:0 auto 10px;"><div style="width:10px; height:10px; border-radius:50%; background:oklch(58% 0.09 195);"></div></div>
+      <div style="font-size:15px; font-weight:800;">정밀검사와 정확한 해석</div><div style="font-size:13px; color:oklch(48% 0.015 250); margin-top:2px;">수면다원검사 · 뇌혈류초음파</div>
+    </div>
+    <div style="text-align:center; padding:20px 12px; border-top:3px solid oklch(46% 0.13 248); background:oklch(97% 0.004 90); border-radius:0 0 8px 8px;">
+      <div style="width:36px; height:36px; border-radius:50%; background:oklch(93% 0.045 248); display:flex; align-items:center; justify-content:center; margin:0 auto 10px;"><div style="width:10px; height:10px; border-radius:50%; background:oklch(46% 0.13 248);"></div></div>
+      <div style="font-size:15px; font-weight:800;">예약 진료 우선</div><div style="font-size:13px; color:oklch(48% 0.015 250); margin-top:2px;">당일 결과 확인</div>
+    </div>
+    <div style="text-align:center; padding:20px 12px; border-top:3px solid oklch(58% 0.09 195); background:oklch(97% 0.004 90); border-radius:0 0 8px 8px;">
+      <div style="width:36px; height:36px; border-radius:50%; background:oklch(93% 0.03 195); display:flex; align-items:center; justify-content:center; margin:0 auto 10px;"><div style="width:10px; height:10px; border-radius:50%; background:oklch(58% 0.09 195);"></div></div>
+      <div style="font-size:15px; font-weight:800;">온천장역 도보 3분</div><div style="font-size:13px; color:oklch(48% 0.015 250); margin-top:2px;">접근이 편리한 위치</div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="about" class="about-grid section-pad section-pad-top" style="scroll-margin-top:80px; padding:96px 64px; display:grid; grid-template-columns:1fr 1fr; gap:64px; max-width:1280px; margin:0 auto;">
+    <div>
+      <div style="display:inline-block; background:oklch(93% 0.03 195); color:oklch(34% 0.09 195); font-size:12px; font-weight:800; letter-spacing:0.5px; padding:5px 14px; border-radius:20px;">ABOUT US</div>
+      <h2 style="font-size:32px; font-weight:900; margin:12px 0 24px;">병원소개</h2>
+      <p style="font-size:16px; color:oklch(40% 0.02 250); margin:0 0 16px;">삼성스마트신경과는 삼성서울병원 신경과 전문의 출신으로, 삼성서울병원과 동일한 원칙으로 진료합니다.</p>
+      <p style="font-size:16px; color:oklch(40% 0.02 250); margin:0 0 16px;">삼성스마트신경과 부산점은 두통, 어지럼증, 수면장애, 자율신경장애, 뇌혈관질환, 치매 등 신경계 질환 전반을 다루는 신경과 중점병원입니다.<br><br>환자의 이야기를 충분히 듣는 문진을 최우선으로 삼아 정확한 원인 진단과 맞춤 치료를 제공합니다.</p>
+      <p style="font-size:16px; color:oklch(40% 0.02 250); margin:0 0 24px;">충분한 문진으로 환자분에게 필요한 검사를 시행하고, 정확한 진단을 통한 개별 맞춤 진료를 목표로 합니다.</p>
+      <div style="display:flex; gap:12px; flex-wrap:wrap;">
+        <div style="background:oklch(93% 0.03 195); color:oklch(30% 0.09 195); font-size:13px; font-weight:800; padding:8px 16px; border-radius:20px;">2019년 개원</div>
+        <div style="background:oklch(93% 0.045 248); color:oklch(34% 0.13 248); font-size:13px; font-weight:800; padding:8px 16px; border-radius:20px;">신경과 전문의 2인</div>
+        <div style="background:oklch(93% 0.03 195); color:oklch(30% 0.09 195); font-size:13px; font-weight:800; padding:8px 16px; border-radius:20px;">정밀검사 6종</div>
+      </div>
+    </div>
+    <div>
+      <div style="display:inline-block; background:oklch(93% 0.03 195); color:oklch(34% 0.09 195); font-size:12px; font-weight:800; letter-spacing:0.5px; padding:5px 14px; border-radius:20px; margin-bottom:16px;">HISTORY</div>
+      <sc-for list="{{ historyItems }}" as="item" hint-placeholder-count="4">
+        <div style="display:flex; gap:20px; padding:16px 0; border-bottom:1px solid oklch(89% 0.008 250);">
+          <div style="font-size:16px; font-weight:900; color:oklch(46% 0.13 248); min-width:64px;">{{ item.year }}</div>
+          <div style="font-size:15px; color:oklch(30% 0.02 250);">{{ item.text }}</div>
+        </div>
+      </sc-for>
+    </div>
+  </section>
+
+  <!-- LOCATION -->
+  <section id="location" class="section-pad" style="scroll-margin-top:80px; padding:0 64px 96px; max-width:1280px; margin:0 auto;">
+    <div class="location-grid" style="display:grid; grid-template-columns:1fr 1fr; gap:64px;">
+      <div>
+        <div style="display:inline-block; background:oklch(93% 0.03 195); color:oklch(34% 0.09 195); font-size:12px; font-weight:800; letter-spacing:0.5px; padding:5px 14px; border-radius:20px;">LOCATION</div>
+        <h2 style="font-size:32px; font-weight:900; margin:12px 0 24px;">진료시간 · 오시는길</h2>
+        <div style="font-size:15px; color:oklch(30% 0.02 250); margin-bottom:24px;">부산광역시 동래구 중앙대로 1523 SK허브스카이 2층<br>(온천장역 3, 5, 7번 출구) · 도보 3분</div>
+        <div style="border-top:1px solid oklch(89% 0.008 250);">
+          <div style="display:flex; justify-content:space-between; padding:14px 0; border-bottom:1px solid oklch(89% 0.008 250); font-size:15px;"><span>평일 오전</span><span style="font-weight:700;">09:00 - 18:00</span></div>
+          <div style="display:flex; justify-content:space-between; padding:14px 0; border-bottom:1px solid oklch(89% 0.008 250); font-size:15px;"><span>화 · 목 야간진료</span><span style="font-weight:700;">09:00 - 19:00</span></div>
+          <div style="display:flex; justify-content:space-between; padding:14px 0; border-bottom:1px solid oklch(89% 0.008 250); font-size:15px;"><span>토요일</span><span style="font-weight:700;">08:30 - 13:00</span></div>
+          <div style="display:flex; justify-content:space-between; padding:14px 0; border-bottom:1px solid oklch(89% 0.008 250); font-size:15px;"><span>점심시간</span><span style="font-weight:700;">12:30 - 14:00</span></div>
+          <div style="display:flex; justify-content:space-between; padding:14px 0; font-size:15px; color:oklch(48% 0.015 250);"><span>일요일 · 공휴일</span><span>휴진</span></div>
+        </div>
+        <div style="font-size:13px; color:oklch(48% 0.015 250); margin-top:12px;">진료예약제 운영 중이오니 예약 후 내원해 주세요.</div>
+        <div style="font-size:22px; font-weight:900; color:oklch(46% 0.13 248); margin-top:24px;">051-558-5898</div>
+        <div style="margin-top:28px; padding-top:20px; border-top:1px solid oklch(89% 0.008 250); display:flex; flex-direction:column; gap:10px;">
+          <div style="font-size:13px; font-weight:700; color:oklch(58% 0.09 195);">교통안내</div>
+          <div style="font-size:14px; color:oklch(40% 0.02 250);"><b>지하철</b> · 온천장역 3, 7번 출구 도보 3분 (육교 건너 상가 안쪽)</div>
+          <div style="font-size:14px; color:oklch(40% 0.02 250);"><b>버스</b> · CGV동래 정류장 도보 1분, SK허브스카이 정류장 도보 2분</div>
+          <div style="font-size:14px; color:oklch(40% 0.02 250);"><b>승용차</b> · 건물 지하 주차장 이용 (홈플러스 전용 주차장은 이용 불가)</div>
         </div>
       </div>
-      <div class="doctor-card">
-        <div class="doctor-photo"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.5-7 8-7s8 3 8 7"/></svg></div>
-        <div class="doctor-info">
-          <div class="role">원장 · 신경과 전문의</div>
-          <h3>원장 (성함 확인 필요)</h3>
-          <p>신경과 전문의 · 상세 프로필은 병원 확인 후 반영해 주세요</p>
-        </div>
+      <div style="border-radius:8px; overflow:hidden; min-height:420px; display:flex; flex-direction:column;">
+        <iframe title="병원 위치 지도" src="https://www.openstreetmap.org/export/embed.html?bbox=129.0774%2C35.2042%2C129.0794%2C35.2056&layer=mapnik&marker=35.2049%2C129.0784" style="border:0; width:100%; flex:1; min-height:420px;" loading="lazy"></iframe>
+        <a href="https://map.naver.com/p/search/%EC%82%BC%EC%84%B1%EC%8A%A4%EB%A7%88%ED%8A%B8%EC%8B%A0%EA%B2%BD%EA%B3%BC?c=16.03,0,0,0,dh" style="display:block; text-align:center; padding:12px; background:oklch(46% 0.13 248); font-size:14px; color:oklch(99% 0.005 90); font-weight:700;">네이버 지도에서 길찾기 &gt;</a>
       </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<div class="trust">
-  <div class="trust-grid wrap">
-    <div><div class="trust-num">2019년</div><div class="trust-label">개원</div></div>
-    <div><div class="trust-num">전문의 2인</div><div class="trust-label">신경과 전문의 진료</div></div>
-    <div><div class="trust-num">정밀검사 6종</div><div class="trust-label">대학병원급 장비 보유</div></div>
-    <div><div class="trust-num">온천장역</div><div class="trust-label">도보 3분 거리</div></div>
-  </div>
+  <!-- DOCTORS -->
+  <section id="doctors" class="section-pad" style="scroll-margin-top:80px; padding:0 64px 96px; max-width:1280px; margin:0 auto;">
+    <div style="text-align:center; margin-bottom:48px;">
+      <div style="display:inline-block; background:oklch(93% 0.03 195); color:oklch(34% 0.09 195); font-size:12px; font-weight:800; letter-spacing:0.5px; padding:5px 14px; border-radius:20px;">MEDICAL STAFF</div>
+      <h2 style="font-size:32px; font-weight:900; margin:12px 0;">의료진 소개</h2>
+    </div>
+    <sc-for list="{{ doctors }}" as="doc" hint-placeholder-count="2">
+      <div class="doctor-card" style="display:grid; grid-template-columns:320px 1fr; gap:48px; background:oklch(96% 0.006 90); border-radius:8px; overflow:hidden; margin-bottom:24px;">
+        <div class="doctor-photo" style="min-height:320px;">
+          <x-import component-from-global-scope="image-slot" from="./image-slot.js" hint-size="100%,320px" id="{{ doc.photoId }}" src="./assets/photos/{{ doc.photoId }}.webp" shape="rect" placeholder="원장님 프로필 사진"></x-import>
+        </div>
+        <div style="padding:40px 40px 40px 0; display:flex; flex-direction:column; justify-content:center;">
+          <div style="font-size:22px; font-weight:900; margin-bottom:8px;">{{ doc.name }}</div>
+          <div style="display:flex; align-items:center; gap:10px; margin-bottom:20px;">
+            <span style="font-size:15px; font-weight:700; color:oklch(46% 0.13 248);">{{ doc.title }}</span>
+            <span style="background:oklch(93% 0.03 195); color:oklch(30% 0.09 195); font-size:12px; font-weight:800; padding:3px 10px; border-radius:20px;">{{ doc.tag }}</span>
+          </div>
+          <sc-for list="{{ doc.creds }}" as="cred" hint-placeholder-count="4">
+            <div style="font-size:14px; color:oklch(40% 0.02 250); padding:4px 0;">· {{ cred }}</div>
+          </sc-for>
+
+          <div style="margin-top:20px;">
+            <div style="font-size:12px; font-weight:700; color:oklch(58% 0.09 195); margin-bottom:8px;">진료시간</div>
+            <div style="display:grid; grid-template-columns:40px repeat(6, 1fr); gap:4px; align-items:center;">
+              <div></div>
+              <sc-for list="{{ weekDays }}" as="d" hint-placeholder-count="6"><div style="text-align:center; font-size:12px; font-weight:700; color:oklch(45% 0.02 250);">{{ d }}</div></sc-for>
+              <sc-for list="{{ doc.schedule }}" as="row" hint-placeholder-count="3">
+                <div style="font-size:12px; color:oklch(45% 0.02 250);">{{ row.label }}</div>
+                <sc-for list="{{ row.days }}" as="on" hint-placeholder-count="6">
+                  <div style="text-align:center;"><div style="width:14px; height:14px; border-radius:50%; background:{{ on }}; display:inline-block;"></div></div>
+                </sc-for>
+              </sc-for>
+            </div>
+            <div style="font-size:12px; color:oklch(50% 0.015 250); margin-top:8px;">{{ doc.scheduleNote }}</div>
+          </div>
+        </div>
+      </div>
+    </sc-for>
+  </section>
+
+  <!-- SPECIALTIES -->
+  <section id="specialties" class="section-pad section-pad-top" style="scroll-margin-top:80px; padding:96px 64px; background:oklch(96% 0.006 90);">
+    <div style="max-width:1280px; margin:0 auto;">
+      <div style="text-align:center; margin-bottom:48px;">
+        <div style="display:inline-block; background:oklch(93% 0.03 195); color:oklch(34% 0.09 195); font-size:12px; font-weight:800; letter-spacing:0.5px; padding:5px 14px; border-radius:20px;">SPECIALTIES</div>
+        <h2 style="font-size:32px; font-weight:900; margin:12px 0;">진료과목 · 전문분야</h2>
+        <p style="font-size:16px; color:oklch(45% 0.02 250);">증상별 전문 클리닉에서 정확한 진단을 받으세요</p>
+      </div>
+      <div class="cards-grid-3" style="display:grid; grid-template-columns:repeat(3, 1fr); gap:24px;">
+        <sc-for list="{{ specialties }}" as="item" hint-placeholder-count="6">
+          <a href="{{ item.href }}" style="display:block; position:relative; background:oklch(99% 0.005 90); border:1px solid oklch(89% 0.008 250); border-top:3px solid oklch(46% 0.13 248); border-radius:6px; padding:32px; color:oklch(24% 0.02 250); box-shadow:0 1px 3px oklch(0% 0 0 / 0.04); transition:box-shadow .2s, transform .2s;" style-hover="border-color:oklch(46% 0.13 248); box-shadow:0 10px 24px oklch(0% 0 0 / 0.08); transform:translateY(-2px);">
+            <div style="position:absolute; top:20px; right:24px; font-size:28px; font-weight:900; color:oklch(93% 0.02 248);">{{ item.num }}</div>
+            <div style="width:44px; height:44px; border-radius:50%; background:oklch(92% 0.02 248); display:flex; align-items:center; justify-content:center; margin-bottom:20px;">
+              <div style="width:16px; height:16px; border-radius:50%; background:oklch(46% 0.13 248);"></div>
+            </div>
+            <div style="font-size:18px; font-weight:700; margin-bottom:8px;">{{ item.name }}</div>
+            <div class="clamp-2" style="font-size:14px; color:oklch(45% 0.02 250); margin-bottom:12px;">{{ item.desc }}</div>
+            <div style="font-size:13px; color:oklch(46% 0.13 248); font-weight:700;">자세히 보기 &gt;</div>
+          </a>
+        </sc-for>
+      </div>
+    </div>
+  </section>
+
+  <!-- EQUIPMENT -->
+  <section id="equipment" class="section-pad section-pad-top" style="scroll-margin-top:80px; padding:96px 64px; background:oklch(96% 0.006 90);">
+    <div style="max-width:1280px; margin:0 auto;">
+      <div style="text-align:center; margin-bottom:48px;">
+        <div style="display:inline-block; background:oklch(93% 0.03 195); color:oklch(34% 0.09 195); font-size:12px; font-weight:800; letter-spacing:0.5px; padding:5px 14px; border-radius:20px;">EQUIPMENT</div>
+        <h2 style="font-size:32px; font-weight:900; margin:12px 0;">정밀검사</h2>
+        <p style="font-size:16px; color:oklch(45% 0.02 250);">대학병원 수준의 정밀 장비로 신경계 질환의 원인을 정확하게 확인합니다</p>
+      </div>
+      <div class="cards-grid-3" style="display:grid; grid-template-columns:repeat(3, 1fr); gap:24px;">
+        <sc-for list="{{ equipmentItems }}" as="item" hint-placeholder-count="6">
+          <a href="{{ item.href }}" style="display:block; position:relative; background:oklch(99% 0.005 90); border:1px solid oklch(89% 0.008 250); border-top:3px solid oklch(58% 0.09 195); border-radius:6px; padding:32px; color:oklch(24% 0.02 250); box-shadow:0 1px 3px oklch(0% 0 0 / 0.04); transition:box-shadow .2s, transform .2s;" style-hover="border-color:oklch(46% 0.13 248); box-shadow:0 10px 24px oklch(0% 0 0 / 0.08); transform:translateY(-2px);">
+            <div style="position:absolute; top:20px; right:24px; font-size:28px; font-weight:900; color:oklch(90% 0.025 195);">{{ item.num }}</div>
+            <div style="width:44px; height:44px; border-radius:8px; background:oklch(92% 0.03 195); display:flex; align-items:center; justify-content:center; margin-bottom:20px;">
+              <div style="width:16px; height:16px; background:oklch(58% 0.09 195);"></div>
+            </div>
+            <div style="font-size:17px; font-weight:700; margin-bottom:8px;">{{ item.name }}</div>
+            <div class="clamp-2" style="font-size:14px; color:oklch(45% 0.02 250); margin-bottom:12px;">{{ item.desc }}</div>
+            <div style="font-size:13px; color:oklch(46% 0.13 248); font-weight:700;">검사 자세히 보기 &gt;</div>
+          </a>
+        </sc-for>
+      </div>
+    </div>
+  </section>
+
+  <!-- RESERVE -->
+  <section id="reserve" class="section-pad section-pad-top" style="scroll-margin-top:80px; padding:96px 64px; background:oklch(30% 0.1 248);">
+    <div style="max-width:640px; margin:0 auto;">
+      <div style="text-align:center; margin-bottom:40px;">
+        <div style="font-size:14px; font-weight:700; color:oklch(80% 0.06 195); letter-spacing:1px;">CONSULTATION</div>
+        <h2 style="font-size:32px; font-weight:900; margin:12px 0; color:oklch(99% 0.005 90);">진료상담 안내</h2>
+      </div>
+
+      <div style="background:oklch(99% 0.005 90); border-radius:8px; padding:48px; text-align:center;">
+        <div style="font-size:16px; color:oklch(40% 0.02 250); margin-bottom:24px;">진료 예약은 카카오톡 상담 또는 전화로 받고 있습니다</div>
+        <div style="display:flex; gap:16px; justify-content:center; flex-wrap:wrap;">
+          <a href="https://pf.kakao.com/_xmCjxgj/chat" style="display:inline-flex; align-items:center; gap:10px; background:#FEE500; color:oklch(20% 0.02 90); padding:16px 32px; border-radius:4px; font-size:16px; font-weight:900;"><svg width="20" height="18" viewBox="0 0 20 18" fill="none"><path d="M10 0C4.48 0 0 3.5 0 7.8c0 2.75 1.83 5.17 4.6 6.55-.2.75-.73 2.7-.84 3.13-.13.53.2.53.42.38.17-.11 2.7-1.83 3.8-2.58.65.1 1.32.15 2.02.15 5.52 0 10-3.5 10-7.8S15.52 0 10 0Z" fill="#3C1E1E"/></svg>카카오톡 상담</a>
+          <a href="tel:051-558-5898" style="display:inline-flex; align-items:center; gap:10px; background:oklch(46% 0.13 248); color:oklch(99% 0.005 90); padding:16px 32px; border-radius:4px; font-size:16px; font-weight:900;"><span style="width:22px; height:22px; border-radius:50%; background:oklch(99% 0.005 90 / 0.18); display:flex; align-items:center; justify-content:center; font-size:11px; font-weight:900;">TEL</span>051-558-5898 전화하기</a>
+        </div>
+        <div style="margin-top:28px; padding-top:24px; border-top:1px solid oklch(89% 0.008 250); font-size:14px; color:oklch(45% 0.02 250);">수면다원검사는 네이버 예약으로 별도 접수하고 있습니다</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- COMMUNITY -->
+  <section id="community" class="section-pad section-pad-top" style="scroll-margin-top:80px; padding:96px 64px;">
+    <div class="community-grid" style="max-width:1280px; margin:0 auto; display:grid; grid-template-columns:1fr 1fr; gap:64px;">
+      <div>
+        <div style="display:flex; justify-content:space-between; align-items:baseline; margin-bottom:24px;">
+          <h2 style="font-size:24px; font-weight:900; margin:0;">공지사항</h2>
+          <a href="./notices.html" style="font-size:13px; color:oklch(48% 0.015 250);">더보기 &gt;</a>
+        </div>
+        <sc-for list="{{ notices }}" as="n" hint-placeholder-count="3">
+          <div style="display:flex; gap:16px; align-items:baseline; padding:16px 0; border-bottom:1px solid oklch(89% 0.008 250);">
+            <span style="font-size:12px; font-weight:700; color:oklch(58% 0.09 195); border:1px solid oklch(80% 0.05 195); border-radius:3px; padding:2px 8px; flex-shrink:0;">{{ n.tag }}</span>
+            <span style="font-size:15px; flex:1;">{{ n.title }}</span>
+            <span style="font-size:13px; color:oklch(55% 0.015 250); flex-shrink:0;">{{ n.date }}</span>
+          </div>
+        </sc-for>
+      </div>
+      <div>
+        <div style="display:flex; justify-content:space-between; align-items:baseline; margin-bottom:24px;">
+          <h2 style="font-size:24px; font-weight:900; margin:0;">원장칼럼</h2>
+          <a href="./columns.html" style="font-size:13px; color:oklch(48% 0.015 250);">더보기 &gt;</a>
+        </div>
+        <sc-for list="{{ columnPosts }}" as="p" hint-placeholder-count="4">
+          <div style="padding:16px 0; border-bottom:1px solid oklch(89% 0.008 250);">
+            <div class="clamp-2" style="font-size:15px; font-weight:700; margin-bottom:4px;">{{ p.title }}</div>
+            <div class="clamp-2" style="font-size:13px; color:oklch(48% 0.015 250);">{{ p.excerpt }}</div>
+          </div>
+        </sc-for>
+      </div>
+    </div>
+
+    <div class="linkrow-grid" style="max-width:1280px; margin:56px auto 0; display:grid; grid-template-columns:1fr 1fr; gap:24px;">
+      <a href="https://blog.naver.com/smartdr2" style="display:flex; align-items:center; gap:16px; padding:24px 28px; background:#03C75A; border:1px solid #03C75A; border-radius:6px; color:white;" style-hover="opacity:0.92;">
+        <svg width="24" height="24" viewBox="0 0 20 20" fill="none"><path d="M12.5 0v11.4L7.5 0H0v20h7.5V8.6L12.5 20H20V0h-7.5Z" fill="white"/></svg>
+        <span style="font-size:16px; font-weight:900;">블로그</span>
+        <span style="font-size:13px; font-weight:700; margin-left:auto;">방문하기 &gt;</span>
+      </a>
+      <a href="https://www.youtube.com/@Dr.smartneuro" style="display:flex; align-items:center; gap:16px; padding:24px 28px; background:#FF0000; border:1px solid #FF0000; border-radius:6px; color:white;" style-hover="opacity:0.92;">
+        <svg width="28" height="20" viewBox="0 0 28 20" fill="none"><path d="M27.4 3.1c-.3-1.2-1.3-2.1-2.5-2.4C22.7 0 14 0 14 0S5.3 0 3.1.7C1.9 1 .9 1.9.6 3.1 0 5.3 0 10 0 10s0 4.7.6 6.9c.3 1.2 1.3 2.1 2.5 2.4C5.3 20 14 20 14 20s8.7 0 10.9-.7c1.2-.3 2.2-1.2 2.5-2.4.6-2.2.6-6.9.6-6.9s0-4.7-.6-6.9Z" fill="white"/><path d="M11 14.5V5.5L18.5 10 11 14.5Z" fill="#FF0000"/></svg>
+        <span style="font-size:16px; font-weight:900;">유튜브</span>
+        <span style="font-size:13px; font-weight:700; margin-left:auto;">채널 바로가기 &gt;</span>
+      </a>
+    </div>
+  </section>
+
+  <!-- NONPAYMENT (법정 고지, 최하단) -->
+  <section id="nonpayment" class="section-pad nonpayment-row" style="scroll-margin-top:80px; padding:24px 64px; max-width:640px; margin:0 auto; display:flex; gap:24px;">
+    <details style="flex:1;">
+      <summary style="font-size:13px; color:oklch(52% 0.015 250); cursor:pointer;">비급여 진료비 안내 (의료법 제45조 고지)</summary>
+      <div style="margin-top:12px; background:oklch(97% 0.004 90); border:1px solid oklch(90% 0.008 250); border-radius:4px; overflow:hidden;">
+        <div style="display:grid; grid-template-columns:1fr 2fr 1fr; background:oklch(94% 0.006 90); color:oklch(42% 0.02 250); font-size:12px; font-weight:700; padding:6px 12px;">
+          <div>분류</div><div>항목</div><div style="text-align:right;">금액</div>
+        </div>
+        <sc-for list="{{ nonPaymentRows }}" as="row" hint-placeholder-count="10">
+          <div style="display:grid; grid-template-columns:1fr 2fr 1fr; padding:5px 12px; border-bottom:1px solid oklch(93% 0.006 90); font-size:12px; color:oklch(45% 0.015 250);">
+            <div>{{ row.category }}</div>
+            <div>{{ row.item }}</div>
+            <div style="text-align:right;">{{ row.price }}</div>
+          </div>
+        </sc-for>
+      </div>
+    </details>
+    <details style="flex:1;">
+      <summary style="font-size:13px; color:oklch(52% 0.015 250); cursor:pointer;">환자권리장전</summary>
+      <div style="margin-top:12px; font-size:12px; color:oklch(48% 0.015 250);">환자의 권리와 의무를 안내합니다. <a href="./patient-rights.html" style="color:oklch(46% 0.13 248); font-weight:700;">전체 내용 보기 &gt;</a></div>
+    </details>
+  </section>
+
+  <!-- FOOTER -->
+  <footer style="padding:48px 64px; background:oklch(96% 0.006 90); border-top:1px solid oklch(89% 0.008 250);">
+    <div style="max-width:1280px; margin:0 auto; display:flex; justify-content:space-between; flex-wrap:wrap; gap:24px;">
+      <div>
+        <div style="font-size:16px; font-weight:900; margin-bottom:12px;">삼성스마트신경과 부산점</div>
+        <div style="font-size:13px; color:oklch(48% 0.015 250); line-height:1.8;">
+          부산광역시 동래구 중앙대로 1523 SK허브스카이 2층 · 대표자 : 황재춘<br>
+          사업자등록번호 524-97-01989 · 대표전화 051-558-5898 · Fax 051-558-5897<br>
+          copyright 2026 SAMSUNG SMART NEUROLOGY CLINIC. ALL RIGHTS RESERVED.
+        </div>
+      </div>
+      <div style="display:flex; gap:24px; font-size:13px; color:oklch(48% 0.015 250);">
+        <a href="#" style="color:oklch(48% 0.015 250);">개인정보처리방침</a>
+        <a href="#" style="color:oklch(48% 0.015 250);">이용약관</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- FLOATING QUICK MENU -->
+  <sc-if value="{{ showFloatingMenu }}" hint-placeholder-val="{{ true }}">
+    <div class="fab-menu" style="position:fixed; right:16px; bottom:16px; display:flex; flex-direction:column; gap:10px; z-index:200;">
+      <a href="https://pf.kakao.com/_xmCjxgj/chat" style="width:56px; height:56px; border-radius:50%; background:#FEE500; color:oklch(20% 0.02 90); display:flex; flex-direction:column; align-items:center; justify-content:center; gap:2px; font-size:11px; font-weight:700; text-align:center; box-shadow:0 4px 12px oklch(0% 0 0 / 0.2);">
+        <svg width="20" height="18" viewBox="0 0 20 18" fill="none"><path d="M10 0C4.48 0 0 3.5 0 7.8c0 2.75 1.83 5.17 4.6 6.55-.2.75-.73 2.7-.84 3.13-.13.53.2.53.42.38.17-.11 2.7-1.83 3.8-2.58.65.1 1.32.15 2.02.15 5.52 0 10-3.5 10-7.8S15.52 0 10 0Z" fill="#3C1E1E"/></svg>
+        카톡상담
+      </a>
+      <a href="#location" style="width:56px; height:56px; border-radius:50%; background:#03C75A; color:oklch(99% 0.005 90); display:flex; flex-direction:column; align-items:center; justify-content:center; gap:2px; font-size:11px; font-weight:700; text-align:center; box-shadow:0 4px 12px oklch(0% 0 0 / 0.2);">
+        <svg width="16" height="16" viewBox="0 0 20 20" fill="none"><path d="M12.5 0v11.4L7.5 0H0v20h7.5V8.6L12.5 20H20V0h-7.5Z" fill="white"/></svg>
+        위치
+      </a>
+      <a href="https://www.youtube.com/@Dr.smartneuro" style="width:56px; height:56px; border-radius:50%; background:#FF0000; color:oklch(99% 0.005 90); display:flex; flex-direction:column; align-items:center; justify-content:center; gap:2px; font-size:11px; font-weight:700; text-align:center; box-shadow:0 4px 12px oklch(0% 0 0 / 0.2);">
+        <svg width="22" height="16" viewBox="0 0 28 20" fill="none"><path d="M27.4 3.1c-.3-1.2-1.3-2.1-2.5-2.4C22.7 0 14 0 14 0S5.3 0 3.1.7C1.9 1 .9 1.9.6 3.1 0 5.3 0 10 0 10s0 4.7.6 6.9c.3 1.2 1.3 2.1 2.5 2.4C5.3 20 14 20 14 20s8.7 0 10.9-.7c1.2-.3 2.2-1.2 2.5-2.4.6-2.2.6-6.9.6-6.9s0-4.7-.6-6.9Z" fill="white"/><path d="M11 14.5V5.5L18.5 10 11 14.5Z" fill="#FF0000"/></svg>
+        유튜브
+      </a>
+    </div>
+  </sc-if>
+
 </div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;showFloatingMenu&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;동작&quot;}}">
+class Component extends DCLogic {
+  state = { mobileMenuOpen: false, heroIdx: 0 };
 
-<section id="contact">
-  <div class="wrap">
-    <div class="section-head">
-      <div class="section-eyebrow">Location</div>
-      <h2>오시는 길</h2>
-    </div>
-    <div class="contact">
-      <div class="contact-info">
-        <div class="item">
-          <h3>주소</h3>
-          <p>부산광역시 동래구 중앙대로 1523 SK허브스카이 2층<br>(온천장역 3, 5, 7번 출구) · 도보 3분</p>
-        </div>
-        <div class="item">
-          <h3>오시는 길</h3>
-          <p><b>지하철</b> · 온천장역 3, 7번 출구 도보 3분 (육교 건너 상가 안쪽)<br><b>버스</b> · CGV동래 정류장 도보 1분, SK허브스카이 정류장 도보 2분<br><b>승용차</b> · 건물 지하 주차장 이용 (홈플러스 전용 주차장은 이용 불가)</p>
-        </div>
-        <div class="item">
-          <h3>진료시간</h3>
-          <p>평일 오전 진료 · 화·목 야간진료 · 토요일 진료<br>일요일·공휴일 휴진 · 점심시간 있음 (자세한 시간은 카카오톡 상담으로 문의해 주세요)</p>
-        </div>
-        <div class="item">
-          <h3>예약 안내</h3>
-          <p>진료예약제로 운영 중입니다. 예약은 카카오톡 상담 또는 전화(051-558-5898)로 받고 있으며, 수면다원검사는 네이버 예약으로 별도 접수합니다.</p>
-        </div>
-        <div class="item">
-          <h3>전화 문의</h3>
-          <p>TEL 051-558-5898 · FAX 051-558-5897</p>
-        </div>
-        <a href="#" class="btn-primary">카카오톡으로 상담하기</a>
-      </div>
-      <div class="map-placeholder">지도 영역 (실제 배포 시 카카오맵/네이버맵 API 삽입)</div>
-    </div>
-  </div>
-</section>
+  componentDidMount() {
+    this._heroTimer = setInterval(() => {
+      this.setState(s => ({ heroIdx: (s.heroIdx + 1) % 3 }));
+    }, 4000);
+  }
 
-<footer>
-  <div class="footer-inner">
-    <div>부산광역시 동래구 중앙대로 1523 SK허브스카이 2층 · 대표자: 황재춘 · 사업자등록번호 524-97-01989<br>© 2026 삼성스마트신경과 부산점. All rights reserved.</div>
-    <div style="display:flex;gap:18px;">
-      <a href="https://blog.naver.com/smartneuro" target="_blank">블로그</a>
-      <a href="https://www.youtube.com/c/%EB%B8%8C%EB%A0%88%EC%9D%B8TV%EC%8B%A0%EA%B2%BD%EA%B3%BC" target="_blank">유튜브</a>
-      <a href="https://www.instagram.com/smart.clinic_/" target="_blank">인스타그램</a>
-    </div>
-  </div>
-</footer>
+  componentWillUnmount() {
+    clearInterval(this._heroTimer);
+  }
 
+  renderVals() {
+    const ON = 'oklch(46% 0.13 248)';
+    const OFF = 'oklch(90% 0.01 250)';
+    const HALF = 'conic-gradient(oklch(46% 0.13 248) 0deg 180deg, oklch(90% 0.01 250) 180deg 360deg)';
+    const specialties = [
+      { slug: 'headache', name: '두통클리닉', desc: '긴장성두통·편두통·군발두통 등 원인별 맞춤 진료' },
+      { slug: 'dizziness', name: '어지럼증클리닉', desc: '말초성·중추성 어지럼증 정밀 감별 진료' },
+      { slug: 'sleep', name: '수면클리닉', desc: '불면증·수면무호흡·기면증 수면다원검사 기반 진단' },
+      { slug: 'autonomic', name: '자율신경클리닉', desc: '기립성어지럼·두근거림 등 자율신경 이상 정밀 평가' },
+      { slug: 'dementia', name: '치매·인지장애클리닉', desc: '조기 인지선별검사와 맞춤 관리 프로그램' },
+      { slug: 'stroke', name: '뇌혈관클리닉', desc: '뇌경색·뇌출혈 위험인자 관리와 재발 예방' },
+    ].map((s, i) => ({ ...s, href: `./clinic.html?slug=${s.slug}`, num: String(i + 1).padStart(2, '0') }));
+
+    const heroPhotos = [1, 2, 3].map((n, i) => ({
+      id: `hero-photo-${n}`,
+      n,
+      opacity: i === this.state.heroIdx ? 1 : 0,
+      pointerEvents: i === this.state.heroIdx ? 'auto' : 'none',
+      dotColor: i === this.state.heroIdx ? 'oklch(46% 0.13 248)' : 'oklch(85% 0.01 250)',
+      onSelect: () => this.setState({ heroIdx: i }),
+    }));
+
+    return {
+      specialties,
+      heroPhotos,
+      weekDays: ['월', '화', '수', '목', '금', '토'],
+      mobileMenuOpen: this.state.mobileMenuOpen,
+      toggleMobileMenu: () => this.setState(s => ({ mobileMenuOpen: !s.mobileMenuOpen })),
+      closeMobileMenu: () => this.setState({ mobileMenuOpen: false }),
+      showFloatingMenu: this.props.showFloatingMenu ?? true,
+
+      historyItems: [
+        { year: '2019', text: '삼성스마트신경과 개원 (박재현 원장)' },
+        { year: '2022', text: '여승현 원장 초빙' },
+        { year: '2024', text: '황재춘 교수 초빙' },
+        { year: '2025', text: '박재현 원장, 삼성스마트신경과 서울점 개원' },
+        { year: '2025', text: '황재춘 원장, 여승현 원장 삼성스마트신경과 부산점 전담' },
+        { year: '2026', text: '삼성스마트신경과 부산, 서울, 천안, 판교, 광교점 협력체제 구축' },
+      ],
+
+
+      doctors: [
+        {
+          photoId: 'doctor-photo-hwang',
+          name: '황재춘 원장',
+          title: '신경과 전문의',
+          tag: '뇌혈관질환·두통·어지러움·수면장애·자율신경장애',
+          scheduleNote: '매주 수요일 오후는 휴진입니다.',
+          schedule: [
+            { label: '오전', days: [ON, ON, ON, ON, ON, ON] },
+            { label: '오후', days: [ON, ON, OFF, ON, ON, OFF] },
+            { label: '야간', days: [OFF, ON, OFF, ON, OFF, OFF] },
+          ],
+          creds: [
+            '경북대학교 의과대학 졸업 · 성균관대학교 의과대학 대학원 졸업',
+            '삼성서울병원 신경과 전공의 · 뇌혈관질환 분과 임상강사',
+            '경북대학교병원 신경과 교수 (전)',
+            '삼성서울병원 외래교수 (현)',
+            '대한뇌졸중학회 학술위원회·정책위원회 위원 (전)',
+            '한국의료분쟁조정중재원 감정 자문위원 (현)',
+            '미국뇌졸중학회·세계뇌졸중학회 정회원',
+          ],
+        },
+        {
+          photoId: 'doctor-photo-yeo',
+          name: '여승현 원장',
+          title: '신경과 전문의',
+          tag: '말초신경·치매·두통·어지러움·수면장애·자율신경장애',
+          scheduleNote: '토요일 격주 진료 (해당 월 안내일 휴진)',
+          schedule: [
+            { label: '오전', days: [ON, ON, ON, OFF, ON, HALF] },
+            { label: '오후', days: [ON, OFF, ON, ON, ON, OFF] },
+          ],
+          creds: [
+            '동국대학교 의과대학 졸업 · 아주대학교 의과대학 대학원 졸업',
+            '아주대학교병원 신경과 전공의 · 근육말초신경 분과 임상강사',
+            '전 부산 부민병원 신경과 과장',
+            '대한신경과학회 · 대한두통학회 · 대한뇌전증학회 · 대한치매학회 정회원',
+            '신경근전도 및 유발전위 전문의 · 치매전문교육 수료',
+          ],
+        },
+      ],
+
+      equipmentItems: [
+        { slug: 'tcd', name: '뇌혈류초음파', desc: '두개골을 열지 않고도 뇌혈관의 혈류 속도와 저항을 측정해 두통·어지럼증·뇌졸중 위험의 원인을 확인하는 비침습적 검사입니다.' },
+        { slug: 'carotid', name: '경동맥초음파', desc: '목 동맥의 혈관벽 상태와 협착 여부를 확인해 뇌혈관질환 위험을 평가합니다.' },
+        { slug: 'ans', name: '자율신경검사', desc: '기립성혈압검사·발살바법 등으로 교감·부교감신경의 균형을 평가해 어지럼증·두근거림 등의 원인을 찾습니다.' },
+        { slug: 'eeg', name: '뇌파검사(정량뇌파 포함)', desc: '국제 10-20 시스템에 따른 정밀 전극 부착과 안정·수면·광자극 등 다양한 조건에서 측정해 뇌전증·뇌기능 이상을 평가합니다.' },
+        { slug: 'vng', name: 'VNG 정밀 평형기능검사', desc: '적외선 카메라로 안구 움직임을 분석해 이석증 등 전정기관 이상을 정밀하게 진단합니다.' },
+        { slug: 'psg', name: '수면다원검사', desc: '수면 중 뇌파·호흡·산소포화도를 종합 측정해 수면무호흡·불면증 등의 원인을 정밀 진단합니다.' },
+      ].map((e, i) => ({ ...e, href: `./exam.html?slug=${e.slug}`, num: String(i + 1).padStart(2, '0') })),
+
+      notices: [
+        { tag: '공지', title: '추석 연휴 진료 일정 안내', date: '2026.07.10' },
+        { tag: '공지', title: '온라인 예약 시스템 오픈 안내', date: '2026.06.20' },
+        { tag: '공지', title: '진료시간 변경 안내', date: '2026.06.05' },
+      ],
+
+      nonPaymentRows: [
+        { category: '초음파검사료', item: '경동맥 도플러 초음파', price: '120,000원' },
+        { category: '초음파검사료', item: '말초신경 초음파(편측)', price: '50,000원' },
+        { category: '기능검사료', item: '기립성혈압검사', price: '50,000원' },
+        { category: '기능검사료', item: '심박변이도검사', price: '30,000원' },
+        { category: '기능검사료', item: '수면다원검사', price: '700,000원' },
+        { category: '기능검사료', item: '뇌혈류 기능검사', price: '120,000원' },
+        { category: '이학요법료', item: '도수치료(10분)', price: '30,000원' },
+        { category: '처치·수술료', item: '경두개자기자극술', price: '80,000 ~ 90,000원' },
+        { category: '처치·수술료', item: '체외충격파치료(부위당)', price: '70,000원' },
+        { category: '제증명수수료', item: '진단서 등 각종 증명서', price: '항목별 상이' },
+      ],
+
+      columnPosts: [
+        { title: '만성두통, 방치하면 안 되는 이유', excerpt: '두통 유형별 원인과 치료 시기를 알아봅니다.' },
+        { title: '어지럼증, 이석증일까 뇌질환일까', excerpt: '증상만으로 구별하기 어려운 어지럼증의 감별점.' },
+        { title: '코골이와 수면무호흡의 차이', excerpt: '수면다원검사가 필요한 신호들을 정리했습니다.' },
+        { title: '치매 조기 발견을 위한 자가 체크리스트', excerpt: '가족이 먼저 알아챌 수 있는 초기 증상들.' },
+      ],
+    };
+  }
+}
+</script>
 </body>
 </html>

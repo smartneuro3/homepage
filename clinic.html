@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&display=swap" rel="stylesheet">
+<style>
+  body { margin:0; background:oklch(99% 0.004 90); }
+  * { box-sizing:border-box; font-family:'Noto Sans KR', sans-serif; word-break:keep-all; overflow-wrap:break-word; }
+  h1, h2, .brand-font { font-weight:900; }
+  a { color:oklch(46% 0.13 248); text-decoration:none; }
+  a:hover { color:oklch(38% 0.13 248); }
+  @media (max-width: 860px) {
+    .content-wrap { padding:32px 24px 64px !important; }
+    .split-grid { grid-template-columns:1fr !important; }
+    .grid-3 { grid-template-columns:1fr !important; }
+    .grid-4 { grid-template-columns:1fr 1fr !important; }
+    h1 { font-size:24px !important; line-height:1.35 !important; }
+    p { font-size:15px !important; line-height:1.7 !important; }
+  }
+</style>
+</helmet>
+
+<div style="color:oklch(24% 0.02 250); line-height:1.6;">
+
+  <header style="position:sticky; top:0; z-index:100; background:oklch(99% 0.004 90 / 0.96); backdrop-filter:blur(6px); border-bottom:1px solid oklch(89% 0.008 250); display:flex; align-items:center; justify-content:space-between; padding:16px 20px; gap:12px;">
+    <a href="./index.html" style="display:flex; align-items:center; gap:2px;">
+      <img src="./assets/logo.jpeg" alt="삼성스마트신경과 로고" style="height:104px; width:104px; object-fit:contain; flex-shrink:0;">
+      <span class="brand-font" style="font-size:30px; font-weight:900; color:oklch(30% 0.1 248); letter-spacing:-0.5px; margin-left:-24px;">삼성스마트신경과</span>
+      <span style="font-size:18px; font-weight:700; color:oklch(58% 0.09 195); margin-left:8px;">부산점</span>
+    </a>
+    <a href="./index.html#reserve" style="background:oklch(46% 0.13 248); color:oklch(99% 0.005 90); padding:10px 20px; border-radius:4px; font-size:14px; font-weight:700;" style-hover="background:oklch(38% 0.13 248);">진료상담</a>
+  </header>
+
+  <div class="content-wrap" style="max-width:1080px; margin:0 auto; padding:48px 64px 96px;">
+    <div style="font-size:13px; color:oklch(48% 0.015 250); margin-bottom:20px;">
+      <a href="./index.html#specialties" style="color:oklch(48% 0.015 250);">진료과목</a> &gt; {{ clinic.name }}
+    </div>
+
+    <div style="font-size:14px; font-weight:700; color:oklch(58% 0.09 195); letter-spacing:1px;">SPECIALTY CLINIC</div>
+    <h1 style="font-size:36px; font-weight:900; margin:12px 0 12px;">{{ clinic.name }}</h1>
+    <p style="font-size:17px; color:oklch(45% 0.02 250); margin:0 0 24px;">{{ clinic.desc }}</p>
+
+    <div style="height:280px; border-radius:8px; overflow:hidden; margin-bottom:40px;">
+      <x-import component-from-global-scope="image-slot" from="./image-slot.js" hint-size="100%,280px" id="{{ clinic.photoId }}" shape="rect" placeholder="클리닉 진료 사진"></x-import>
+    </div>
+
+    <div class="split-grid" style="display:grid; grid-template-columns:1fr 1fr; gap:40px; margin-bottom:32px; background:oklch(96% 0.006 90); border-radius:8px; padding:40px;">
+      <div>
+        <div style="font-size:13px; font-weight:700; color:oklch(58% 0.09 195); margin-bottom:8px;">이런 증상이 있다면</div>
+        <sc-for list="{{ clinic.symptoms }}" as="s" hint-placeholder-count="3">
+          <div style="font-size:15px; color:oklch(30% 0.02 250); padding:6px 0;">· {{ s }}</div>
+        </sc-for>
+      </div>
+      <div>
+        <div style="font-size:13px; font-weight:700; color:oklch(58% 0.09 195); margin-bottom:8px;">진료 안내</div>
+        <div style="font-size:15px; color:oklch(40% 0.02 250);">{{ clinic.treatment }}</div>
+      </div>
+    </div>
+
+    <div style="margin-bottom:40px;">
+      <div style="font-size:13px; font-weight:700; color:oklch(58% 0.09 195); margin-bottom:16px;">주요 원인·유형</div>
+      <div class="grid-3" style="display:grid; grid-template-columns:repeat(3, 1fr); gap:20px;">
+        <sc-for list="{{ clinic.types }}" as="t" hint-placeholder-count="3">
+          <div style="background:oklch(99% 0.005 90); border:1px solid oklch(89% 0.008 250); border-radius:6px; padding:20px;">
+            <div style="font-size:15px; font-weight:700; margin-bottom:6px;">{{ t.name }}</div>
+            <div style="font-size:13px; color:oklch(45% 0.02 250);">{{ t.desc }}</div>
+          </div>
+        </sc-for>
+      </div>
+    </div>
+
+    <div style="margin-bottom:48px;">
+      <div style="font-size:13px; font-weight:700; color:oklch(58% 0.09 195); margin-bottom:16px;">진단 및 치료 절차</div>
+      <div class="grid-4" style="display:grid; grid-template-columns:repeat(4, 1fr); gap:16px;">
+        <sc-for list="{{ clinic.process }}" as="step" hint-placeholder-count="4">
+          <div style="border-top:2px solid oklch(46% 0.13 248); padding-top:10px;">
+            <div style="font-size:13px; color:oklch(35% 0.02 250);">{{ step }}</div>
+          </div>
+        </sc-for>
+      </div>
+    </div>
+
+    <div style="border-top:1px solid oklch(89% 0.008 250); padding-top:32px;">
+      <div style="font-size:18px; font-weight:900; margin-bottom:6px;">관련 정밀검사</div>
+      <p style="font-size:14px; color:oklch(48% 0.015 250); margin:0 0 20px;">{{ clinic.name }} 진단에 활용되는 정밀검사입니다</p>
+      <div class="grid-3" style="display:grid; grid-template-columns:repeat(3, 1fr); gap:20px;">
+        <sc-for list="{{ clinic.exams }}" as="ex" hint-placeholder-count="3">
+          <a href="{{ ex.href }}" style="display:block; background:oklch(96% 0.006 90); border:1px solid oklch(89% 0.008 250); border-radius:6px; padding:24px; color:oklch(24% 0.02 250);" style-hover="border-color:oklch(46% 0.13 248);">
+            <div style="font-size:15px; font-weight:700; margin-bottom:6px;">{{ ex.name }}</div>
+            <div style="font-size:13px; color:oklch(46% 0.13 248); font-weight:700;">검사 자세히 보기 &gt;</div>
+          </a>
+        </sc-for>
+      </div>
+    </div>
+
+    <div style="margin-top:56px; text-align:center;">
+      <a href="./index.html#reserve" style="display:inline-block; background:oklch(46% 0.13 248); color:oklch(99% 0.005 90); padding:16px 40px; border-radius:4px; font-size:16px; font-weight:900;" style-hover="background:oklch(38% 0.13 248);">진료상담 문의하기</a>
+    </div>
+  </div>
+
+  <footer style="padding:32px 64px; background:oklch(96% 0.006 90); border-top:1px solid oklch(89% 0.008 250); text-align:center;">
+    <div style="font-size:13px; color:oklch(48% 0.015 250);">삼성스마트신경과 부산점 · 051-558-5898</div>
+  </footer>
+</div>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  renderVals() {
+    const examMeta = {
+      tcd: '뇌혈류초음파', carotid: '경동맥초음파', ans: '자율신경검사',
+      eeg: '뇌파검사(정량뇌파 포함)', vng: 'VNG 정밀 평형기능검사', psg: '수면다원검사',
+    };
+    const mkExams = (slugs) => slugs.map(s => ({ slug: s, name: examMeta[s], href: `./exam.html?slug=${s}` }));
+
+    const clinics = {
+      headache: { name: '두통클리닉', desc: '긴장성두통·편두통·군발두통 등 원인별 맞춤 진료',
+        symptoms: ['반복되는 편측 또는 양측 두통', '두통과 함께 나타나는 어지럼·오심', '진통제 복용이 잦아지는 두통'],
+        treatment: '두통 양상과 병력을 정밀 문진하고 필요 시 뇌영상검사로 이차성 두통을 배제한 뒤, 유형별 약물·비약물 치료 계획을 세웁니다.',
+        types: [
+          { name: '편두통', desc: '한쪽 또는 양쪽에서 맥박이 뛰듯 반복되는 두통으로, 오심이나 빛·소리 과민이 동반될 수 있습니다.' },
+          { name: '경추성두통', desc: '목뼈·목 근육 이상에서 비롯되는 두통으로 자세 교정과 통증 치료가 필요합니다.' },
+          { name: '군발두통', desc: '한쪽 눈 주위에 극심한 통증이 일정 기간 반복되는 두통입니다.' },
+          { name: '긴장형두통', desc: '목과 어깨 근육의 긴장으로 생기는 두통으로 자세교정과 약물치료로 조절합니다.' },
+          { name: '약물유발두통', desc: '진통제를 자주 복용해 만성화된 두통으로 단계적인 약물 조절이 필요합니다.' },
+          { name: '삼차신경통', desc: '신경 압박이나 염증으로 얼굴에 통증이 나타나며 신경차단주사 등으로 치료합니다.' },
+          { name: '만성두통', desc: '한 달에 15일 이상 지속되는 두통으로 정밀 원인 감별과 장기 관리가 필요합니다.' },
+        ],
+        process: ['문진과 신경학적 진찰로 두통 양상 파악', '뇌혈류초음파·뇌파·자율신경검사 등 정밀검사 시행', '위험신호가 있으면 MRI·MRA 등 영상검사 협진', '원인별 약물치료·신경차단주사·보톡스 치료'],
+        exams: mkExams(['eeg', 'ans', 'tcd']) },
+      dizziness: { name: '어지럼증클리닉', desc: '말초성·중추성 어지럼증 정밀 감별 진료',
+        symptoms: ['갑자기 빙빙 도는 느낌의 현훈', '자세를 바꿀 때 심해지는 어지럼', '어지럼과 함께 나타나는 두통·마비'],
+        treatment: '전정기능검사와 신경학적 진찰로 원인을 감별하고, 이석증·전정신경염 등에 맞는 치료와 재활을 진행합니다.',
+        types: [
+          { name: '이석증', desc: '자세를 바꿀 때 순간적으로 심한 회전성 어지럼이 나타나는 대표적인 말초성 어지럼증입니다.' },
+          { name: '전정신경염', desc: '갑작스런 심한 어지럼이 수일간 지속되는 말초성 질환입니다.' },
+          { name: '메니에르병', desc: '어지럼과 함께 이명·청력 저하가 반복되는 내이 질환입니다.' },
+          { name: '전정편두통', desc: '두통과 함께 또는 두통 없이 반복되는 어지럼으로, 편두통과 연관된 전정 질환입니다.' },
+          { name: 'PPPD(지속적체위지각어지럼)', desc: '만성적으로 지속되는 어지럼·불안정감으로 자세·시각 자극에 민감해지는 질환입니다.' },
+          { name: '중추성 어지럼증', desc: '뇌졸중 등 중추신경계 이상으로 인한 어지럼으로 신속한 감별과 치료가 중요합니다.' },
+          { name: '자율신경성 어지러움', desc: '기립성혈압 변화 등 자율신경 이상으로 나타나는 어지럼입니다.' },
+        ],
+        process: ['문진과 안구운동·평형 기능 검사', '전정기능검사로 말초성·중추성 여부 감별', '중추성 의심 시 영상검사 협진', '이석증 정복술·약물·재활 치료 진행'],
+        exams: mkExams(['vng', 'ans', 'tcd', 'carotid']) },
+      sleep: { name: '수면클리닉', desc: '불면증·수면무호흡·기면증 수면다원검사 기반 진단',
+        symptoms: ['잠들기 어렵거나 자주 깨는 불면', '코골이와 함께 나타나는 무호흡', '충분히 자도 낮에 심한 졸림', '자다가 소리를 지르거나 팔다리를 휘두름', '자려고 누우면 다리가 불편하고 움찔거림', '아침 두통·구강 건조·잦은 야간뇨'],
+        treatment: '수면다원검사로 수면 구조와 무호흡 지수를 확인한 뒤, 양압기·약물·행동치료 등 맞춤 치료를 안내합니다.',
+        types: [
+          { name: '코골이·수면무호흡', desc: '수면 중 기도가 좁아지거나 막혀 호흡이 얕아지고 멈추는 질환으로 낮졸림과 심혈관 위험을 높입니다.' },
+          { name: '과다수면·기면증', desc: '충분히 자도 낮에 갑작스런 졸림이 반복되며, 무호흡 등 다른 원인과의 감별이 중요합니다.' },
+          { name: '불면증', desc: '잠들기 어렵거나 자주 깨는 증상으로 인지행동치료와 약물치료를 병행합니다.' },
+          { name: '하지불안증후군', desc: '자려고 누우면 다리가 불편하고 움찔거려 잠들기 어려운 질환입니다.' },
+          { name: '렘수면행동장애', desc: '자다가 소리를 지르거나 팔다리를 휘두르는 증상으로, 신경계 정밀 평가가 필요합니다.' },
+        ],
+        process: ['수면 습관과 증상에 대한 상세 문진', '수면다원검사로 수면 구조·무호흡 지수 측정', '결과에 따라 양압기·구강장치·약물치료 선택', '치료 경과에 따른 정기적인 추적 관리'],
+        exams: mkExams(['psg', 'eeg']) },
+      dementia: { name: '치매·인지장애클리닉', desc: '조기 인지선별검사와 맞춤 관리 프로그램',
+        symptoms: ['최근 일을 자주 잊는 건망증', '같은 질문을 반복하는 모습', '길찾기·계산 능력의 저하'],
+        treatment: '인지선별검사와 뇌영상검사로 원인을 구분하고, 약물치료와 인지훈련을 병행한 장기 관리 계획을 제공합니다.',
+        types: [
+          { name: '경도인지장애', desc: '일상생활은 가능하나 기억력 저하가 뚜렷해 조기 관리가 중요합니다.' },
+          { name: '알츠하이머병', desc: '서서히 진행하는 대표적인 퇴행성 치매로 약물치료로 진행을 늦출 수 있습니다.' },
+          { name: '혈관성치매', desc: '뇌졸중 등 혈관 손상이 원인이 되는 치매로 위험인자 관리가 핵심입니다.' },
+        ],
+        process: ['보호자 면담과 인지선별검사 시행', '필요 시 신경심리검사로 세부 인지기능 평가', '뇌영상검사·혈액검사로 원인 감별', '약물치료와 인지훈련을 병행한 장기 관리'],
+        exams: mkExams(['eeg', 'carotid']) },
+      stroke: { name: '뇌혈관클리닉', desc: '뇌경색·뇌출혈 위험인자 관리와 재발 예방',
+        symptoms: ['한쪽 팔다리의 갑작스런 힘 빠짐', '갑자기 어눌해지는 말투', '한쪽으로 치우치는 시야·안면'],
+        treatment: '뇌혈류초음파·경동맥초음파로 혈관 상태를 확인하고, 고혈압·당뇨 등 위험인자를 함께 관리해 재발을 예방합니다.',
+        types: [
+          { name: '일과성 뇌허혈발작', desc: '짧게 나타났다 사라지는 마비·언어장애로 뇌졸중의 전조가 될 수 있습니다.' },
+          { name: '뇌경색', desc: '혈관이 막혀 뇌 조직이 손상되는 질환으로 빠른 진단과 치료가 중요합니다.' },
+          { name: '뇌혈관 위험인자 관리', desc: '고혈압·당뇨·고지혈증 등을 관리해 재발과 발생을 예방합니다.' },
+        ],
+        process: ['신경학적 진찰로 마비·언어장애 등 증상 확인', '뇌혈류초음파·경동맥초음파로 혈관 상태 평가', '필요 시 영상검사 협진으로 원인 감별', '위험인자 관리와 재발 예방 계획 수립'],
+        exams: mkExams(['tcd', 'carotid', 'ans']) },
+      autonomic: { name: '자율신경클리닉', desc: '기립성어지럼·두근거림 등 자율신경 이상 정밀 평가',
+        symptoms: ['일어설 때 어지럽거나 눈앞이 캄캄함', '설명되지 않는 두근거림·발한 이상', '만성피로와 함께 나타나는 소화불량'],
+        treatment: '자율신경검사로 교감·부교감신경의 균형을 평가하고, 원인에 따라 약물치료와 생활습관 교정을 병행합니다.',
+        types: [
+          { name: '기립성 저혈압', desc: '일어설 때 혈압이 급격히 떨어져 어지럼·실신이 나타나는 자율신경 이상입니다.' },
+          { name: '체위성 빈맥증후군', desc: '일어설 때 심박수가 과도하게 증가해 두근거림·어지럼이 동반됩니다.' },
+          { name: '자율신경 실조증', desc: '스트레스·과로 등으로 자율신경 균형이 깨져 다양한 신체 증상이 나타납니다.' },
+        ],
+        process: ['자율신경 관련 증상 문진', '기립성혈압검사·심박변이도검사 시행', '필요 시 추가 정밀검사로 원인 감별', '약물치료와 생활습관 교정 병행'],
+        exams: mkExams(['ans']) },
+    };
+
+    const params = new URLSearchParams(window.location.search);
+    const slug = params.get('slug') || 'headache';
+    const clinic = { ...(clinics[slug] || clinics.headache), photoId: `clinic-photo-${slug}` };
+
+    return { clinic };
+  }
+}
+
+</script>
+</body>
+</html>

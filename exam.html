@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+
+<helmet>
+<x-import component-from-global-scope="image-slot" from="./image-slot.js"></x-import>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&display=swap" rel="stylesheet">
+<style>
+  body { margin:0; background:oklch(99% 0.004 90); }
+  * { box-sizing:border-box; font-family:'Noto Sans KR', sans-serif; word-break:keep-all; overflow-wrap:break-word; }
+  h1, h2, .brand-font { font-weight:900; }
+  a { color:oklch(46% 0.13 248); text-decoration:none; }
+  a:hover { color:oklch(38% 0.13 248); }
+  @media (max-width: 860px) {
+    .content-wrap { padding:32px 24px 64px !important; }
+    .grid-2 { grid-template-columns:1fr !important; }
+    .grid-3 { grid-template-columns:1fr !important; }
+    h1 { font-size:24px !important; line-height:1.35 !important; }
+    p { font-size:15px !important; line-height:1.7 !important; }
+  }
+</style>
+</helmet>
+
+<div style="color:oklch(24% 0.02 250); line-height:1.6;">
+
+  <header style="position:sticky; top:0; z-index:100; background:oklch(99% 0.004 90 / 0.96); backdrop-filter:blur(6px); border-bottom:1px solid oklch(89% 0.008 250); display:flex; align-items:center; justify-content:space-between; padding:16px 20px; gap:12px;">
+    <a href="./index.html" style="display:flex; align-items:center; gap:2px;">
+      <img src="./assets/logo.jpeg" alt="삼성스마트신경과 로고" style="height:104px; width:104px; object-fit:contain; flex-shrink:0;">
+      <span class="brand-font" style="font-size:30px; font-weight:900; color:oklch(30% 0.1 248); letter-spacing:-0.5px; margin-left:-24px;">삼성스마트신경과</span>
+      <span style="font-size:18px; font-weight:700; color:oklch(58% 0.09 195); margin-left:8px;">부산점</span>
+    </a>
+    <a href="./index.html#reserve" style="background:oklch(46% 0.13 248); color:oklch(99% 0.005 90); padding:10px 20px; border-radius:4px; font-size:14px; font-weight:700;" style-hover="background:oklch(38% 0.13 248);">진료상담</a>
+  </header>
+
+  <div class="content-wrap" style="max-width:1080px; margin:0 auto; padding:48px 64px 96px;">
+    <div style="font-size:13px; color:oklch(48% 0.015 250); margin-bottom:20px;">
+      <a href="./index.html#equipment" style="color:oklch(48% 0.015 250);">정밀검사</a> &gt; {{ exam.name }}
+    </div>
+
+    <div style="font-size:14px; font-weight:700; color:oklch(58% 0.09 195); letter-spacing:1px;">EQUIPMENT</div>
+    <h1 style="font-size:36px; font-weight:900; margin:12px 0 12px;">{{ exam.name }}</h1>
+    <p style="font-size:17px; color:oklch(45% 0.02 250); margin:0 0 40px; max-width:760px;">{{ exam.desc }}</p>
+
+    <div class="grid-2" style="display:grid; grid-template-columns:1fr 1fr; gap:24px; margin-bottom:40px;">
+      <div style="height:220px; border-radius:8px; overflow:hidden; position:relative;">
+        <sc-for list="{{ examPhotos }}" as="photo" hint-placeholder-count="2">
+          <div style="position:absolute; inset:0; opacity:{{ photo.opacity }}; transition:opacity 1s ease; pointer-events:{{ photo.pointerEvents }};">
+            <x-import component-from-global-scope="image-slot" from="./image-slot.js" hint-size="320px,220px" id="{{ photo.id }}" src="./assets/photos/{{ photo.id }}.webp" shape="rect" placeholder="{{ photo.label }}"></x-import>
+          </div>
+        </sc-for>
+        <div style="position:absolute; bottom:10px; left:50%; transform:translateX(-50%); display:flex; gap:8px; z-index:5;">
+          <sc-for list="{{ examPhotos }}" as="photo" hint-placeholder-count="2">
+            <button onClick="{{ photo.onSelect }}" style="width:7px; height:7px; border-radius:50%; border:none; background:{{ photo.dotColor }}; cursor:pointer; padding:0;"></button>
+          </sc-for>
+        </div>
+      </div>
+      <div style="background:oklch(96% 0.006 90); border-radius:8px; padding:28px;">
+        <div style="font-size:13px; font-weight:700; color:oklch(58% 0.09 195); margin-bottom:16px;">이런 경우 이 검사를 권합니다</div>
+        <div style="display:flex; flex-direction:column; gap:8px;">
+          <sc-for list="{{ exam.indications }}" as="i" hint-placeholder-count="4">
+            <div style="font-size:15px; color:oklch(30% 0.02 250);">· {{ i }}</div>
+          </sc-for>
+        </div>
+      </div>
+    </div>
+
+    <div style="margin-bottom:40px;">
+      <div style="font-size:13px; font-weight:700; color:oklch(58% 0.09 195); margin-bottom:16px;">검사 진행 방법</div>
+      <div style="font-size:15px; color:oklch(40% 0.02 250);">{{ exam.process }}</div>
+    </div>
+
+    <div style="border-top:1px solid oklch(89% 0.008 250); padding-top:32px;">
+      <div style="font-size:18px; font-weight:900; margin-bottom:6px;">관련 진료과목</div>
+      <p style="font-size:14px; color:oklch(48% 0.015 250); margin:0 0 20px;">이 검사가 활용되는 클리닉입니다</p>
+      <div class="grid-3" style="display:grid; grid-template-columns:repeat(3, 1fr); gap:20px;">
+        <sc-for list="{{ exam.clinics }}" as="c" hint-placeholder-count="3">
+          <a href="{{ c.href }}" style="display:block; background:oklch(96% 0.006 90); border:1px solid oklch(89% 0.008 250); border-radius:6px; padding:24px; color:oklch(24% 0.02 250);" style-hover="border-color:oklch(46% 0.13 248);">
+            <div style="font-size:15px; font-weight:700; margin-bottom:6px;">{{ c.name }}</div>
+            <div style="font-size:13px; color:oklch(46% 0.13 248); font-weight:700;">클리닉 자세히 보기 &gt;</div>
+          </a>
+        </sc-for>
+      </div>
+    </div>
+
+    <div style="margin-top:56px; text-align:center;">
+      <a href="./index.html#reserve" style="display:inline-block; background:oklch(46% 0.13 248); color:oklch(99% 0.005 90); padding:16px 40px; border-radius:4px; font-size:16px; font-weight:900;" style-hover="background:oklch(38% 0.13 248);">진료상담 문의하기</a>
+    </div>
+  </div>
+
+  <footer style="padding:32px 64px; background:oklch(96% 0.006 90); border-top:1px solid oklch(89% 0.008 250); text-align:center;">
+    <div style="font-size:13px; color:oklch(48% 0.015 250);">삼성스마트신경과 부산점 · 051-558-5898</div>
+  </footer>
+</div>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  state = { photoIdx: 0 };
+
+  componentDidMount() {
+    this._photoTimer = setInterval(() => {
+      this.setState(s => ({ photoIdx: (s.photoIdx + 1) % 2 }));
+    }, 4000);
+  }
+
+  componentWillUnmount() {
+    clearInterval(this._photoTimer);
+  }
+
+  renderVals() {
+    const clinicMeta = {
+      headache: '두통클리닉', dizziness: '어지럼증클리닉', sleep: '수면클리닉', autonomic: '자율신경클리닉',
+      dementia: '치매·인지장애클리닉', stroke: '뇌혈관클리닉',
+    };
+    const mkClinics = (slugs) => slugs.map(s => ({ slug: s, name: clinicMeta[s], href: `./clinic.html?slug=${s}` }));
+
+    const exams = {
+      tcd: { name: '뇌혈류초음파', desc: '두개골을 열지 않고도 뇌혈관의 혈류 속도와 저항을 측정해 두통·어지럼증·뇌졸중 위험의 원인을 확인하는 비침습적 검사입니다.',
+        indications: ['반복되는 두통·어지럼증', '뇌졸중 가족력 또는 위험인자 보유', '팔다리 저림·힘 빠짐', '건강검진 상 뇌혈관 정밀검사 권고'],
+        process: '초음파 탐촉자를 두개골 얇은 부위(측두골 등)에 대고 뇌 주요 혈관의 혈류 속도를 측정합니다. 통증 없이 15~20분 내외로 진행됩니다.',
+        clinics: mkClinics(['headache', 'dizziness', 'stroke']) },
+      carotid: { name: '경동맥초음파', desc: '목 동맥의 혈관벽 상태와 협착 여부를 확인해 뇌혈관질환 위험을 평가합니다.',
+        indications: ['고혈압·당뇨·고지혈증 등 위험인자', '어지럼증·일과성 뇌허혈 의심 증상', '뇌졸중 가족력', '건강검진 상 이상 소견'],
+        process: '목 부위에 초음파 탐촉자를 대고 경동맥의 혈관벽 두께와 혈류를 관찰합니다. 통증 없이 10~15분 내외로 진행됩니다.',
+        clinics: mkClinics(['dizziness', 'dementia', 'stroke']) },
+      ans: { name: '자율신경검사', desc: '기립성혈압검사·발살바법 등으로 교감·부교감신경의 균형을 평가해 어지럼증·두근거림 등의 원인을 찾습니다.',
+        indications: ['일어설 때 어지럽거나 눈앞이 캄캄함', '설명되지 않는 두근거림', '만성두통과 동반된 자율신경 증상', '당뇨병성 신경병증 의심'],
+        process: '누운 자세와 선 자세에서의 혈압·심박 변화, 심호흡 시 심박변이도 등을 측정합니다. 20~30분 내외로 진행됩니다.',
+        clinics: mkClinics(['headache', 'dizziness', 'autonomic']) },
+      eeg: { name: '뇌파검사(정량뇌파 포함)', desc: '국제 10-20 시스템에 따른 정밀 전극 부착과 안정·수면·광자극 등 다양한 조건에서 측정해 뇌전증·뇌기능 이상을 평가합니다.',
+        indications: ['원인 불명의 의식소실·경련', '만성두통의 정밀 원인 감별', '인지기능 저하 정밀평가', '수면 중 이상행동'],
+        process: '두피에 다수의 전극을 부착한 뒤 안정·과호흡·광자극 등 여러 조건에서 뇌파를 기록합니다. 30~60분 내외로 진행됩니다.',
+        clinics: mkClinics(['headache', 'dementia']) },
+      vng: { name: 'VNG 정밀 평형기능검사', desc: '적외선 카메라로 안구 움직임을 분석해 이석증 등 전정기관 이상을 정밀하게 진단합니다.',
+        indications: ['빙빙 도는 느낌의 회전성 어지럼', '자세 변화 시 심해지는 어지럼', '반복되는 이석증 의심 증상', '원인 불명의 만성 어지럼'],
+        process: '적외선 고글을 착용하고 다양한 자세·안구운동 검사를 시행해 전정기관 기능을 평가합니다. 30분 내외로 진행됩니다.',
+        clinics: mkClinics(['dizziness']) },
+      psg: { name: '수면다원검사', desc: '수면 중 뇌파·호흡·산소포화도를 종합 측정해 수면무호흡·불면증 등의 원인을 정밀 진단합니다.',
+        indications: ['심한 코골이와 함께 나타나는 무호흡', '충분히 자도 낮에 심한 졸림', '잠들기 어렵거나 자주 깨는 불면', '고혈압·부정맥 동반 수면장애'],
+        process: '검사실에서 하룻밤 수면하며 뇌파·호흡·심전도·산소포화도 등을 종합 기록합니다. 네이버 예약으로 별도 접수합니다.',
+        clinics: mkClinics(['sleep']) },
+    };
+
+    const params = new URLSearchParams(window.location.search);
+    const slug = params.get('slug') || 'tcd';
+    const exam = exams[slug] || exams.tcd;
+
+    const photoLabels = ['검사 시행 사진', '검사 결과 사진'];
+    const examPhotos = photoLabels.map((label, i) => ({
+      id: `exam-photo-${slug}-${i}`,
+      label,
+      opacity: i === this.state.photoIdx ? 1 : 0,
+      pointerEvents: i === this.state.photoIdx ? 'auto' : 'none',
+      dotColor: i === this.state.photoIdx ? 'oklch(46% 0.13 248)' : 'oklch(85% 0.01 250)',
+      onSelect: () => this.setState({ photoIdx: i }),
+    }));
+
+    return { exam, examPhotos };
+  }
+}
+
+</script>
+</body>
+</html>

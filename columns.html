@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&display=swap" rel="stylesheet">
+<style>
+  body { margin:0; background:oklch(99% 0.004 90); }
+  * { box-sizing:border-box; font-family:'Noto Sans KR', sans-serif; word-break:keep-all; overflow-wrap:break-word; }
+  h1, h2, .brand-font { font-weight:900; }
+  a { color:oklch(46% 0.13 248); text-decoration:none; }
+  a:hover { color:oklch(38% 0.13 248); }
+  @media (max-width: 860px) {
+    .content-wrap { padding:32px 24px 64px !important; }
+    h1 { font-size:24px !important; }
+  }
+</style>
+</helmet>
+
+<div style="color:oklch(24% 0.02 250); line-height:1.6;">
+  <header style="position:sticky; top:0; z-index:100; background:oklch(99% 0.004 90 / 0.96); backdrop-filter:blur(6px); border-bottom:1px solid oklch(89% 0.008 250); display:flex; align-items:center; justify-content:space-between; padding:16px 20px; gap:12px;">
+    <a href="./index.html" style="display:flex; align-items:center; gap:2px;">
+      <img src="./assets/logo.jpeg" alt="삼성스마트신경과 로고" style="height:104px; width:104px; object-fit:contain; flex-shrink:0;">
+      <span class="brand-font" style="font-size:30px; font-weight:900; color:oklch(30% 0.1 248); letter-spacing:-0.5px; margin-left:-24px;">삼성스마트신경과</span>
+      <span style="font-size:18px; font-weight:700; color:oklch(58% 0.09 195); margin-left:8px;">부산점</span>
+    </a>
+    <a href="./index.html#reserve" style="background:oklch(46% 0.13 248); color:oklch(99% 0.005 90); padding:10px 20px; border-radius:4px; font-size:14px; font-weight:700;" style-hover="background:oklch(38% 0.13 248);">진료상담</a>
+  </header>
+
+  <div class="content-wrap" style="max-width:800px; margin:0 auto; padding:48px 64px 96px;">
+    <div style="font-size:13px; color:oklch(48% 0.015 250); margin-bottom:20px;">
+      <a href="./index.html#community" style="color:oklch(48% 0.015 250);">공지·건강정보</a> &gt; 원장칼럼
+    </div>
+    <div style="font-size:14px; font-weight:700; color:oklch(58% 0.09 195); letter-spacing:1px;">COLUMN</div>
+    <h1 style="font-size:32px; font-weight:900; margin:12px 0 32px;">원장칼럼</h1>
+
+    <sc-for list="{{ columnPosts }}" as="p" hint-placeholder-count="6">
+      <div style="padding:20px 0; border-bottom:1px solid oklch(89% 0.008 250);">
+        <div style="font-size:16px; font-weight:700; margin-bottom:6px;">{{ p.title }}</div>
+        <div style="font-size:15px; color:oklch(45% 0.02 250);">{{ p.excerpt }}</div>
+      </div>
+    </sc-for>
+  </div>
+
+  <footer style="padding:32px 64px; background:oklch(96% 0.006 90); border-top:1px solid oklch(89% 0.008 250); text-align:center;">
+    <div style="font-size:13px; color:oklch(48% 0.015 250);">삼성스마트신경과 부산점 · 051-558-5898</div>
+  </footer>
+</div>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  renderVals() {
+    return {
+      columnPosts: [
+        { title: '만성두통, 방치하면 안 되는 이유', excerpt: '두통 유형별 원인과 치료 시기를 알아봅니다.' },
+        { title: '어지럼증, 이석증일까 뇌질환일까', excerpt: '증상만으로 구별하기 어려운 어지럼증의 감별점.' },
+        { title: '코골이와 수면무호흡의 차이', excerpt: '수면다원검사가 필요한 신호들을 정리했습니다.' },
+        { title: '치매 조기 발견을 위한 자가 체크리스트', excerpt: '가족이 먼저 알아챌 수 있는 초기 증상들.' },
+      ],
+    };
+  }
+}
+
+</script>
+</body>
+</html>

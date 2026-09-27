@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&display=swap" rel="stylesheet">
+<style>
+  body { margin:0; background:oklch(99% 0.004 90); }
+  * { box-sizing:border-box; font-family:'Noto Sans KR', sans-serif; word-break:keep-all; overflow-wrap:break-word; }
+  h1, h2, .brand-font { font-weight:900; }
+  a { color:oklch(46% 0.13 248); text-decoration:none; }
+  a:hover { color:oklch(38% 0.13 248); }
+  @media (max-width: 860px) {
+    .content-wrap { padding:32px 24px 64px !important; }
+    h1 { font-size:24px !important; }
+  }
+</style>
+</helmet>
+
+<div style="color:oklch(24% 0.02 250); line-height:1.6;">
+  <header style="position:sticky; top:0; z-index:100; background:oklch(99% 0.004 90 / 0.96); backdrop-filter:blur(6px); border-bottom:1px solid oklch(89% 0.008 250); display:flex; align-items:center; justify-content:space-between; padding:16px 20px; gap:12px;">
+    <a href="./index.html" style="display:flex; align-items:center; gap:2px;">
+      <img src="./assets/logo.jpeg" alt="삼성스마트신경과 로고" style="height:104px; width:104px; object-fit:contain; flex-shrink:0;">
+      <span class="brand-font" style="font-size:30px; font-weight:900; color:oklch(30% 0.1 248); letter-spacing:-0.5px; margin-left:-24px;">삼성스마트신경과</span>
+      <span style="font-size:18px; font-weight:700; color:oklch(58% 0.09 195); margin-left:8px;">부산점</span>
+    </a>
+    <a href="./index.html#reserve" style="background:oklch(46% 0.13 248); color:oklch(99% 0.005 90); padding:10px 20px; border-radius:4px; font-size:14px; font-weight:700;" style-hover="background:oklch(38% 0.13 248);">진료상담</a>
+  </header>
+
+  <div class="content-wrap" style="max-width:760px; margin:0 auto; padding:48px 64px 96px;">
+    <div style="font-size:14px; font-weight:700; color:oklch(58% 0.09 195); letter-spacing:1px;">PATIENT RIGHTS</div>
+    <h1 style="font-size:32px; font-weight:900; margin:12px 0 24px;">환자권리장전</h1>
+    <p style="font-size:16px; color:oklch(40% 0.02 250); margin:0 0 32px; font-style:italic;">"삼성스마트신경과는 여러분의 건강한 삶에 도움이 되고자 합니다."</p>
+    <p style="font-size:15px; color:oklch(40% 0.02 250); margin:0 0 40px;">삼성스마트신경과는 환자의 행복이 우선이며, 불필요한 시술은 권하지 않는다는 진료철학을 바탕으로 환자의 권리 및 책임과 의무를 존중하고 보호하며 환자의 신뢰를 받는 병원이 되도록 최선을 다하겠습니다.</p>
+
+    <h2 style="font-size:20px; font-weight:900; margin:0 0 16px;">환자의 권리</h2>
+    <div style="margin-bottom:40px;">
+      <div style="padding:16px 0; border-bottom:1px solid oklch(89% 0.008 250);">
+        <div style="font-size:15px; font-weight:700; margin-bottom:6px;">진료받을 권리</div>
+        <div style="font-size:14px; color:oklch(40% 0.02 250);">환자는 자신의 건강보호를 위해 적절한 보건의료서비스를 받고, 성별·나이·종교·신분·경제적 사정 등을 이유로 이를 침해받지 아니하며, 의료인은 정당한 사유 없이 진료를 거부하지 못합니다.</div>
+      </div>
+      <div style="padding:16px 0; border-bottom:1px solid oklch(89% 0.008 250);">
+        <div style="font-size:15px; font-weight:700; margin-bottom:6px;">알권리 및 자기결정권</div>
+        <div style="font-size:14px; color:oklch(40% 0.02 250);">환자는 담당의사·간호사 등으로부터 질병상태, 치료방법, 예상결과(부작용 등), 진료비용에 대해 충분한 설명을 듣고 자세히 물어볼 수 있으며, 치료방법에 대한 동의 여부를 결정할 권리를 가집니다.</div>
+      </div>
+      <div style="padding:16px 0;">
+        <div style="font-size:15px; font-weight:700; margin-bottom:6px;">비밀을 보호받을 권리</div>
+        <div style="font-size:14px; color:oklch(40% 0.02 250);">환자는 진료와 관련된 신체상·건강상 비밀을 보호받으며, 의료인과 의료기관은 환자의 동의 없이 또는 법률이 정한 경우 외에는 비밀을 누설·발표하지 못합니다.</div>
+      </div>
+    </div>
+
+    <h2 style="font-size:20px; font-weight:900; margin:0 0 16px;">환자의 의무</h2>
+    <div>
+      <sc-for list="{{ duties }}" as="d" hint-placeholder-count="5">
+        <div style="padding:16px 0; border-bottom:1px solid oklch(89% 0.008 250);">
+          <div style="font-size:15px; font-weight:700; margin-bottom:6px;">{{ d.title }}</div>
+          <div style="font-size:14px; color:oklch(40% 0.02 250);">{{ d.body }}</div>
+        </div>
+      </sc-for>
+    </div>
+  </div>
+
+  <footer style="padding:32px 64px; background:oklch(96% 0.006 90); border-top:1px solid oklch(89% 0.008 250); text-align:center;">
+    <div style="font-size:13px; color:oklch(48% 0.015 250);">삼성스마트신경과 부산점 · 051-558-5898</div>
+  </footer>
+</div>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  renderVals() {
+    return {
+      duties: [
+        { title: '의료인에 대한 신뢰·존중 의무', body: '환자는 자신의 건강관련 정보를 의료인에게 정확히 알리고, 의료인의 치료계획을 신뢰하고 존중하여야 합니다.' },
+        { title: '부정한 방법으로 진료를 받지 않을 의무', body: '환자는 진료 전에 본인의 신분을 밝혀야 하고, 타인의 명의로 진료를 받는 등 거짓이나 부정한 진료를 받지 않습니다.' },
+        { title: '진료환경을 침해하지 않을 의무', body: '환자 및 보호자는 최선의 진료를 방해하거나 방해할 우려가 있는 일체의 행위를 하여서는 안 됩니다.' },
+        { title: '다른 환자의 권리를 침해하지 않을 의무', body: '환자 및 보호자는 진료실 내에서 다른 환자의 진료받을 권리를 침해하거나 침해할 우려가 있는 행위를 하여서는 안 됩니다.' },
+        { title: '진료비 지불의 의무', body: '환자는 자신이 받은 진료에 대한 비용을 지불할 의무가 있습니다.' },
+      ],
+    };
+  }
+}
+
+</script>
+</body>
+</html>
