@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>삼성스마트신경과 부산점</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@400;500;600;700&family=Pretendard:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --navy: #142A3D;
+    --navy-deep: #0D1E2C;
+    --sage: #5C8374;
+    --sage-light: #E8EDE9;
+    --ivory: #F6F4EE;
+    --ink: #2A2E32;
+    --gold: #B99A5B;
+    --line: rgba(20,42,61,0.12);
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    font-family:'Pretendard', -apple-system, sans-serif;
+    background:var(--ivory);
+    color:var(--ink);
+    line-height:1.7;
+    overflow-x:hidden;
+  }
+  h1,h2,h3,.serif{font-family:'Noto Serif KR', serif;}
+  a{text-decoration:none;color:inherit;}
+  .wrap{max-width:1120px;margin:0 auto;padding:0 32px;}
+
+  /* Header */
+  header{
+    position:sticky;top:0;z-index:50;
+    background:rgba(246,244,238,0.92);
+    backdrop-filter:blur(8px);
+    border-bottom:1px solid var(--line);
+  }
+  .nav{display:flex;align-items:center;justify-content:space-between;padding:20px 32px;max-width:1120px;margin:0 auto;}
+  .logo{font-family:'Noto Serif KR',serif;font-weight:700;font-size:19px;color:var(--navy);letter-spacing:-0.3px;}
+  .logo span{color:var(--sage);}
+  .nav-links{display:flex;gap:36px;font-size:14.5px;font-weight:500;color:var(--navy);}
+  .nav-cta{
+    background:var(--navy);color:#fff;padding:10px 22px;border-radius:2px;
+    font-size:14px;font-weight:500;letter-spacing:0.3px;
+  }
+  .nav-cta:hover{background:var(--navy-deep);}
+
+  /* Hero */
+  .hero{
+    position:relative;
+    padding:110px 32px 90px;
+    background:var(--navy);
+    color:#fff;
+    overflow:hidden;
+  }
+  .hero-inner{max-width:1120px;margin:0 auto;position:relative;z-index:2;}
+  .eyebrow{
+    display:inline-flex;align-items:center;gap:8px;
+    font-size:13px;letter-spacing:2px;color:var(--gold);
+    text-transform:uppercase;margin-bottom:24px;font-weight:500;
+  }
+  .eyebrow::before{content:'';width:24px;height:1px;background:var(--gold);}
+  .hero h1{
+    font-size:52px;line-height:1.35;font-weight:600;
+    max-width:680px;margin-bottom:24px;letter-spacing:-0.5px;
+  }
+  .hero p{font-size:17px;color:rgba(255,255,255,0.72);max-width:520px;margin-bottom:40px;font-weight:300;}
+  .hero-actions{display:flex;gap:14px;}
+  .btn-primary{
+    background:var(--sage);color:#fff;padding:15px 30px;border-radius:2px;
+    font-size:15px;font-weight:500;display:inline-block;transition:background .2s;
+  }
+  .btn-primary:hover{background:#4d7062;}
+  .btn-ghost{
+    border:1px solid rgba(255,255,255,0.3);color:#fff;padding:15px 30px;border-radius:2px;
+    font-size:15px;font-weight:500;display:inline-block;transition:border-color .2s;
+  }
+  .btn-ghost:hover{border-color:rgba(255,255,255,0.7);}
+
+  /* EEG signature line */
+  .eeg{position:absolute;bottom:0;left:0;width:100%;opacity:0.55;z-index:1;}
+  .eeg path{
+    stroke:var(--sage);stroke-width:1.5;fill:none;
+    stroke-dasharray:2000;stroke-dashoffset:2000;
+    animation:draw 3.2s ease-out forwards;
+  }
+  @keyframes draw{to{stroke-dashoffset:0;}}
+
+  /* Section shared */
+  section{padding:96px 0;}
+  .section-head{margin-bottom:56px;max-width:600px;}
+  .section-eyebrow{font-size:13px;letter-spacing:2px;color:var(--sage);text-transform:uppercase;font-weight:600;margin-bottom:14px;}
+  .section-head h2{font-size:34px;font-weight:600;color:var(--navy);letter-spacing:-0.4px;}
+  .section-head p{margin-top:14px;color:#5A6068;font-size:15.5px;}
+
+  /* 진료과목 */
+  .dept-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line);border:1px solid var(--line);}
+  .dept-card{background:var(--ivory);padding:38px 32px;transition:background .25s;}
+  .dept-card:hover{background:#fff;}
+  .dept-num{font-family:'Noto Serif KR',serif;font-size:13px;color:var(--gold);letter-spacing:1px;margin-bottom:18px;}
+  .dept-card h3{font-size:19px;font-weight:600;color:var(--navy);margin-bottom:10px;}
+  .dept-card p{font-size:14px;color:#666;line-height:1.65;}
+
+  /* 의료진 */
+  .doctors{background:var(--navy-deep);}
+  .doctors .section-head h2, .doctors .section-eyebrow{color:#fff;}
+  .doctors .section-eyebrow{color:var(--gold);}
+  .doctors .section-head p{color:rgba(255,255,255,0.6);}
+  .doctor-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:28px;}
+  .doctor-card{background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.1);padding:0;}
+  .doctor-photo{
+    width:100%;aspect-ratio:4/5;
+    background:linear-gradient(160deg, #24425a, #1a3247);
+    display:flex;align-items:center;justify-content:center;
+  }
+  .doctor-photo svg{width:56px;height:56px;opacity:0.35;}
+  .doctor-info{padding:24px 26px;}
+  .doctor-info .role{font-size:12px;color:var(--gold);letter-spacing:1px;text-transform:uppercase;margin-bottom:8px;}
+  .doctor-info h3{font-family:'Noto Serif KR',serif;font-size:20px;color:#fff;font-weight:600;margin-bottom:6px;}
+  .doctor-info p{font-size:13.5px;color:rgba(255,255,255,0.55);}
+
+  /* 신뢰 지표 */
+  .trust{padding:80px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line);}
+  .trust-grid{display:grid;grid-template-columns:repeat(4,1fr);text-align:center;}
+  .trust-grid > div{padding:0 20px;border-right:1px solid var(--line);}
+  .trust-grid > div:last-child{border-right:none;}
+  .trust-num{font-family:'Noto Serif KR',serif;font-size:38px;color:var(--navy);font-weight:600;}
+  .trust-label{font-size:13.5px;color:#777;margin-top:8px;}
+
+  /* 오시는길 */
+  .contact{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:start;}
+  .contact-info h3{font-size:16px;font-weight:600;color:var(--navy);margin-bottom:6px;}
+  .contact-info .item{margin-bottom:28px;}
+  .contact-info .item p{color:#666;font-size:14.5px;}
+  .map-placeholder{
+    background:var(--sage-light);border:1px solid var(--line);
+    aspect-ratio:4/3;display:flex;align-items:center;justify-content:center;
+    color:#7a8b83;font-size:13px;letter-spacing:1px;
+  }
+
+  footer{background:var(--navy-deep);color:rgba(255,255,255,0.5);padding:40px 32px;font-size:13px;}
+  .footer-inner{max-width:1120px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;}
+
+  @media(max-width:860px){
+    .hero h1{font-size:34px;}
+    .dept-grid, .doctor-grid{grid-template-columns:1fr;}
+    .trust-grid{grid-template-columns:repeat(2,1fr);row-gap:32px;}
+    .trust-grid > div:nth-child(2n){border-right:none;}
+    .contact{grid-template-columns:1fr;}
+    .nav-links{display:none;}
+  }
+  @media (prefers-reduced-motion: reduce){
+    .eeg path{animation:none;stroke-dashoffset:0;}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="nav">
+    <div class="logo">삼성스마트<span>신경과</span> 부산점</div>
+    <div class="nav-links">
+      <a href="#depts">진료과목</a>
+      <a href="#doctors">의료진</a>
+      <a href="#contact">오시는길</a>
+    </div>
+    <a href="#contact" class="nav-cta">진료 예약 문의</a>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="hero-inner">
+    <div class="eyebrow">부산 · 신경과 전문의원</div>
+    <h1>정확한 진단이<br>편안한 치료의 시작입니다</h1>
+    <p>뇌졸중, 두통, 어지럼증, 파킨슨병, 치매까지 — 신경계 질환을 전문적으로 진료합니다. 부산 지역 신경과 전문의가 처음부터 끝까지 함께합니다.</p>
+    <div class="hero-actions">
+      <a href="#contact" class="btn-primary">진료 예약하기</a>
+      <a href="#depts" class="btn-ghost">진료과목 보기</a>
+    </div>
+  </div>
+  <svg class="eeg" viewBox="0 0 1120 120" preserveAspectRatio="none">
+    <path d="M0,80 L120,80 L140,30 L160,110 L180,80 L260,80 L280,50 L300,90 L320,80 L440,80 L460,20 L480,120 L500,80 L620,80 L640,55 L660,85 L680,80 L800,80 L820,35 L840,105 L860,80 L980,80 L1000,60 L1020,90 L1040,80 L1120,80" />
+  </svg>
+</section>
+
+<section id="depts">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="section-eyebrow">Departments</div>
+      <h2>진료과목</h2>
+      <p>신경계 질환의 특성상 정밀한 문진과 검사가 중요합니다. 증상별 맞춤 진료를 제공합니다.</p>
+    </div>
+  </div>
+  <div class="dept-grid wrap" style="padding:0 32px;">
+    <div class="dept-card">
+      <div class="dept-num">01</div>
+      <h3>두통클리닉</h3>
+      <p>원인이 다양한 두통을 전문적인 진찰과 정밀 검사 장비로 정확하게 진단하고, 치료 계획을 세워 상담을 진행합니다.</p>
+    </div>
+    <div class="dept-card">
+      <div class="dept-num">02</div>
+      <h3>어지럼클리닉</h3>
+      <p>흔하지만 원인 규명이 중요한 어지럼증을 정확히 진단하고 그에 맞는 치료를 제공합니다.</p>
+    </div>
+    <div class="dept-card">
+      <div class="dept-num">03</div>
+      <h3>자율신경장애 · 뇌신경질환</h3>
+      <p>자율신경계 이상과 뇌신경 관련 질환을 폭넓게 진료합니다.</p>
+    </div>
+    <div class="dept-card">
+      <div class="dept-num">04</div>
+      <h3>수면다원검사 · 수면질환</h3>
+      <p>정밀 수면검사 장비를 통해 불면증, 수면무호흡 등 수면 관련 질환을 진단하고 관리합니다.</p>
+    </div>
+    <div class="dept-card">
+      <div class="dept-num">05</div>
+      <h3>통증치료클리닉</h3>
+      <p>도수치료, 운동치료 등 질환별 맞춤 프로그램으로 통증의 원인을 관리합니다.</p>
+    </div>
+    <div class="dept-card">
+      <div class="dept-num">06</div>
+      <h3>정밀한 검사</h3>
+      <p>신경전도검사 등 대학병원 수준의 정밀 검사 장비로 정확한 진단을 돕습니다.</p>
+    </div>
+  </div>
+</section>
+
+<section class="doctors" id="doctors">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="section-eyebrow">Medical Staff</div>
+      <h2>의료진 소개</h2>
+      <p>원장이 직접 초진부터 경과 관찰까지 진료합니다. (실명·사진은 병원 확인 후 교체해 주세요)</p>
+    </div>
+    <div class="doctor-grid" style="grid-template-columns:1fr;max-width:480px;margin:0 auto;">
+      <div class="doctor-card">
+        <div class="doctor-photo"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.5-7 8-7s8 3 8 7"/></svg></div>
+        <div class="doctor-info">
+          <div class="role">대표원장 · 신경과 전문의</div>
+          <h3>황 O O 원장</h3>
+          <p>성균관대학교 졸업 · 삼성서울병원 전공의·전임의 · 경북대학교 교수 역임</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="trust">
+  <div class="trust-grid wrap">
+    <div><div class="trust-num">삼성서울병원</div><div class="trust-label">전공의·전임의 수련</div></div>
+    <div><div class="trust-num">경북대학교</div><div class="trust-label">교수 역임</div></div>
+    <div><div class="trust-num">수면다원검사</div><div class="trust-label">대학병원급 장비 보유</div></div>
+    <div><div class="trust-num">부산 동래구</div><div class="trust-label">온천동 위치</div></div>
+  </div>
+</div>
+
+<section id="contact">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="section-eyebrow">Location</div>
+      <h2>오시는 길</h2>
+    </div>
+    <div class="contact">
+      <div class="contact-info">
+        <div class="item">
+          <h3>주소</h3>
+          <p>부산광역시 동래구 온천동 153-8 SK허브스카이 2층</p>
+        </div>
+        <div class="item">
+          <h3>진료시간</h3>
+          <p>평일 09:00 – 18:30 · 토요일 09:00 – 13:00<br>일요일·공휴일 휴진 · 점심시간 13:00–14:00 (정확한 시간은 병원 확인 후 수정해 주세요)</p>
+        </div>
+        <div class="item">
+          <h3>전화 문의</h3>
+          <p>TEL 051-558-5898 · FAX 051-558-5897</p>
+        </div>
+        <a href="#" class="btn-primary">전화로 예약하기</a>
+      </div>
+      <div class="map-placeholder">지도 영역 (실제 배포 시 카카오맵/네이버맵 API 삽입)</div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-inner">
+    <div>© 2026 삼성스마트신경과 부산점. All rights reserved.</div>
+    <div style="display:flex;gap:18px;">
+      <a href="https://blog.naver.com/smartneuro" target="_blank">블로그</a>
+      <a href="https://www.youtube.com/c/%EB%B8%8C%EB%A0%88%EC%9D%B8TV%EC%8B%A0%EA%B2%BD%EA%B3%BC" target="_blank">유튜브</a>
+      <a href="https://www.instagram.com/smart.clinic_/" target="_blank">인스타그램</a>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
