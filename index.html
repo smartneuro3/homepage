@@ -519,9 +519,12 @@ class Component extends DCLogic {
           title: '신경과 전문의',
           tag: '두통·뇌전증·신경면역질환·임상신경생리',
           badge: '2026년 9월 합류',
-          hasSchedule: false,
-          scheduleNote: '진료 요일과 시간은 전화(051-558-5898) 또는 카카오톡으로 문의해 주세요.',
-          schedule: [],
+          hasSchedule: true,
+          scheduleNote: '화요일 오전 · 목요일 오후 휴진, 토요일은 매주 진료합니다.',
+          schedule: [
+            { label: '오전', days: [ON, OFF, ON, ON, ON, ON] },
+            { label: '오후', days: [ON, ON, ON, OFF, ON, OFF] },
+          ],
           creds: [
             '인제대학교 의과대학 졸업 · 인제대학교 대학원 수료',
             '인제대학교 해운대백병원 신경과 수련',
