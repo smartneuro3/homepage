@@ -104,7 +104,7 @@
     <div class="hero-text" style="display:flex; flex-direction:column; justify-content:center; gap:24px; padding:64px 64px;">
       <div style="display:inline-block; background:oklch(93% 0.03 195); color:oklch(34% 0.09 195); font-size:12px; font-weight:800; letter-spacing:0.5px; padding:5px 14px; border-radius:20px;">SAMSUNG SMART NEUROLOGY CLINIC · BUSAN</div>
       <h1 class="hero-title brand-font" style="font-size:44px; font-weight:900; line-height:1.3; margin:0; letter-spacing:-1px;">경청하는 진료,<br>정확하게 진단합니다</h1>
-      <p style="font-size:17px; color:oklch(45% 0.02 250); max-width:440px; margin:0;">두통·어지럼증·수면장애·치매까지, 신경과 전문의가 충분한 문진과 정밀 검사로 원인을 찾아드립니다.</p>
+      <p style="font-size:17px; color:oklch(45% 0.02 250); max-width:440px; margin:0;">두통·어지럼증·수면장애·치매까지, 신경과 전문의 3인이 충분한 문진과 정밀 검사로 원인을 찾아드립니다.</p>
       <div style="display:flex; gap:12px; margin-top:8px;">
         <a href="#reserve" style="background:oklch(46% 0.13 248); color:oklch(99% 0.005 90); padding:14px 28px; border-radius:4px; font-size:16px; font-weight:700;" style-hover="background:oklch(38% 0.13 248);">진료상담 문의</a>
         <a href="#location" style="background:transparent; color:oklch(24% 0.02 250); padding:14px 28px; border-radius:4px; font-size:16px; font-weight:700; border:1px solid oklch(80% 0.01 250);" style-hover="border-color:oklch(46% 0.13 248); color:oklch(46% 0.13 248);">오시는길</a>
@@ -128,7 +128,7 @@
   <section class="trust-strip" style="display:grid; grid-template-columns:repeat(4, 1fr); gap:20px; padding:40px 64px; border-bottom:1px solid oklch(89% 0.008 250); max-width:1280px; margin:0 auto;">
     <div style="text-align:center; padding:20px 12px; border-top:3px solid oklch(46% 0.13 248); background:oklch(97% 0.004 90); border-radius:0 0 8px 8px;">
       <div style="width:36px; height:36px; border-radius:50%; background:oklch(93% 0.045 248); display:flex; align-items:center; justify-content:center; margin:0 auto 10px;"><div style="width:10px; height:10px; border-radius:50%; background:oklch(46% 0.13 248);"></div></div>
-      <div style="font-size:15px; font-weight:800;">교수 출신 전문의 진료</div><div style="font-size:13px; color:oklch(48% 0.015 250); margin-top:2px;">신경과 전문의 2인 진료</div>
+      <div style="font-size:15px; font-weight:800;">신경과 전문의 3인 진료</div><div style="font-size:13px; color:oklch(48% 0.015 250); margin-top:2px;">교수 출신 전문의 진료</div>
     </div>
     <div style="text-align:center; padding:20px 12px; border-top:3px solid oklch(58% 0.09 195); background:oklch(97% 0.004 90); border-radius:0 0 8px 8px;">
       <div style="width:36px; height:36px; border-radius:50%; background:oklch(93% 0.03 195); display:flex; align-items:center; justify-content:center; margin:0 auto 10px;"><div style="width:10px; height:10px; border-radius:50%; background:oklch(58% 0.09 195);"></div></div>
@@ -154,7 +154,7 @@
       <p style="font-size:16px; color:oklch(40% 0.02 250); margin:0 0 24px;">충분한 문진으로 환자분에게 필요한 검사를 시행하고, 정확한 진단을 통한 개별 맞춤 진료를 목표로 합니다.</p>
       <div style="display:flex; gap:12px; flex-wrap:wrap;">
         <div style="background:oklch(93% 0.03 195); color:oklch(30% 0.09 195); font-size:13px; font-weight:800; padding:8px 16px; border-radius:20px;">2019년 개원</div>
-        <div style="background:oklch(93% 0.045 248); color:oklch(34% 0.13 248); font-size:13px; font-weight:800; padding:8px 16px; border-radius:20px;">신경과 전문의 2인</div>
+        <div style="background:oklch(93% 0.045 248); color:oklch(34% 0.13 248); font-size:13px; font-weight:800; padding:8px 16px; border-radius:20px;">신경과 전문의 3인</div>
         <div style="background:oklch(93% 0.03 195); color:oklch(30% 0.09 195); font-size:13px; font-weight:800; padding:8px 16px; border-radius:20px;">정밀검사 6종</div>
       </div>
     </div>
@@ -204,8 +204,9 @@
     <div style="text-align:center; margin-bottom:48px;">
       <div style="display:inline-block; background:oklch(93% 0.03 195); color:oklch(34% 0.09 195); font-size:12px; font-weight:800; letter-spacing:0.5px; padding:5px 14px; border-radius:20px;">MEDICAL STAFF</div>
       <h2 style="font-size:32px; font-weight:900; margin:12px 0;">의료진 소개</h2>
+      <p style="font-size:16px; color:oklch(40% 0.02 250); margin:0;"><b style="color:oklch(46% 0.13 248);">신경과 전문의 3인</b>이 진료합니다.</p>
     </div>
-    <sc-for list="{{ doctors }}" as="doc" hint-placeholder-count="2">
+    <sc-for list="{{ doctors }}" as="doc" hint-placeholder-count="3">
       <div class="doctor-card" style="display:grid; grid-template-columns:320px 1fr; gap:48px; background:oklch(96% 0.006 90); border-radius:8px; overflow:hidden; margin-bottom:24px;">
         <div class="doctor-photo" style="min-height:320px;">
           <x-import component-from-global-scope="image-slot" from="./image-slot.js" hint-size="100%,320px" id="{{ doc.photoId }}" src="./assets/photos/{{ doc.photoId }}.webp" shape="rect" placeholder="원장님 프로필 사진"></x-import>
@@ -214,7 +215,8 @@
           <div style="font-size:22px; font-weight:900; margin-bottom:8px;">{{ doc.name }}</div>
           <div style="display:flex; align-items:center; gap:10px; margin-bottom:20px;">
             <span style="font-size:15px; font-weight:700; color:oklch(46% 0.13 248);">{{ doc.title }}</span>
-            <span style="background:oklch(93% 0.03 195); color:oklch(30% 0.09 195); font-size:12px; font-weight:800; padding:3px 10px; border-radius:20px;">{{ doc.tag }}</span>
+            <sc-if value="{{ doc.tag }}" hint-placeholder-val="{{ true }}"><span style="background:oklch(93% 0.03 195); color:oklch(30% 0.09 195); font-size:12px; font-weight:800; padding:3px 10px; border-radius:20px;">{{ doc.tag }}</span></sc-if>
+            <sc-if value="{{ doc.badge }}" hint-placeholder-val="{{ false }}"><span style="background:oklch(46% 0.13 248); color:oklch(99% 0.005 90); font-size:12px; font-weight:800; padding:3px 10px; border-radius:20px;">{{ doc.badge }}</span></sc-if>
           </div>
           <sc-for list="{{ doc.creds }}" as="cred" hint-placeholder-count="4">
             <div style="font-size:14px; color:oklch(40% 0.02 250); padding:4px 0;">· {{ cred }}</div>
@@ -222,6 +224,7 @@
 
           <div style="margin-top:20px;">
             <div style="font-size:12px; font-weight:700; color:oklch(58% 0.09 195); margin-bottom:8px;">진료시간</div>
+            <sc-if value="{{ doc.hasSchedule }}" hint-placeholder-val="{{ true }}">
             <div style="display:grid; grid-template-columns:40px repeat(6, 1fr); gap:4px; align-items:center;">
               <div></div>
               <sc-for list="{{ weekDays }}" as="d" hint-placeholder-count="6"><div style="text-align:center; font-size:12px; font-weight:700; color:oklch(45% 0.02 250);">{{ d }}</div></sc-for>
@@ -232,6 +235,7 @@
                 </sc-for>
               </sc-for>
             </div>
+            </sc-if>
             <div style="font-size:12px; color:oklch(50% 0.015 250); margin-top:8px;">{{ doc.scheduleNote }}</div>
           </div>
         </div>
@@ -463,6 +467,7 @@ class Component extends DCLogic {
         { year: '2025', text: '박재현 원장, 삼성스마트신경과 서울점 개원' },
         { year: '2025', text: '황재춘 원장, 여승현 원장 삼성스마트신경과 부산점 전담' },
         { year: '2026', text: '삼성스마트신경과 부산, 서울, 천안, 판교, 광교점 협력체제 구축' },
+        { year: '2026', text: '9월 은정익 원장 합류 · 신경과 전문의 3인 진료' },
       ],
 
 
@@ -472,6 +477,7 @@ class Component extends DCLogic {
           name: '황재춘 원장',
           title: '신경과 전문의',
           tag: '뇌혈관질환·두통·어지러움·수면장애·자율신경장애',
+          hasSchedule: true,
           scheduleNote: '매주 수요일 오후는 휴진입니다.',
           schedule: [
             { label: '오전', days: [ON, ON, ON, ON, ON, ON] },
@@ -493,6 +499,7 @@ class Component extends DCLogic {
           name: '여승현 원장',
           title: '신경과 전문의',
           tag: '말초신경·치매·두통·어지러움·수면장애·자율신경장애',
+          hasSchedule: true,
           scheduleNote: '토요일 격주 진료 (해당 월 안내일 휴진)',
           schedule: [
             { label: '오전', days: [ON, ON, ON, OFF, ON, HALF] },
@@ -505,6 +512,17 @@ class Component extends DCLogic {
             '대한신경과학회 · 대한두통학회 · 대한뇌전증학회 · 대한치매학회 정회원',
             '신경근전도 및 유발전위 전문의 · 치매전문교육 수료',
           ],
+        },
+        {
+          photoId: 'doctor-photo-eun',
+          name: '은정익 원장',
+          title: '신경과 전문의',
+          tag: '',
+          badge: '2026년 9월 합류',
+          hasSchedule: false,
+          scheduleNote: '진료 요일과 시간은 전화(051-558-5898) 또는 카카오톡으로 문의해 주세요.',
+          schedule: [],
+          creds: [],
         },
       ],
 
