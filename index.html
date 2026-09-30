@@ -160,7 +160,7 @@
       <div style="display:flex; gap:12px; flex-wrap:wrap;">
         <div style="background:oklch(93% 0.03 195); color:oklch(30% 0.09 195); font-size:13px; font-weight:800; padding:8px 16px; border-radius:20px;">2019년 개원</div>
         <div style="background:oklch(93% 0.045 248); color:oklch(34% 0.13 248); font-size:13px; font-weight:800; padding:8px 16px; border-radius:20px;">신경과 전문의 3인</div>
-        <div style="background:oklch(93% 0.03 195); color:oklch(30% 0.09 195); font-size:13px; font-weight:800; padding:8px 16px; border-radius:20px;">정밀검사 6종</div>
+        <div style="background:oklch(93% 0.03 195); color:oklch(30% 0.09 195); font-size:13px; font-weight:800; padding:8px 16px; border-radius:20px;">정밀검사 9종</div>
       </div>
     </div>
     <div>
@@ -281,7 +281,7 @@
         <p style="font-size:16px; color:oklch(45% 0.02 250);">대학병원 수준의 정밀 장비로 신경계 질환의 원인을 정확하게 확인합니다</p>
       </div>
       <div class="cards-grid-3" style="display:grid; grid-template-columns:repeat(3, 1fr); gap:24px;">
-        <sc-for list="{{ equipmentItems }}" as="item" hint-placeholder-count="6">
+        <sc-for list="{{ equipmentItems }}" as="item" hint-placeholder-count="9">
           <a href="{{ item.href }}" style="display:block; position:relative; background:oklch(99% 0.005 90); border:1px solid oklch(89% 0.008 250); border-top:3px solid oklch(58% 0.09 195); border-radius:6px; padding:32px; color:oklch(24% 0.02 250); box-shadow:0 1px 3px oklch(0% 0 0 / 0.04); transition:box-shadow .2s, transform .2s;" style-hover="border-color:oklch(46% 0.13 248); box-shadow:0 10px 24px oklch(0% 0 0 / 0.08); transform:translateY(-2px);">
             <div style="position:absolute; top:20px; right:24px; font-size:28px; font-weight:900; color:oklch(90% 0.025 195);">{{ item.num }}</div>
             <div style="width:44px; height:44px; border-radius:8px; background:oklch(92% 0.03 195); display:flex; align-items:center; justify-content:center; margin-bottom:20px;">
@@ -584,6 +584,9 @@ class Component extends DCLogic {
         { slug: 'eeg', name: '뇌파검사(정량뇌파 포함)', desc: '국제 10-20 시스템에 따른 정밀 전극 부착과 안정·수면·광자극 등 다양한 조건에서 측정해 뇌전증·뇌기능 이상을 평가합니다.' },
         { slug: 'vng', name: 'VNG 정밀 평형기능검사', desc: '적외선 카메라로 안구 움직임을 분석해 이석증 등 전정기관 이상을 정밀하게 진단합니다.' },
         { slug: 'psg', name: '수면다원검사', desc: '수면 중 뇌파·호흡·산소포화도를 종합 측정해 수면무호흡·불면증 등의 원인을 정밀 진단합니다.' },
+        { slug: 'mslt', name: '다중수면잠복기검사(MSLT)', desc: '낮잠에 드는 속도와 렘수면 출현을 기록해 기면증·특발성 과다수면증을 진단합니다.' },
+        { slug: 'ep', name: '유발전위검사', desc: '빛·소리·전기 자극이 뇌까지 전달되는 과정을 기록해 시각·청각·감각 경로의 이상을 확인합니다.' },
+        { slug: 'ncs', name: '신경전도/근전도검사', desc: '신경 전달 속도와 근육의 전기 활동을 측정해 손발 저림 등 말초신경 문제의 원인과 위치를 가립니다.' },
       ].map((e, i) => ({ ...e, href: `./exam.html?slug=${e.slug}`, num: String(i + 1).padStart(2, '0') })),
 
       notices: [

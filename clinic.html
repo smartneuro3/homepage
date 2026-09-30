@@ -143,6 +143,7 @@ class Component extends DCLogic {
     const examMeta = {
       tcd: '뇌혈류초음파', carotid: '경동맥초음파', ans: '자율신경검사',
       eeg: '뇌파검사(정량뇌파 포함)', vng: 'VNG 정밀 평형기능검사', psg: '수면다원검사',
+      mslt: '다중수면잠복기검사(MSLT)', ep: '유발전위검사', ncs: '신경전도/근전도검사',
     };
     const mkExams = (slugs) => slugs.map(s => ({ slug: s, name: examMeta[s], href: `./exam.html?slug=${s}` }));
 
@@ -160,7 +161,7 @@ class Component extends DCLogic {
           { name: '만성두통', desc: '한 달에 15일 이상 지속되는 두통으로 정밀 원인 감별과 장기 관리가 필요합니다.' },
         ],
         process: ['문진과 신경학적 진찰로 두통 양상 파악', '뇌혈류초음파·뇌파·자율신경검사 등 정밀검사 시행', '위험신호가 있으면 MRI·MRA 등 영상검사 협진', '원인별 약물치료·신경차단주사·보톡스 치료'],
-        exams: mkExams(['eeg', 'ans', 'tcd']) },
+        exams: mkExams(['eeg', 'ans', 'tcd', 'ncs']) },
       dizziness: { name: '어지럼증클리닉', desc: '말초성·중추성 어지럼증 정밀 감별 진료',
         symptoms: ['갑자기 빙빙 도는 느낌의 현훈', '자세를 바꿀 때 심해지는 어지럼', '어지럼과 함께 나타나는 두통·마비'],
         treatment: '전정기능검사와 신경학적 진찰로 원인을 감별하고, 이석증·전정신경염 등에 맞는 치료와 재활을 진행합니다.',
@@ -174,7 +175,7 @@ class Component extends DCLogic {
           { name: '자율신경성 어지러움', desc: '기립성혈압 변화 등 자율신경 이상으로 나타나는 어지럼입니다.' },
         ],
         process: ['문진과 안구운동·평형 기능 검사', '전정기능검사로 말초성·중추성 여부 감별', '중추성 의심 시 영상검사 협진', '이석증 정복술·약물·재활 치료 진행'],
-        exams: mkExams(['vng', 'ans', 'tcd', 'carotid']) },
+        exams: mkExams(['vng', 'eeg', 'ep', 'ans', 'tcd', 'carotid']) },
       sleep: { name: '수면클리닉', desc: '불면증·수면무호흡·기면증 수면다원검사 기반 진단',
         symptoms: ['잠들기 어렵거나 자주 깨는 불면', '코골이와 함께 나타나는 무호흡', '충분히 자도 낮에 심한 졸림', '자다가 소리를 지르거나 팔다리를 휘두름', '자려고 누우면 다리가 불편하고 움찔거림', '아침 두통·구강 건조·잦은 야간뇨'],
         treatment: '수면다원검사로 수면 구조와 무호흡 지수를 확인한 뒤, 양압기·약물·행동치료 등 맞춤 치료를 안내합니다.',
@@ -186,7 +187,7 @@ class Component extends DCLogic {
           { name: '렘수면행동장애', desc: '자다가 소리를 지르거나 팔다리를 휘두르는 증상으로, 신경계 정밀 평가가 필요합니다.' },
         ],
         process: ['수면 습관과 증상에 대한 상세 문진', '수면다원검사로 수면 구조·무호흡 지수 측정', '결과에 따라 양압기·구강장치·약물치료 선택', '치료 경과에 따른 정기적인 추적 관리'],
-        exams: mkExams(['psg', 'eeg']) },
+        exams: mkExams(['psg', 'mslt', 'eeg', 'ncs']) },
       dementia: { name: '치매·인지장애클리닉', desc: '조기 인지선별검사와 맞춤 관리 프로그램',
         symptoms: ['최근 일을 자주 잊는 건망증', '같은 질문을 반복하는 모습', '길찾기·계산 능력의 저하'],
         treatment: '인지선별검사와 뇌영상검사로 원인을 구분하고, 약물치료와 인지훈련을 병행한 장기 관리 계획을 제공합니다.',

@@ -53,7 +53,8 @@
     <h1 style="font-size:36px; font-weight:900; margin:12px 0 12px;">{{ exam.name }}</h1>
     <p style="font-size:17px; color:oklch(45% 0.02 250); margin:0 0 40px; max-width:760px;">{{ exam.desc }}</p>
 
-    <div class="grid-2" style="display:grid; grid-template-columns:1fr 1fr; gap:24px; margin-bottom:40px;">
+    <div class="grid-2" style="display:grid; grid-template-columns:{{ gridCols }}; gap:24px; margin-bottom:40px;">
+      <sc-if value="{{ hasPhotos }}" hint-placeholder-val="{{ true }}">
       <div style="height:220px; border-radius:8px; overflow:hidden; position:relative;">
         <sc-for list="{{ examPhotos }}" as="photo" hint-placeholder-count="2">
           <div style="position:absolute; inset:0; opacity:{{ photo.opacity }}; transition:opacity 1s ease; pointer-events:{{ photo.pointerEvents }};">
@@ -66,6 +67,7 @@
           </sc-for>
         </div>
       </div>
+      </sc-if>
       <div style="background:oklch(96% 0.006 90); border-radius:8px; padding:28px;">
         <div style="font-size:13px; font-weight:700; color:oklch(58% 0.09 195); margin-bottom:16px;">이런 경우 이 검사를 권합니다</div>
         <div style="display:flex; flex-direction:column; gap:8px;">
@@ -190,6 +192,18 @@ class Component extends DCLogic {
         indications: ['심한 코골이와 함께 나타나는 무호흡', '충분히 자도 낮에 심한 졸림', '잠들기 어렵거나 자주 깨는 불면', '고혈압·부정맥 동반 수면장애'],
         process: '검사실에서 하룻밤 수면하며 뇌파·호흡·심전도·산소포화도 등을 종합 기록합니다. 네이버 예약으로 별도 접수합니다.',
         clinics: mkClinics(['sleep']) },
+      mslt: { name: '다중수면잠복기검사(MSLT)', desc: '낮 동안 여러 차례 낮잠 기회를 주고 얼마나 빨리 잠드는지, 잠든 직후 렘수면이 나타나는지를 기록해 기면증·과다수면증을 가립니다.',
+        indications: ['밤에 충분히 잤는데도 낮에 참을 수 없는 졸음', '갑자기 잠에 빠지는 수면 발작', '웃거나 놀랄 때 힘이 빠지는 증상(탈력발작)', '기면증·특발성 과다수면증의 진단과 경과 판정'],
+        process: '전날 밤 수면다원검사에 이어 다음 날 아침부터 2시간 간격으로 4~5회, 20분씩 낮잠을 시도합니다. 하루가 걸리므로 일정을 비워 두셔야 합니다.',
+        clinics: mkClinics(['sleep']) },
+      ep: { name: '유발전위검사', desc: '빛·소리·전기 자극을 준 뒤 그 신호가 뇌까지 전달되는 과정을 기록해, 눈이나 귀에서 뇌로 가는 경로의 어디에 문제가 있는지 확인합니다.',
+        indications: ['원인을 찾기 어려운 어지럼증', '이명·청각 이상', '시야·시력 이상의 신경학적 원인 감별', '척수질환 의심'],
+        process: '자극에 따라 시각·청각·감각으로 나누어 시행합니다. 전극을 붙이고 화면이나 소리에 집중하시면 되며, 검사 종류에 따라 20~40분 걸립니다.',
+        clinics: mkClinics(['dizziness']) },
+      ncs: { name: '신경전도/근전도검사', desc: '신경에 약한 전기 자극을 주어 신호 전달 속도를 재고 근육의 전기 활동을 확인해, 저림의 원인이 말초신경인지, 어느 위치의 문제인지 가립니다.',
+        indications: ['손발 저림·감각 이상', '말초신경질환 의심', '목에서 비롯되는 경추성 두통·후두신경통 감별', '하지불안증후군 감별'],
+        process: '자극할 때 저릿한 느낌이 짧게 지나갑니다. 검사 부위에 따라 30분 내외이며, 목·허리에서 오는 신경 문제와 감별합니다.',
+        clinics: mkClinics(['headache', 'sleep']) },
     };
 
     const params = new URLSearchParams(window.location.search);
@@ -207,7 +221,8 @@ class Component extends DCLogic {
     }));
 
     const art = window.SN_prepArticle ? window.SN_prepArticle((window.SN_ARTICLES || {})['exam-' + slug]) : null;
-    return { exam, examPhotos, art: art || { blocks: [] }, hasArt: !!art };
+    const hasPhotos = ['tcd', 'carotid', 'ans', 'eeg', 'vng', 'psg'].indexOf(exams[slug] ? slug : 'tcd') >= 0;
+    return { exam, examPhotos, hasPhotos, gridCols: hasPhotos ? '1fr 1fr' : '1fr', art: art || { blocks: [] }, hasArt: !!art };
   }
 }
 
