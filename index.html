@@ -28,6 +28,9 @@
   section[id] { scroll-margin-top:152px !important; }
   ::placeholder { color:oklch(60% 0.01 250); }
 
+  @media (min-width: 861px) and (max-width: 1100px) {
+    .clinics-grid { grid-template-columns:repeat(2, 1fr) !important; }
+  }
   @media (max-width: 860px) {
     .site-header { padding:14px 20px !important; }
     .desktop-nav { display:none !important; }
@@ -256,8 +259,8 @@
         <h2 style="font-size:32px; font-weight:900; margin:12px 0;">진료과목 · 전문분야</h2>
         <p style="font-size:16px; color:oklch(45% 0.02 250);">증상별 전문 클리닉에서 정확한 진단을 받으세요</p>
       </div>
-      <div class="cards-grid-3" style="display:grid; grid-template-columns:repeat(3, 1fr); gap:24px;">
-        <sc-for list="{{ specialties }}" as="item" hint-placeholder-count="6">
+      <div class="cards-grid-3 clinics-grid" style="display:grid; grid-template-columns:repeat(4, 1fr); gap:20px;">
+        <sc-for list="{{ specialties }}" as="item" hint-placeholder-count="8">
           <a href="{{ item.href }}" style="display:block; position:relative; background:oklch(99% 0.005 90); border:1px solid oklch(89% 0.008 250); border-top:3px solid oklch(46% 0.13 248); border-radius:6px; padding:32px; color:oklch(24% 0.02 250); box-shadow:0 1px 3px oklch(0% 0 0 / 0.04); transition:box-shadow .2s, transform .2s;" style-hover="border-color:oklch(46% 0.13 248); box-shadow:0 10px 24px oklch(0% 0 0 / 0.08); transform:translateY(-2px);">
             <div style="position:absolute; top:20px; right:24px; font-size:28px; font-weight:900; color:oklch(93% 0.02 248);">{{ item.num }}</div>
             <div style="width:44px; height:44px; border-radius:50%; background:oklch(92% 0.02 248); display:flex; align-items:center; justify-content:center; margin-bottom:20px;">
@@ -481,6 +484,8 @@ class Component extends DCLogic {
       { slug: 'autonomic', name: '자율신경클리닉', desc: '기립성어지럼·두근거림 등 자율신경 이상 정밀 평가' },
       { slug: 'dementia', name: '치매·인지장애클리닉', desc: '조기 인지선별검사와 맞춤 관리 프로그램' },
       { slug: 'stroke', name: '뇌혈관클리닉', desc: '뇌경색·뇌출혈 위험인자 관리와 재발 예방' },
+      { slug: 'peripheral', name: '말초신경질환클리닉', desc: '손발 저림·감각 이상·안면마비 등 말초신경 이상 정밀 진단' },
+      { slug: 'other', name: '기타 신경질환클리닉', desc: '이명·손떨림·머리떨림·근육떨림 등 신경 증상 진료' },
     ].map((s, i) => ({ ...s, href: `./clinic.html?slug=${s.slug}`, num: String(i + 1).padStart(2, '0') }));
 
     const heroPhotos = [1, 2, 3].map((n, i) => ({

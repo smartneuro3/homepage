@@ -113,8 +113,8 @@
 class Component extends DCLogic {
   renderVals() {
     const A = window.SN_ARTICLES || {};
-    const names = { headache: '두통클리닉', dizziness: '어지럼증클리닉', sleep: '수면클리닉', autonomic: '자율신경클리닉', dementia: '치매·인지장애클리닉', stroke: '뇌혈관클리닉' };
-    const eyebrows = { headache: 'HEADACHE CLINIC', dizziness: 'DIZZINESS CLINIC', sleep: 'SLEEP CLINIC', autonomic: 'AUTONOMIC CLINIC' };
+    const names = { headache: '두통클리닉', dizziness: '어지럼증클리닉', sleep: '수면클리닉', autonomic: '자율신경클리닉', dementia: '치매·인지장애클리닉', stroke: '뇌혈관클리닉', peripheral: '말초신경질환클리닉', other: '기타 신경질환클리닉' };
+    const eyebrows = { headache: 'HEADACHE CLINIC', dizziness: 'DIZZINESS CLINIC', sleep: 'SLEEP CLINIC', autonomic: 'AUTONOMIC CLINIC', peripheral: 'PERIPHERAL NERVE CLINIC', other: 'OTHER NEUROLOGIC CONDITIONS' };
     const params = new URLSearchParams(window.location.search);
     let d = params.get('d');
     if (!A[d] || d.indexOf('exam-') === 0) d = 'migraine';

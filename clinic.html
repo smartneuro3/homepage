@@ -214,6 +214,31 @@ class Component extends DCLogic {
         ],
         process: ['자율신경 관련 증상 문진', '기립성혈압검사·심박변이도검사 시행', '필요 시 추가 정밀검사로 원인 감별', '약물치료와 생활습관 교정 병행'],
         exams: mkExams(['ans']) },
+      peripheral: { name: '말초신경질환클리닉', desc: '손발 저림·감각 이상·안면마비 등 말초신경 이상 정밀 진단',
+        symptoms: ['손발이 저리거나 화끈거리고 찌릿함', '감각이 둔하거나 남의 살 같은 느낌', '손에 힘이 빠지거나 물건을 자주 떨어뜨림', '한쪽 얼굴이 갑자기 움직이지 않음', '몸 한쪽에 띠 모양으로 생긴 통증·발진'],
+        treatment: '신경전도·근전도검사로 손상된 신경과 위치·정도를 확인하고, 당뇨·갑상선 질환·비타민 결핍 등 원인 질환을 함께 살핀 뒤 약물치료와 생활 관리를 계획합니다.',
+        types: [
+          { name: '벨마비', desc: '한쪽 얼굴이 갑자기 움직이지 않는 말초성 안면신경마비로, 치료를 시작하는 시점이 회복을 좌우합니다.' },
+          { name: '대상포진', desc: '신경을 따라 띠 모양으로 나타나는 발진과 통증, 그리고 뒤에 남는 신경통입니다.' },
+          { name: '당뇨병성 말초신경병증', desc: '혈당이 오래 높으면 발끝부터 저림·화끈거림이 시작되어 위로 올라오는 신경병증입니다.' },
+          { name: '손목터널증후군', desc: '손목에서 정중신경이 눌려 엄지부터 약지 쪽이 저리고, 밤에 심해지는 경우가 많습니다.' },
+          { name: '팔꿈치터널증후군', desc: '팔꿈치 안쪽에서 척골신경이 눌려 새끼손가락 쪽이 저리고 손힘이 약해집니다.' },
+          { name: '목·허리 신경근병증', desc: '목이나 허리에서 신경뿌리가 눌려 팔이나 다리로 뻗치는 저림과 통증이 생깁니다.' },
+        ],
+        process: ['저림의 위치·양상과 동반 증상 문진, 신경학적 진찰', '신경전도·근전도검사로 손상 신경과 위치·정도 확인', '혈액검사로 당뇨·갑상선·비타민 결핍 등 원인 확인', '원인 치료와 신경통 약물·생활 관리, 경과 추적'],
+        exams: mkExams(['ncs', 'ep', 'ans']) },
+      other: { name: '기타 신경질환클리닉', desc: '이명·손떨림·머리떨림·근육떨림 등 신경 증상 진료',
+        symptoms: ['귀나 머릿속에서 소리가 계속 들림', '글씨를 쓰거나 컵을 들 때 손이 떨림', '고개가 저절로 끄덕이거나 좌우로 흔들림', '눈꺼풀이나 팔다리 근육이 잘게 씰룩임'],
+        treatment: '떨리는 순간과 동반 증상을 확인하는 진찰을 중심으로, 필요하면 정량뇌파·유발전위검사·혈액검사로 원인을 가리고 원인에 맞는 약물치료와 생활 관리를 안내합니다.',
+        types: [
+          { name: '이명', desc: '밖에서 나지 않는 소리가 계속 들리는 증상으로, 귀에서 시작하지만 오래되면 뇌에서 자리를 잡습니다.' },
+          { name: '손떨림', desc: '글씨를 쓰거나 물건을 들 때 떨리는 경우가 흔하며, 언제 떨리는지에 따라 원인이 갈립니다.' },
+          { name: '머리떨림', desc: '고개가 저절로 끄덕이거나 좌우로 흔들리는 떨림으로, 본태성 진전이나 근긴장이상에서 나타날 수 있습니다.' },
+          { name: '근육떨림', desc: '근육이 잘게 씰룩이는 증상으로 피로·카페인·수면 부족으로 흔히 생기지만, 근력 저하가 함께 있으면 정밀 평가가 필요합니다.' },
+          { name: '눈밑떨림', desc: '아래 눈꺼풀이 저절로 파르르 떨리는 흔한 근육떨림으로, 대부분 저절로 좋아집니다.' },
+        ],
+        process: ['증상이 나타나는 상황과 동반 증상 문진', '신경학적 진찰로 떨림의 종류와 양상 확인', '필요 시 정량뇌파·유발전위·혈액검사(갑상선 등)', '원인에 맞춘 약물치료와 생활 관리'],
+        exams: mkExams(['eeg', 'ep', 'ncs', 'tcd']) },
     };
 
     const params = new URLSearchParams(window.location.search);
@@ -224,17 +249,21 @@ class Component extends DCLogic {
     const articles = Object.keys(A).filter(k => A[k].parent === key)
       .map(k => ({ title: A[k].title, summary: A[k].summary, href: `./disease.html?d=${k}` }));
     const typeToArticle = {
-      '편두통': 'migraine', '코골이·수면무호흡': 'sleep-apnea', '렘수면행동장애': 'rbd', '자율신경 실조증': 'dysautonomia',
+      '편두통': 'migraine', '군발두통': 'cluster', '삼차신경통': 'trigeminal',
+      '이석증': 'bppv', '전정신경염': 'vestibular-neuritis', '메니에르병': 'meniere', '전정편두통': 'vestibular-migraine', 'PPPD(지속적체위지각어지럼)': 'pppd',
+      '코골이·수면무호흡': 'sleep-apnea', '렘수면행동장애': 'rbd', '과다수면·기면증': 'hypersomnia', '불면증': 'insomnia', '하지불안증후군': 'restless-legs',
+      '자율신경 실조증': 'dysautonomia', '체위성 빈맥증후군': 'pots',
+      '벨마비': 'bells-palsy', '대상포진': 'shingles', '이명': 'tinnitus', '손떨림': 'tremor', '눈밑떨림': 'eyelid-twitch',
     };
     const used = {};
     const typed = clinics[key].types.map(t => {
       const k = typeToArticle[t.name];
-      if (k && A[k] && A[k].parent === key) { used[k] = true; return { name: A[k].title, desc: t.desc, href: `./disease.html?d=${k}`, linked: true, plain: false }; }
+      if (k && A[k] && A[k].parent === key) { used[k] = true; return { name: t.name, desc: t.desc, href: `./disease.html?d=${k}`, linked: true, plain: false }; }
       return { name: t.name, desc: t.desc, linked: false, plain: true };
     });
     const extra = Object.keys(A).filter(k => A[k].parent === key && !used[k])
       .map(k => ({ name: A[k].title, desc: A[k].summary, href: `./disease.html?d=${k}`, linked: true, plain: false }));
-    const diseases = typed.filter(t => t.linked).concat(extra, typed.filter(t => !t.linked));
+    const diseases = typed.concat(extra);
     const clinic = { ...clinics[key], photoId: `clinic-photo-${key}`, intro, hasIntro: !!intro, diseases, hasArticles: articles.length > 0 };
 
     return { clinic };
