@@ -42,7 +42,7 @@
     .trust-strip { grid-template-columns:1fr 1fr !important; gap:16px !important; padding:24px 20px !important; }
     .about-grid, .location-grid, .community-grid { grid-template-columns:1fr !important; gap:40px !important; }
     .doctor-card { grid-template-columns:1fr !important; }
-    .doctor-photo { min-height:220px !important; }
+    .doctor-photo { min-height:0 !important; aspect-ratio:4 / 5; }
     .cards-grid-3 { grid-template-columns:1fr !important; }
     .linkrow-grid { grid-template-columns:1fr !important; }
     .type-grid-3 { grid-template-columns:1fr !important; }
@@ -54,7 +54,11 @@
     h1 { font-size:28px !important; line-height:1.35 !important; }
     h2 { font-size:24px !important; }
     p { font-size:15px !important; line-height:1.7 !important; }
-    .site-header span:first-child { font-size:18px !important; }
+    .site-header img { width:56px !important; height:56px !important; }
+    .site-header .brand-font { font-size:20px !important; margin-left:-8px !important; }
+    .site-header .brand-font + span { font-size:14px !important; margin-left:6px !important; white-space:nowrap; }
+    .site-header .header-cta { display:none !important; }
+    section[id] { scroll-margin-top:96px !important; }
     .hero-text p { max-width:100% !important; }
     .doctor-card > div:last-child { padding:24px !important; }
     .doctor-card div[style*="font-size:22px"] { font-size:19px !important; }
@@ -81,7 +85,7 @@
     </nav>
     <div style="display:flex; align-items:center; gap:12px;">
       <a href="tel:051-558-5898" style="font-size:14px; font-weight:700; color:oklch(30% 0.1 248); display:none;" class="phone-label">051-000-0000</a>
-      <a href="#reserve" style="background:oklch(46% 0.13 248); color:oklch(99% 0.005 90); padding:10px 20px; border-radius:4px; font-size:14px; font-weight:700; white-space:nowrap;" style-hover="background:oklch(38% 0.13 248);">진료상담</a>
+      <a href="#reserve" class="header-cta" style="background:oklch(46% 0.13 248); color:oklch(99% 0.005 90); padding:10px 20px; border-radius:4px; font-size:14px; font-weight:700; white-space:nowrap;" style-hover="background:oklch(38% 0.13 248);">진료상담</a>
       <button onClick="{{ toggleMobileMenu }}" class="mobile-menu-btn" style="display:none; width:36px; height:36px; border:1px solid oklch(85% 0.008 250); border-radius:4px; background:oklch(99% 0.005 90); align-items:center; justify-content:center; flex-direction:column; gap:4px; cursor:pointer; padding:0;">
         <span style="width:18px; height:2px; background:oklch(30% 0.02 250);"></span>
         <span style="width:18px; height:2px; background:oklch(30% 0.02 250);"></span>
@@ -91,7 +95,7 @@
   </header>
 
   <sc-if value="{{ mobileMenuOpen }}" hint-placeholder-val="{{ false }}">
-    <nav class="mobile-nav-panel" style="display:none; flex-direction:column; position:sticky; top:133px; z-index:99; background:oklch(99% 0.005 90); border-bottom:1px solid oklch(89% 0.008 250); box-shadow:0 8px 16px oklch(0% 0 0 / 0.06);">
+    <nav class="mobile-nav-panel" style="display:none; flex-direction:column; position:sticky; top:85px; z-index:99; background:oklch(99% 0.005 90); border-bottom:1px solid oklch(89% 0.008 250); box-shadow:0 8px 16px oklch(0% 0 0 / 0.06);">
       <a href="#about" onClick="{{ closeMobileMenu }}" style="padding:16px 24px; font-size:16px; font-weight:500; color:oklch(24% 0.02 250); border-bottom:1px solid oklch(93% 0.006 90);">병원소개</a>
       <a href="#doctors" onClick="{{ closeMobileMenu }}" style="padding:16px 24px; font-size:16px; font-weight:500; color:oklch(24% 0.02 250); border-bottom:1px solid oklch(93% 0.006 90);">의료진</a>
       <a href="#specialties" onClick="{{ closeMobileMenu }}" style="padding:16px 24px; font-size:16px; font-weight:500; color:oklch(24% 0.02 250); border-bottom:1px solid oklch(93% 0.006 90);">진료과목</a>
@@ -209,8 +213,8 @@
     </div>
     <sc-for list="{{ doctors }}" as="doc" hint-placeholder-count="3">
       <div class="doctor-card" style="display:grid; grid-template-columns:320px 1fr; gap:48px; background:oklch(96% 0.006 90); border-radius:8px; overflow:hidden; margin-bottom:24px;">
-        <div class="doctor-photo" style="min-height:320px;">
-          <x-import component-from-global-scope="image-slot" from="./image-slot.js" hint-size="100%,320px" id="{{ doc.photoId }}" src="./assets/photos/{{ doc.photoId }}.webp" shape="rect" placeholder="원장님 프로필 사진"></x-import>
+        <div class="doctor-photo" style="min-height:320px; position:relative; background:oklch(92% 0.01 250);">
+          <img src="./assets/photos/{{ doc.photoId }}.webp" alt="{{ doc.name }} 프로필 사진" loading="lazy" style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover; object-position:center 18%; display:block;">
         </div>
         <div style="padding:40px 40px 40px 0; display:flex; flex-direction:column; justify-content:center;">
           <div style="font-size:22px; font-weight:900; margin-bottom:8px;">{{ doc.name }}</div>
