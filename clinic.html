@@ -74,30 +74,26 @@
       </div>
     </div>
 
-    <sc-if value="{{ clinic.hasArticles }}" hint-placeholder-val="{{ true }}">
-      <div style="margin-bottom:40px;">
-        <div style="font-size:13px; font-weight:700; color:oklch(58% 0.09 195); margin-bottom:6px;">질환 자세히 알아보기</div>
-        <div style="font-size:14px; color:oklch(48% 0.015 250); margin-bottom:16px;">원인과 증상, 진단과 치료를 자세히 설명합니다</div>
-        <div class="grid-2" style="display:grid; grid-template-columns:repeat(2, 1fr); gap:16px;">
-          <sc-for list="{{ clinic.articles }}" as="a" hint-placeholder-count="2">
-            <a href="{{ a.href }}" style="display:flex; flex-direction:column; gap:8px; background:oklch(97% 0.012 248); border:1px solid oklch(90% 0.025 248); border-radius:8px; padding:24px; color:oklch(24% 0.02 250);">
-              <span style="font-size:17px; font-weight:900;">{{ a.title }}</span>
-              <span style="font-size:14px; line-height:1.6; color:oklch(42% 0.02 250);">{{ a.summary }}</span>
+    <div style="margin-bottom:40px;">
+      <div style="font-size:13px; font-weight:700; color:oklch(58% 0.09 195); margin-bottom:6px;">주요 질환</div>
+      <sc-if value="{{ clinic.hasArticles }}" hint-placeholder-val="{{ true }}">
+        <div style="font-size:14px; color:oklch(48% 0.015 250); margin-bottom:16px;">'자세히 보기'가 있는 질환은 원인과 증상, 진단과 치료를 자세히 설명합니다</div>
+      </sc-if>
+      <div class="grid-3" style="display:grid; grid-template-columns:repeat(3, 1fr); gap:20px; margin-top:16px;">
+        <sc-for list="{{ clinic.diseases }}" as="t" hint-placeholder-count="6">
+          <sc-if value="{{ t.linked }}" hint-placeholder-val="{{ false }}">
+            <a href="{{ t.href }}" style="display:flex; flex-direction:column; gap:6px; background:oklch(97% 0.012 248); border:1px solid oklch(88% 0.035 248); border-radius:6px; padding:20px; color:oklch(24% 0.02 250);">
+              <span style="font-size:15px; font-weight:700;">{{ t.name }}</span>
+              <span style="font-size:13px; color:oklch(42% 0.02 250);">{{ t.desc }}</span>
               <span style="font-size:13px; font-weight:700; color:oklch(46% 0.13 248); margin-top:4px;">자세히 보기 &gt;</span>
             </a>
-          </sc-for>
-        </div>
-      </div>
-    </sc-if>
-
-    <div style="margin-bottom:40px;">
-      <div style="font-size:13px; font-weight:700; color:oklch(58% 0.09 195); margin-bottom:16px;">주요 원인·유형</div>
-      <div class="grid-3" style="display:grid; grid-template-columns:repeat(3, 1fr); gap:20px;">
-        <sc-for list="{{ clinic.types }}" as="t" hint-placeholder-count="3">
-          <div style="background:oklch(99% 0.005 90); border:1px solid oklch(89% 0.008 250); border-radius:6px; padding:20px;">
-            <div style="font-size:15px; font-weight:700; margin-bottom:6px;">{{ t.name }}</div>
-            <div style="font-size:13px; color:oklch(45% 0.02 250);">{{ t.desc }}</div>
-          </div>
+          </sc-if>
+          <sc-if value="{{ t.plain }}" hint-placeholder-val="{{ true }}">
+            <div style="background:oklch(99% 0.005 90); border:1px solid oklch(89% 0.008 250); border-radius:6px; padding:20px;">
+              <div style="font-size:15px; font-weight:700; margin-bottom:6px;">{{ t.name }}</div>
+              <div style="font-size:13px; color:oklch(45% 0.02 250);">{{ t.desc }}</div>
+            </div>
+          </sc-if>
         </sc-for>
       </div>
     </div>
@@ -227,7 +223,19 @@ class Component extends DCLogic {
     const intro = (window.SN_CLINIC_INTROS || {})[key] || '';
     const articles = Object.keys(A).filter(k => A[k].parent === key)
       .map(k => ({ title: A[k].title, summary: A[k].summary, href: `./disease.html?d=${k}` }));
-    const clinic = { ...clinics[key], photoId: `clinic-photo-${key}`, intro, hasIntro: !!intro, articles, hasArticles: articles.length > 0 };
+    const typeToArticle = {
+      '편두통': 'migraine', '코골이·수면무호흡': 'sleep-apnea', '렘수면행동장애': 'rbd', '자율신경 실조증': 'dysautonomia',
+    };
+    const used = {};
+    const typed = clinics[key].types.map(t => {
+      const k = typeToArticle[t.name];
+      if (k && A[k] && A[k].parent === key) { used[k] = true; return { name: A[k].title, desc: t.desc, href: `./disease.html?d=${k}`, linked: true, plain: false }; }
+      return { name: t.name, desc: t.desc, linked: false, plain: true };
+    });
+    const extra = Object.keys(A).filter(k => A[k].parent === key && !used[k])
+      .map(k => ({ name: A[k].title, desc: A[k].summary, href: `./disease.html?d=${k}`, linked: true, plain: false }));
+    const diseases = typed.filter(t => t.linked).concat(extra, typed.filter(t => !t.linked));
+    const clinic = { ...clinics[key], photoId: `clinic-photo-${key}`, intro, hasIntro: !!intro, diseases, hasArticles: articles.length > 0 };
 
     return { clinic };
   }
