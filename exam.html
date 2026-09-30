@@ -4,6 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <script src="./support.js"></script>
+<script src="./content.js"></script>
 </head>
 <body>
 <x-dc>
@@ -19,6 +20,10 @@
   a { color:oklch(46% 0.13 248); text-decoration:none; }
   a:hover { color:oklch(38% 0.13 248); }
   @media (max-width: 860px) {
+    .sub-header img { width:56px !important; height:56px !important; }
+    .sub-header .brand-font { font-size:20px !important; margin-left:-8px !important; }
+    .sub-header .brand-font + span { font-size:14px !important; margin-left:6px !important; white-space:nowrap; }
+    .sub-header > a:last-child { padding:8px 12px !important; font-size:13px !important; white-space:nowrap; }
     .content-wrap { padding:32px 24px 64px !important; }
     .grid-2 { grid-template-columns:1fr !important; }
     .grid-3 { grid-template-columns:1fr !important; }
@@ -30,7 +35,7 @@
 
 <div style="color:oklch(24% 0.02 250); line-height:1.6;">
 
-  <header style="position:sticky; top:0; z-index:100; background:oklch(99% 0.004 90 / 0.96); backdrop-filter:blur(6px); border-bottom:1px solid oklch(89% 0.008 250); display:flex; align-items:center; justify-content:space-between; padding:16px 20px; gap:12px;">
+  <header class="sub-header" style="position:sticky; top:0; z-index:100; background:oklch(99% 0.004 90 / 0.96); backdrop-filter:blur(6px); border-bottom:1px solid oklch(89% 0.008 250); display:flex; align-items:center; justify-content:space-between; padding:16px 20px; gap:12px;">
     <a href="./index.html" style="display:flex; align-items:center; gap:2px;">
       <img src="./assets/logo.jpeg" alt="삼성스마트신경과 로고" style="height:104px; width:104px; object-fit:contain; flex-shrink:0;">
       <span class="brand-font" style="font-size:30px; font-weight:900; color:oklch(30% 0.1 248); letter-spacing:-0.5px; margin-left:-24px;">삼성스마트신경과</span>
@@ -75,6 +80,45 @@
       <div style="font-size:13px; font-weight:700; color:oklch(58% 0.09 195); margin-bottom:16px;">검사 진행 방법</div>
       <div style="font-size:15px; color:oklch(40% 0.02 250);">{{ exam.process }}</div>
     </div>
+
+    <sc-if value="{{ hasArt }}" hint-placeholder-val="{{ false }}">
+      <div style="margin-bottom:48px; max-width:820px;">
+        <div style="font-size:22px; font-weight:900; margin-bottom:4px;">{{ art.title }}</div>
+        <article>
+      <sc-for list="{{ art.blocks }}" as="b" hint-placeholder-count="6">
+        <sc-if value="{{ b.isH2 }}" hint-placeholder-val="{{ false }}">
+          <h2 style="font-size:24px; font-weight:900; line-height:1.4; margin:52px 0 16px; padding-top:20px; border-top:1px solid oklch(91% 0.008 250); color:oklch(24% 0.02 250);">{{ b.text }}</h2>
+        </sc-if>
+        <sc-if value="{{ b.isH3 }}" hint-placeholder-val="{{ false }}">
+          <h3 style="font-size:18px; font-weight:700; line-height:1.5; margin:32px 0 10px; color:oklch(34% 0.1 248);">{{ b.text }}</h3>
+        </sc-if>
+        <sc-if value="{{ b.isP }}" hint-placeholder-val="{{ true }}">
+          <p style="font-size:16px; line-height:1.9; color:oklch(34% 0.02 250); margin:0 0 14px;"><sc-for list="{{ b.segs }}" as="s" hint-placeholder-count="1"><span style="font-weight:{{ s.w }}; color:{{ s.c }};">{{ s.t }}</span></sc-for></p>
+        </sc-if>
+        <sc-if value="{{ b.isList }}" hint-placeholder-val="{{ false }}">
+          <ul style="margin:4px 0 18px; padding-left:22px;">
+            <sc-for list="{{ b.items }}" as="it" hint-placeholder-count="3">
+              <li style="font-size:16px; line-height:1.8; color:oklch(34% 0.02 250); margin-bottom:8px;"><sc-for list="{{ it.segs }}" as="s" hint-placeholder-count="1"><span style="font-weight:{{ s.w }}; color:{{ s.c }};">{{ s.t }}</span></sc-for></li>
+            </sc-for>
+          </ul>
+        </sc-if>
+        <sc-if value="{{ b.isCheck }}" hint-placeholder-val="{{ false }}">
+          <div style="background:oklch(96.5% 0.012 248); border:1px solid oklch(90% 0.025 248); border-radius:8px; padding:24px 28px; margin:12px 0 22px;">
+            <sc-if value="{{ b.hasTitle }}" hint-placeholder-val="{{ true }}">
+              <div style="font-size:15px; font-weight:900; color:oklch(34% 0.13 248); margin-bottom:12px;">{{ b.title }}</div>
+            </sc-if>
+            <sc-for list="{{ b.items }}" as="it" hint-placeholder-count="3">
+              <div style="display:flex; gap:12px; align-items:flex-start; padding:7px 0; font-size:15px; line-height:1.7; color:oklch(30% 0.02 250);">
+                <span style="flex-shrink:0; width:22px; height:22px; margin-top:2px; border-radius:50%; background:oklch(46% 0.13 248); color:oklch(99% 0.005 90); font-size:12px; font-weight:700; display:flex; align-items:center; justify-content:center;">{{ it.n }}</span>
+                <span><sc-for list="{{ it.segs }}" as="s" hint-placeholder-count="1"><span style="font-weight:{{ s.w }}; color:{{ s.c }};">{{ s.t }}</span></sc-for></span>
+              </div>
+            </sc-for>
+          </div>
+        </sc-if>
+      </sc-for>
+        </article>
+      </div>
+    </sc-if>
 
     <div style="border-top:1px solid oklch(89% 0.008 250); padding-top:32px;">
       <div style="font-size:18px; font-weight:900; margin-bottom:6px;">관련 진료과목</div>
@@ -162,7 +206,8 @@ class Component extends DCLogic {
       onSelect: () => this.setState({ photoIdx: i }),
     }));
 
-    return { exam, examPhotos };
+    const art = window.SN_prepArticle ? window.SN_prepArticle((window.SN_ARTICLES || {})['exam-' + slug]) : null;
+    return { exam, examPhotos, art: art || { blocks: [] }, hasArt: !!art };
   }
 }
 

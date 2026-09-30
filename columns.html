@@ -18,6 +18,10 @@
   a { color:oklch(46% 0.13 248); text-decoration:none; }
   a:hover { color:oklch(38% 0.13 248); }
   @media (max-width: 860px) {
+    .sub-header img { width:56px !important; height:56px !important; }
+    .sub-header .brand-font { font-size:20px !important; margin-left:-8px !important; }
+    .sub-header .brand-font + span { font-size:14px !important; margin-left:6px !important; white-space:nowrap; }
+    .sub-header > a:last-child { padding:8px 12px !important; font-size:13px !important; white-space:nowrap; }
     .content-wrap { padding:32px 24px 64px !important; }
     h1 { font-size:24px !important; }
   }
@@ -25,7 +29,7 @@
 </helmet>
 
 <div style="color:oklch(24% 0.02 250); line-height:1.6;">
-  <header style="position:sticky; top:0; z-index:100; background:oklch(99% 0.004 90 / 0.96); backdrop-filter:blur(6px); border-bottom:1px solid oklch(89% 0.008 250); display:flex; align-items:center; justify-content:space-between; padding:16px 20px; gap:12px;">
+  <header class="sub-header" style="position:sticky; top:0; z-index:100; background:oklch(99% 0.004 90 / 0.96); backdrop-filter:blur(6px); border-bottom:1px solid oklch(89% 0.008 250); display:flex; align-items:center; justify-content:space-between; padding:16px 20px; gap:12px;">
     <a href="./index.html" style="display:flex; align-items:center; gap:2px;">
       <img src="./assets/logo.jpeg" alt="삼성스마트신경과 로고" style="height:104px; width:104px; object-fit:contain; flex-shrink:0;">
       <span class="brand-font" style="font-size:30px; font-weight:900; color:oklch(30% 0.1 248); letter-spacing:-0.5px; margin-left:-24px;">삼성스마트신경과</span>

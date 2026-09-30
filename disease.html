@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+<script src="./content.js"></script>
+</head>
+<body>
+<x-dc>
+
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&display=swap" rel="stylesheet">
+<style>
+  body { margin:0; background:oklch(99% 0.004 90); }
+  * { box-sizing:border-box; font-family:'Noto Sans KR', sans-serif; word-break:keep-all; overflow-wrap:break-word; }
+  h1, h2, .brand-font { font-weight:900; }
+  a { color:oklch(46% 0.13 248); text-decoration:none; }
+  a:hover { color:oklch(38% 0.13 248); }
+  @media (max-width: 860px) {
+    .sub-header img { width:56px !important; height:56px !important; }
+    .sub-header .brand-font { font-size:20px !important; margin-left:-8px !important; }
+    .sub-header .brand-font + span { font-size:14px !important; margin-left:6px !important; white-space:nowrap; }
+    .sub-header > a:last-child { padding:8px 12px !important; font-size:13px !important; white-space:nowrap; }
+    .content-wrap { padding:32px 24px 64px !important; }
+    .split-grid { grid-template-columns:1fr !important; }
+    .grid-3 { grid-template-columns:1fr !important; }
+    .grid-4 { grid-template-columns:1fr 1fr !important; }
+    h1 { font-size:24px !important; line-height:1.35 !important; }
+    p { font-size:15px !important; line-height:1.7 !important; }
+  }
+</style>
+</helmet>
+
+<div style="color:oklch(24% 0.02 250); line-height:1.6;">
+
+  <header class="sub-header" style="position:sticky; top:0; z-index:100; background:oklch(99% 0.004 90 / 0.96); backdrop-filter:blur(6px); border-bottom:1px solid oklch(89% 0.008 250); display:flex; align-items:center; justify-content:space-between; padding:16px 20px; gap:12px;">
+    <a href="./index.html" style="display:flex; align-items:center; gap:2px;">
+      <img src="./assets/logo.jpeg" alt="삼성스마트신경과 로고" style="height:104px; width:104px; object-fit:contain; flex-shrink:0;">
+      <span class="brand-font" style="font-size:30px; font-weight:900; color:oklch(30% 0.1 248); letter-spacing:-0.5px; margin-left:-24px;">삼성스마트신경과</span>
+      <span style="font-size:18px; font-weight:700; color:oklch(58% 0.09 195); margin-left:8px;">부산점</span>
+    </a>
+    <a href="./index.html#reserve" style="background:oklch(46% 0.13 248); color:oklch(99% 0.005 90); padding:10px 20px; border-radius:4px; font-size:14px; font-weight:700;" style-hover="background:oklch(38% 0.13 248);">진료상담</a>
+  </header>
+
+  <div class="content-wrap" style="max-width:860px; margin:0 auto; padding:48px 64px 96px;">
+    <div style="font-size:13px; color:oklch(48% 0.015 250); margin-bottom:20px;">
+      <a href="./index.html#specialties" style="color:oklch(48% 0.015 250);">진료과목</a> &gt; <a href="{{ clinicHref }}" style="color:oklch(48% 0.015 250);">{{ clinicName }}</a> &gt; {{ art.title }}
+    </div>
+    <div style="font-size:14px; font-weight:700; color:oklch(58% 0.09 195); letter-spacing:1px;">{{ eyebrow }}</div>
+    <h1 style="font-size:36px; font-weight:900; margin:12px 0 12px; line-height:1.3;">{{ art.title }}</h1>
+    <p style="font-size:17px; color:oklch(45% 0.02 250); margin:0 0 8px;">{{ art.summary }}</p>
+
+    <article style="margin-top:8px;">
+      <sc-for list="{{ art.blocks }}" as="b" hint-placeholder-count="6">
+        <sc-if value="{{ b.isH2 }}" hint-placeholder-val="{{ false }}">
+          <h2 style="font-size:24px; font-weight:900; line-height:1.4; margin:52px 0 16px; padding-top:20px; border-top:1px solid oklch(91% 0.008 250); color:oklch(24% 0.02 250);">{{ b.text }}</h2>
+        </sc-if>
+        <sc-if value="{{ b.isH3 }}" hint-placeholder-val="{{ false }}">
+          <h3 style="font-size:18px; font-weight:700; line-height:1.5; margin:32px 0 10px; color:oklch(34% 0.1 248);">{{ b.text }}</h3>
+        </sc-if>
+        <sc-if value="{{ b.isP }}" hint-placeholder-val="{{ true }}">
+          <p style="font-size:16px; line-height:1.9; color:oklch(34% 0.02 250); margin:0 0 14px;"><sc-for list="{{ b.segs }}" as="s" hint-placeholder-count="1"><span style="font-weight:{{ s.w }}; color:{{ s.c }};">{{ s.t }}</span></sc-for></p>
+        </sc-if>
+        <sc-if value="{{ b.isList }}" hint-placeholder-val="{{ false }}">
+          <ul style="margin:4px 0 18px; padding-left:22px;">
+            <sc-for list="{{ b.items }}" as="it" hint-placeholder-count="3">
+              <li style="font-size:16px; line-height:1.8; color:oklch(34% 0.02 250); margin-bottom:8px;"><sc-for list="{{ it.segs }}" as="s" hint-placeholder-count="1"><span style="font-weight:{{ s.w }}; color:{{ s.c }};">{{ s.t }}</span></sc-for></li>
+            </sc-for>
+          </ul>
+        </sc-if>
+        <sc-if value="{{ b.isCheck }}" hint-placeholder-val="{{ false }}">
+          <div style="background:oklch(96.5% 0.012 248); border:1px solid oklch(90% 0.025 248); border-radius:8px; padding:24px 28px; margin:12px 0 22px;">
+            <sc-if value="{{ b.hasTitle }}" hint-placeholder-val="{{ true }}">
+              <div style="font-size:15px; font-weight:900; color:oklch(34% 0.13 248); margin-bottom:12px;">{{ b.title }}</div>
+            </sc-if>
+            <sc-for list="{{ b.items }}" as="it" hint-placeholder-count="3">
+              <div style="display:flex; gap:12px; align-items:flex-start; padding:7px 0; font-size:15px; line-height:1.7; color:oklch(30% 0.02 250);">
+                <span style="flex-shrink:0; width:22px; height:22px; margin-top:2px; border-radius:50%; background:oklch(46% 0.13 248); color:oklch(99% 0.005 90); font-size:12px; font-weight:700; display:flex; align-items:center; justify-content:center;">{{ it.n }}</span>
+                <span><sc-for list="{{ it.segs }}" as="s" hint-placeholder-count="1"><span style="font-weight:{{ s.w }}; color:{{ s.c }};">{{ s.t }}</span></sc-for></span>
+              </div>
+            </sc-for>
+          </div>
+        </sc-if>
+      </sc-for>
+    </article>
+
+    <div style="margin-top:56px; border-top:1px solid oklch(89% 0.008 250); padding-top:32px;">
+      <div style="font-size:18px; font-weight:900; margin-bottom:16px;">{{ clinicName }}의 다른 질환</div>
+      <div style="display:flex; flex-wrap:wrap; gap:10px;">
+        <sc-for list="{{ siblings }}" as="sib" hint-placeholder-count="2">
+          <a href="{{ sib.href }}" style="display:inline-block; padding:10px 18px; border:1px solid oklch(85% 0.01 250); border-radius:20px; font-size:14px; font-weight:700; color:oklch(30% 0.1 248);">{{ sib.title }}</a>
+        </sc-for>
+        <a href="{{ clinicHref }}" style="display:inline-block; padding:10px 18px; border:1px solid oklch(46% 0.13 248); border-radius:20px; font-size:14px; font-weight:700; color:oklch(46% 0.13 248);">{{ clinicName }} 전체 보기 &gt;</a>
+      </div>
+    </div>
+
+    <div style="margin-top:48px; background:oklch(96% 0.006 90); border-radius:8px; padding:32px; text-align:center;">
+      <div style="font-size:18px; font-weight:900; margin-bottom:8px;">{{ art.title }}, 미루지 말고 확인해 보세요</div>
+      <div style="font-size:14px; color:oklch(45% 0.02 250); margin-bottom:20px;">신경과 전문의 3인이 진료합니다 · 051-558-5898</div>
+      <a href="./index.html#reserve" style="display:inline-block; background:oklch(46% 0.13 248); color:oklch(99% 0.005 90); padding:14px 36px; border-radius:4px; font-size:16px; font-weight:900;">진료상담 문의하기</a>
+    </div>
+  </div>
+
+  <footer style="padding:32px 64px; background:oklch(96% 0.006 90); border-top:1px solid oklch(89% 0.008 250); text-align:center;">
+    <div style="font-size:13px; color:oklch(48% 0.015 250);">삼성스마트신경과 부산점 · 051-558-5898</div>
+  </footer>
+</div>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  renderVals() {
+    const A = window.SN_ARTICLES || {};
+    const names = { headache: '두통클리닉', dizziness: '어지럼증클리닉', sleep: '수면클리닉', autonomic: '자율신경클리닉', dementia: '치매·인지장애클리닉', stroke: '뇌혈관클리닉' };
+    const eyebrows = { headache: 'HEADACHE CLINIC', dizziness: 'DIZZINESS CLINIC', sleep: 'SLEEP CLINIC', autonomic: 'AUTONOMIC CLINIC' };
+    const params = new URLSearchParams(window.location.search);
+    let d = params.get('d');
+    if (!A[d] || d.indexOf('exam-') === 0) d = 'migraine';
+    const art = window.SN_prepArticle(A[d]);
+    const siblings = Object.keys(A).filter(k => k !== d && A[k].parent === art.parent)
+      .map(k => ({ title: A[k].title, href: `./disease.html?d=${k}` }));
+    if (typeof document !== 'undefined') document.title = art.title + ' | 삼성스마트신경과 부산점';
+    return { art, siblings, clinicName: names[art.parent], clinicHref: `./clinic.html?slug=${art.parent}`, eyebrow: eyebrows[art.parent] || 'CLINIC' };
+  }
+}
+</script>
+</body>
+</html>

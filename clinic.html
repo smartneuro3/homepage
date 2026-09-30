@@ -4,6 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <script src="./support.js"></script>
+<script src="./content.js"></script>
 </head>
 <body>
 <x-dc>
@@ -18,9 +19,14 @@
   a { color:oklch(46% 0.13 248); text-decoration:none; }
   a:hover { color:oklch(38% 0.13 248); }
   @media (max-width: 860px) {
+    .sub-header img { width:56px !important; height:56px !important; }
+    .sub-header .brand-font { font-size:20px !important; margin-left:-8px !important; }
+    .sub-header .brand-font + span { font-size:14px !important; margin-left:6px !important; white-space:nowrap; }
+    .sub-header > a:last-child { padding:8px 12px !important; font-size:13px !important; white-space:nowrap; }
     .content-wrap { padding:32px 24px 64px !important; }
     .split-grid { grid-template-columns:1fr !important; }
     .grid-3 { grid-template-columns:1fr !important; }
+    .grid-2 { grid-template-columns:1fr !important; }
     .grid-4 { grid-template-columns:1fr 1fr !important; }
     h1 { font-size:24px !important; line-height:1.35 !important; }
     p { font-size:15px !important; line-height:1.7 !important; }
@@ -30,7 +36,7 @@
 
 <div style="color:oklch(24% 0.02 250); line-height:1.6;">
 
-  <header style="position:sticky; top:0; z-index:100; background:oklch(99% 0.004 90 / 0.96); backdrop-filter:blur(6px); border-bottom:1px solid oklch(89% 0.008 250); display:flex; align-items:center; justify-content:space-between; padding:16px 20px; gap:12px;">
+  <header class="sub-header" style="position:sticky; top:0; z-index:100; background:oklch(99% 0.004 90 / 0.96); backdrop-filter:blur(6px); border-bottom:1px solid oklch(89% 0.008 250); display:flex; align-items:center; justify-content:space-between; padding:16px 20px; gap:12px;">
     <a href="./index.html" style="display:flex; align-items:center; gap:2px;">
       <img src="./assets/logo.jpeg" alt="삼성스마트신경과 로고" style="height:104px; width:104px; object-fit:contain; flex-shrink:0;">
       <span class="brand-font" style="font-size:30px; font-weight:900; color:oklch(30% 0.1 248); letter-spacing:-0.5px; margin-left:-24px;">삼성스마트신경과</span>
@@ -46,7 +52,10 @@
 
     <div style="font-size:14px; font-weight:700; color:oklch(58% 0.09 195); letter-spacing:1px;">SPECIALTY CLINIC</div>
     <h1 style="font-size:36px; font-weight:900; margin:12px 0 12px;">{{ clinic.name }}</h1>
-    <p style="font-size:17px; color:oklch(45% 0.02 250); margin:0 0 24px;">{{ clinic.desc }}</p>
+    <p style="font-size:17px; color:oklch(45% 0.02 250); margin:0 0 16px;">{{ clinic.desc }}</p>
+    <sc-if value="{{ clinic.hasIntro }}" hint-placeholder-val="{{ true }}">
+      <p style="font-size:16px; line-height:1.85; color:oklch(34% 0.02 250); margin:0 0 28px; max-width:820px;">{{ clinic.intro }}</p>
+    </sc-if>
 
     <div style="height:280px; border-radius:8px; overflow:hidden; margin-bottom:40px;">
       <x-import component-from-global-scope="image-slot" from="./image-slot.js" hint-size="100%,280px" id="{{ clinic.photoId }}" shape="rect" placeholder="클리닉 진료 사진"></x-import>
@@ -64,6 +73,22 @@
         <div style="font-size:15px; color:oklch(40% 0.02 250);">{{ clinic.treatment }}</div>
       </div>
     </div>
+
+    <sc-if value="{{ clinic.hasArticles }}" hint-placeholder-val="{{ true }}">
+      <div style="margin-bottom:40px;">
+        <div style="font-size:13px; font-weight:700; color:oklch(58% 0.09 195); margin-bottom:6px;">질환 자세히 알아보기</div>
+        <div style="font-size:14px; color:oklch(48% 0.015 250); margin-bottom:16px;">원인과 증상, 진단과 치료를 자세히 설명합니다</div>
+        <div class="grid-2" style="display:grid; grid-template-columns:repeat(2, 1fr); gap:16px;">
+          <sc-for list="{{ clinic.articles }}" as="a" hint-placeholder-count="2">
+            <a href="{{ a.href }}" style="display:flex; flex-direction:column; gap:8px; background:oklch(97% 0.012 248); border:1px solid oklch(90% 0.025 248); border-radius:8px; padding:24px; color:oklch(24% 0.02 250);">
+              <span style="font-size:17px; font-weight:900;">{{ a.title }}</span>
+              <span style="font-size:14px; line-height:1.6; color:oklch(42% 0.02 250);">{{ a.summary }}</span>
+              <span style="font-size:13px; font-weight:700; color:oklch(46% 0.13 248); margin-top:4px;">자세히 보기 &gt;</span>
+            </a>
+          </sc-for>
+        </div>
+      </div>
+    </sc-if>
 
     <div style="margin-bottom:40px;">
       <div style="font-size:13px; font-weight:700; color:oklch(58% 0.09 195); margin-bottom:16px;">주요 원인·유형</div>
@@ -196,7 +221,12 @@ class Component extends DCLogic {
 
     const params = new URLSearchParams(window.location.search);
     const slug = params.get('slug') || 'headache';
-    const clinic = { ...(clinics[slug] || clinics.headache), photoId: `clinic-photo-${slug}` };
+    const key = clinics[slug] ? slug : 'headache';
+    const A = window.SN_ARTICLES || {};
+    const intro = (window.SN_CLINIC_INTROS || {})[key] || '';
+    const articles = Object.keys(A).filter(k => A[k].parent === key)
+      .map(k => ({ title: A[k].title, summary: A[k].summary, href: `./disease.html?d=${k}` }));
+    const clinic = { ...clinics[key], photoId: `clinic-photo-${key}`, intro, hasIntro: !!intro, articles, hasArticles: articles.length > 0 };
 
     return { clinic };
   }
