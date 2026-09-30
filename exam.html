@@ -53,6 +53,11 @@
     <h1 style="font-size:36px; font-weight:900; margin:12px 0 12px;">{{ exam.name }}</h1>
     <p style="font-size:17px; color:oklch(45% 0.02 250); margin:0 0 40px; max-width:760px;">{{ exam.desc }}</p>
 
+    <figure style="margin:0 0 40px;">
+      <img src="./assets/illust/exam-{{ examKey }}.svg" alt="{{ exam.name }} 검사 모습과 결과 예시 그림" style="width:100%; height:auto; display:block; border-radius:12px;">
+      <figcaption style="font-size:12px; color:oklch(50% 0.015 250); margin-top:8px;">이해를 돕기 위한 그림입니다. 실제 검사 화면과 다를 수 있습니다.</figcaption>
+    </figure>
+
     <div class="grid-2" style="display:grid; grid-template-columns:{{ gridCols }}; gap:24px; margin-bottom:40px;">
       <sc-if value="{{ hasPhotos }}" hint-placeholder-val="{{ true }}">
       <div style="height:220px; border-radius:8px; overflow:hidden; position:relative;">
@@ -231,7 +236,7 @@ class Component extends DCLogic {
       a.blocks.forEach(b => blocks.push(b));
     });
     const hasPhotos = ['tcd', 'carotid', 'ans', 'eeg', 'vng', 'psg'].indexOf(exams[slug] ? slug : 'tcd') >= 0;
-    return { exam, examPhotos, hasPhotos, gridCols: hasPhotos ? '1fr 1fr' : '1fr', art: { blocks }, hasArt: blocks.length > 0 };
+    return { exam, examPhotos, hasPhotos, gridCols: hasPhotos ? '1fr 1fr' : '1fr', examKey: key, art: { blocks }, hasArt: blocks.length > 0 };
   }
 }
 

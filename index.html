@@ -262,10 +262,8 @@
       <div class="cards-grid-3 clinics-grid" style="display:grid; grid-template-columns:repeat(4, 1fr); gap:20px;">
         <sc-for list="{{ specialties }}" as="item" hint-placeholder-count="8">
           <a href="{{ item.href }}" style="display:block; position:relative; background:oklch(99% 0.005 90); border:1px solid oklch(89% 0.008 250); border-top:3px solid oklch(46% 0.13 248); border-radius:6px; padding:32px; color:oklch(24% 0.02 250); box-shadow:0 1px 3px oklch(0% 0 0 / 0.04); transition:box-shadow .2s, transform .2s;" style-hover="border-color:oklch(46% 0.13 248); box-shadow:0 10px 24px oklch(0% 0 0 / 0.08); transform:translateY(-2px);">
-            <div style="position:absolute; top:20px; right:24px; font-size:28px; font-weight:900; color:oklch(93% 0.02 248);">{{ item.num }}</div>
-            <div style="width:44px; height:44px; border-radius:50%; background:oklch(92% 0.02 248); display:flex; align-items:center; justify-content:center; margin-bottom:20px;">
-              <div style="width:16px; height:16px; border-radius:50%; background:oklch(46% 0.13 248);"></div>
-            </div>
+            <div style="position:absolute; top:12px; right:12px; z-index:2; font-size:12px; font-weight:900; color:oklch(30% 0.1 248); background:oklch(99% 0.005 90 / 0.92); padding:3px 9px; border-radius:10px;">{{ item.num }}</div>
+            <img src="./assets/illust/clinic-{{ item.slug }}.svg" alt="" loading="lazy" style="display:block; width:calc(100% + 64px); margin:-32px -32px 20px; height:auto; aspect-ratio:800 / 360; object-fit:cover; border-radius:3px 3px 0 0;">
             <div style="font-size:18px; font-weight:700; margin-bottom:8px;">{{ item.name }}</div>
             <div class="clamp-2" style="font-size:14px; color:oklch(45% 0.02 250); margin-bottom:12px;">{{ item.desc }}</div>
             <div style="font-size:13px; color:oklch(46% 0.13 248); font-weight:700;">자세히 보기 &gt;</div>
@@ -286,10 +284,8 @@
       <div class="cards-grid-3" style="display:grid; grid-template-columns:repeat(3, 1fr); gap:24px;">
         <sc-for list="{{ equipmentItems }}" as="item" hint-placeholder-count="9">
           <a href="{{ item.href }}" style="display:block; position:relative; background:oklch(99% 0.005 90); border:1px solid oklch(89% 0.008 250); border-top:3px solid oklch(58% 0.09 195); border-radius:6px; padding:32px; color:oklch(24% 0.02 250); box-shadow:0 1px 3px oklch(0% 0 0 / 0.04); transition:box-shadow .2s, transform .2s;" style-hover="border-color:oklch(46% 0.13 248); box-shadow:0 10px 24px oklch(0% 0 0 / 0.08); transform:translateY(-2px);">
-            <div style="position:absolute; top:20px; right:24px; font-size:28px; font-weight:900; color:oklch(90% 0.025 195);">{{ item.num }}</div>
-            <div style="width:44px; height:44px; border-radius:8px; background:oklch(92% 0.03 195); display:flex; align-items:center; justify-content:center; margin-bottom:20px;">
-              <div style="width:16px; height:16px; background:oklch(58% 0.09 195);"></div>
-            </div>
+            <div style="position:absolute; top:12px; right:12px; z-index:2; font-size:12px; font-weight:900; color:oklch(30% 0.1 248); background:oklch(99% 0.005 90 / 0.92); padding:3px 9px; border-radius:10px;">{{ item.num }}</div>
+            <img src="./assets/illust/exam-{{ item.slug }}.svg" alt="" loading="lazy" style="display:block; width:calc(100% + 64px); margin:-32px -32px 20px; height:auto; aspect-ratio:800 / 360; object-fit:cover; border-radius:3px 3px 0 0;">
             <div style="font-size:17px; font-weight:700; margin-bottom:8px;">{{ item.name }}</div>
             <div class="clamp-2" style="font-size:14px; color:oklch(45% 0.02 250); margin-bottom:12px;">{{ item.desc }}</div>
             <div style="font-size:13px; color:oklch(46% 0.13 248); font-weight:700;">검사 자세히 보기 &gt;</div>
