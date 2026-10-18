@@ -12,9 +12,11 @@
 <helmet>
 <x-import component-from-global-scope="image-slot" from="./image-slot.js"></x-import>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&family=Noto+Serif+KR:wght@600;700;900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&display=swap" rel="stylesheet">
 <style>
-  h1, h2, .serif-head { font-family:'Noto Serif KR', serif !important; letter-spacing:-0.5px; }
+  @font-face { font-family:'NanumSquareNeo'; src:url(https://hangeul.pstatic.net/hangeul_static/webfont/NanumSquareNeo/NanumSquareNeoTTF-dEb.woff) format('woff'); font-weight:800; font-display:swap; }
+  @font-face { font-family:'NanumSquareNeo'; src:url(https://hangeul.pstatic.net/hangeul_static/webfont/NanumSquareNeo/NanumSquareNeoTTF-eHv.woff) format('woff'); font-weight:900; font-display:swap; }
+  h1, h2, h3, .serif-head, .display { font-family:'NanumSquareNeo', 'Noto Sans KR', sans-serif !important; letter-spacing:-0.3px; }
   h1 *, h2 * { font-family:inherit !important; }
   body { margin:0; background:oklch(99% 0.004 90); }
   * { box-sizing:border-box; font-family:'Noto Sans KR', sans-serif; word-break:keep-all; overflow-wrap:break-word; }
