@@ -53,6 +53,7 @@
     .doctor-card { grid-template-columns:1fr !important; }
     .doctor-photo { min-height:0 !important; aspect-ratio:4 / 5; }
     .cards-grid-3 { grid-template-columns:1fr !important; }
+    .consult-btns { grid-template-columns:1fr !important; }
     .treat-grid { grid-template-columns:1fr !important; gap:28px !important; }
     .treat-photo { height:280px !important; }
     .facility-grid { grid-template-columns:1fr 1fr !important; grid-auto-rows:150px !important; }
@@ -372,9 +373,9 @@
 
       <div style="background:oklch(99% 0.005 90); border-radius:8px; padding:48px; text-align:center;">
         <div style="font-size:16px; color:oklch(40% 0.02 250); margin-bottom:24px;">진료 예약은 카카오톡 상담 또는 전화로 받고 있습니다</div>
-        <div style="display:flex; gap:16px; justify-content:center; flex-wrap:wrap;">
-          <a href="https://pf.kakao.com/_xmCjxgj/chat" style="display:inline-flex; align-items:center; gap:10px; background:#FEE500; color:oklch(20% 0.02 90); padding:16px 32px; border-radius:4px; font-size:16px; font-weight:900;"><svg width="20" height="18" viewBox="0 0 20 18" fill="none"><path d="M10 0C4.48 0 0 3.5 0 7.8c0 2.75 1.83 5.17 4.6 6.55-.2.75-.73 2.7-.84 3.13-.13.53.2.53.42.38.17-.11 2.7-1.83 3.8-2.58.65.1 1.32.15 2.02.15 5.52 0 10-3.5 10-7.8S15.52 0 10 0Z" fill="#3C1E1E"/></svg>카카오톡 상담</a>
-          <a href="tel:051-558-5898" style="display:inline-flex; align-items:center; gap:10px; background:oklch(46% 0.13 248); color:oklch(99% 0.005 90); padding:16px 32px; border-radius:4px; font-size:16px; font-weight:900;"><span style="width:22px; height:22px; border-radius:50%; background:oklch(99% 0.005 90 / 0.18); display:flex; align-items:center; justify-content:center; font-size:11px; font-weight:900;">TEL</span>051-558-5898 전화하기</a>
+        <div class="consult-btns" style="display:grid; grid-template-columns:repeat(2, minmax(0, 1fr)); gap:16px;">
+          <a href="https://pf.kakao.com/_xmCjxgj/chat" style="display:flex; align-items:center; justify-content:center; gap:10px; height:64px; box-sizing:border-box; background:#FEE500; color:oklch(20% 0.02 90); padding:0 20px; border-radius:6px; font-size:17px; font-weight:900; white-space:nowrap;"><svg width="20" height="18" viewBox="0 0 20 18" fill="none"><path d="M10 0C4.48 0 0 3.5 0 7.8c0 2.75 1.83 5.17 4.6 6.55-.2.75-.73 2.7-.84 3.13-.13.53.2.53.42.38.17-.11 2.7-1.83 3.8-2.58.65.1 1.32.15 2.02.15 5.52 0 10-3.5 10-7.8S15.52 0 10 0Z" fill="#3C1E1E"/></svg>카카오톡 상담</a>
+          <a href="tel:051-558-5898" style="display:flex; align-items:center; justify-content:center; gap:10px; height:64px; box-sizing:border-box; background:oklch(46% 0.13 248); color:oklch(99% 0.005 90); padding:0 20px; border-radius:6px; font-size:17px; font-weight:900; white-space:nowrap;"><span style="width:22px; height:22px; border-radius:50%; background:oklch(99% 0.005 90 / 0.18); display:flex; align-items:center; justify-content:center; font-size:11px; font-weight:900;">TEL</span>051-558-5898 전화하기</a>
         </div>
         <div style="margin-top:28px; padding-top:24px; border-top:1px solid oklch(89% 0.008 250); font-size:14px; color:oklch(45% 0.02 250);">수면다원검사는 네이버 예약으로 별도 접수하고 있습니다</div>
       </div>
