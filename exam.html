@@ -2,6 +2,8 @@
 <html>
 <head>
 <meta charset="utf-8">
+<link rel="icon" type="image/png" href="./assets/favicon-64.png">
+<link rel="apple-touch-icon" href="./assets/apple-touch-icon.png">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <script src="./support.js"></script>
 <script src="./content.js"></script>
@@ -25,9 +27,8 @@
   a:hover { color:oklch(38% 0.13 248); }
   @media (max-width: 860px) {
     .exam-photo-box { height:240px !important; }
-    .sub-header img { width:56px !important; height:56px !important; }
-    .sub-header .brand-font { font-size:20px !important; margin-left:-8px !important; }
-    .sub-header .brand-font + span { font-size:14px !important; margin-left:6px !important; white-space:nowrap; }
+    .sub-header .brand-logo { height:30px !important; }
+    .sub-header .branch-label { font-size:12px !important; padding:3px 7px !important; margin-left:8px !important; }
     .sub-header > a:last-child { padding:8px 12px !important; font-size:13px !important; white-space:nowrap; }
     .content-wrap { padding:32px 24px 64px !important; }
     .grid-2 { grid-template-columns:1fr !important; }
@@ -42,11 +43,10 @@
 
   <header class="sub-header" style="position:sticky; top:0; z-index:100; background:oklch(99% 0.004 90 / 0.96); backdrop-filter:blur(6px); border-bottom:1px solid oklch(89% 0.008 250); display:flex; align-items:center; justify-content:space-between; padding:16px 20px; gap:12px;">
     <a href="./index.html" style="display:flex; align-items:center; gap:2px;">
-      <img src="./assets/logo.jpeg" alt="삼성스마트신경과 로고" style="height:104px; width:104px; object-fit:contain; flex-shrink:0;">
-      <span class="brand-font" style="font-size:30px; font-weight:900; color:oklch(30% 0.1 248); letter-spacing:-0.5px; margin-left:-24px;">삼성스마트신경과</span>
-      <span style="font-size:18px; font-weight:700; color:oklch(58% 0.09 195); margin-left:8px;">부산점</span>
+      <img class="brand-logo" src="./assets/logo-wordmark.svg" alt="삼성스마트신경과 Samsung SMART Neurology Clinic" style="height:46px; width:auto; display:block; flex-shrink:0;">
+      <span class="branch-label" style="font-family:\'NanumSquareNeo\',\'Noto Sans KR\',sans-serif; font-size:17px; font-weight:800; color:oklch(99% 0.005 90); background:oklch(52% 0.09 195); padding:4px 10px; border-radius:6px; margin-left:12px; white-space:nowrap;">부산점</span>
     </a>
-    <a href="./index.html#reserve" style="background:oklch(46% 0.13 248); color:oklch(99% 0.005 90); padding:10px 20px; border-radius:4px; font-size:14px; font-weight:700;" style-hover="background:oklch(38% 0.13 248);">진료상담</a>
+    <a href="./index.html#reserve" style="background:oklch(46% 0.13 248); color:oklch(99% 0.005 90); padding:12px 22px; border-radius:4px; font-size:16px; font-weight:800;" style-hover="background:oklch(38% 0.13 248);">진료상담</a>
   </header>
 
   <div class="content-wrap" style="max-width:1080px; margin:0 auto; padding:48px 64px 96px;">
