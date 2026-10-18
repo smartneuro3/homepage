@@ -81,6 +81,13 @@
       </div>
     </div>
 
+    <sc-for list="{{ clinic.figures }}" as="fg" hint-placeholder-count="1">
+      <figure style="margin:0 0 40px; text-align:center;">
+        <img src="./assets/photos/{{ fg.src }}" alt="{{ fg.caption }}" loading="lazy" style="display:block; max-width:100%; max-height:560px; width:auto; height:auto; margin:0 auto; border-radius:8px; border:1px solid oklch(89% 0.008 250);">
+        <figcaption style="font-size:13px; color:oklch(45% 0.02 250); margin-top:8px;">{{ fg.caption }}</figcaption>
+      </figure>
+    </sc-for>
+
     <div style="margin-bottom:40px;">
       <div style="font-size:13px; font-weight:700; color:oklch(58% 0.09 195); margin-bottom:6px;">주요 질환</div>
       <sc-if value="{{ clinic.hasArticles }}" hint-placeholder-val="{{ true }}">
@@ -290,7 +297,10 @@ class Component extends DCLogic {
     };
     const cp = clinicPhotos[key];
     const tmsText = { autonomic: '과민해진 뇌 회로를 조절해 자율신경의 긴장도를 낮추는 데 사용합니다 >', other: '오래된 이명에서 소리를 처리하는 뇌의 과민함을 가라앉히는 데 사용합니다 >', headache: '약으로 잘 조절되지 않는 만성 두통의 보조 치료로 사용합니다 >' }[key];
-    const clinic = { ...clinics[key], hasTms: !!tmsText, tmsText: tmsText || '', photo: cp ? cp[0] : '', photoPos: cp ? cp[1] : 'center', hasPhoto: !!cp, photoId: `clinic-photo-${key}`, intro, hasIntro: !!intro, diseases, hasArticles: articles.length > 0 };
+    const clinicFigures = {
+      autonomic: [{ src: 'info-autonomic-symptoms.jpg', caption: '자율신경장애에서 나타날 수 있는 다양한 증상 (삼성스마트신경과 제작)' }],
+    };
+    const clinic = { ...clinics[key], figures: clinicFigures[key] || [], hasTms: !!tmsText, tmsText: tmsText || '', photo: cp ? cp[0] : '', photoPos: cp ? cp[1] : 'center', hasPhoto: !!cp, photoId: `clinic-photo-${key}`, intro, hasIntro: !!intro, diseases, hasArticles: articles.length > 0 };
 
     return { clinic };
   }
