@@ -11,8 +11,10 @@
 
 <helmet>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&family=Noto+Serif+KR:wght@600;700;900&display=swap" rel="stylesheet">
 <style>
+  h1, h2, .serif-head { font-family:'Noto Serif KR', serif !important; letter-spacing:-0.5px; }
+  h1 *, h2 * { font-family:inherit !important; }
   body { margin:0; background:oklch(99% 0.004 90); }
   * { box-sizing:border-box; font-family:'Noto Sans KR', sans-serif; word-break:keep-all; overflow-wrap:break-word; }
   h1, h2, .brand-font { font-weight:900; }
@@ -61,18 +63,18 @@
           </figure>
         </sc-if>
         <sc-if value="{{ b.isH2 }}" hint-placeholder-val="{{ false }}">
-          <h2 style="font-size:24px; font-weight:900; line-height:1.4; margin:52px 0 16px; padding-top:20px; border-top:1px solid oklch(91% 0.008 250); color:oklch(24% 0.02 250);">{{ b.text }}</h2>
+          <h2 style="font-size:26px; font-weight:900; line-height:1.4; margin:56px 0 18px; padding-top:22px; border-top:1px solid oklch(91% 0.008 250); color:oklch(26% 0.09 248);">{{ b.text }}</h2>
         </sc-if>
         <sc-if value="{{ b.isH3 }}" hint-placeholder-val="{{ false }}">
           <h3 style="font-size:18px; font-weight:700; line-height:1.5; margin:32px 0 10px; color:oklch(34% 0.1 248);">{{ b.text }}</h3>
         </sc-if>
         <sc-if value="{{ b.isP }}" hint-placeholder-val="{{ true }}">
-          <p style="font-size:16px; line-height:1.9; color:oklch(34% 0.02 250); margin:0 0 14px;"><sc-for list="{{ b.segs }}" as="s" hint-placeholder-count="1"><span style="font-weight:{{ s.w }}; color:{{ s.c }};">{{ s.t }}</span></sc-for></p>
+          <p style="font-size:16px; line-height:1.9; color:oklch(34% 0.02 250); margin:0 0 14px;"><sc-for list="{{ b.segs }}" as="s" hint-placeholder-count="1"><span style="font-weight:{{ s.w }}; color:{{ s.c }}; background:{{ s.bg }};">{{ s.t }}</span></sc-for></p>
         </sc-if>
         <sc-if value="{{ b.isList }}" hint-placeholder-val="{{ false }}">
           <ul style="margin:4px 0 18px; padding-left:22px;">
             <sc-for list="{{ b.items }}" as="it" hint-placeholder-count="3">
-              <li style="font-size:16px; line-height:1.8; color:oklch(34% 0.02 250); margin-bottom:8px;"><sc-for list="{{ it.segs }}" as="s" hint-placeholder-count="1"><span style="font-weight:{{ s.w }}; color:{{ s.c }};">{{ s.t }}</span></sc-for></li>
+              <li style="font-size:16px; line-height:1.8; color:oklch(34% 0.02 250); margin-bottom:8px;"><sc-for list="{{ it.segs }}" as="s" hint-placeholder-count="1"><span style="font-weight:{{ s.w }}; color:{{ s.c }}; background:{{ s.bg }};">{{ s.t }}</span></sc-for></li>
             </sc-for>
           </ul>
         </sc-if>
@@ -84,7 +86,7 @@
             <sc-for list="{{ b.items }}" as="it" hint-placeholder-count="3">
               <div style="display:flex; gap:12px; align-items:flex-start; padding:7px 0; font-size:15px; line-height:1.7; color:oklch(30% 0.02 250);">
                 <span style="flex-shrink:0; width:22px; height:22px; margin-top:2px; border-radius:50%; background:oklch(46% 0.13 248); color:oklch(99% 0.005 90); font-size:12px; font-weight:700; display:flex; align-items:center; justify-content:center;">{{ it.n }}</span>
-                <span><sc-for list="{{ it.segs }}" as="s" hint-placeholder-count="1"><span style="font-weight:{{ s.w }}; color:{{ s.c }};">{{ s.t }}</span></sc-for></span>
+                <span><sc-for list="{{ it.segs }}" as="s" hint-placeholder-count="1"><span style="font-weight:{{ s.w }}; color:{{ s.c }}; background:{{ s.bg }};">{{ s.t }}</span></sc-for></span>
               </div>
             </sc-for>
           </div>
