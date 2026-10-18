@@ -112,6 +112,17 @@
       </div>
     </div>
 
+    <sc-if value="{{ clinic.hasTms }}" hint-placeholder-val="{{ false }}">
+      <a href="./tms.html" style="display:flex; gap:20px; align-items:center; margin-bottom:40px; padding:20px; border-radius:8px; background:oklch(97% 0.012 248); border:1px solid oklch(88% 0.035 248); color:oklch(24% 0.02 250);">
+        <img src="./assets/photos/treatment-tms.jpg" alt="" loading="lazy" style="width:120px; height:90px; object-fit:cover; object-position:center 55%; border-radius:6px; flex-shrink:0;">
+        <span style="display:flex; flex-direction:column; gap:4px;">
+          <span style="font-size:13px; font-weight:700; color:oklch(58% 0.09 195);">함께 시행하는 치료</span>
+          <span style="font-size:17px; font-weight:900;">경두개자기자극(TMS) 치료</span>
+          <span style="font-size:14px; color:oklch(42% 0.02 250);">{{ clinic.tmsText }}</span>
+        </span>
+      </a>
+    </sc-if>
+
     <div style="border-top:1px solid oklch(89% 0.008 250); padding-top:32px;">
       <div style="font-size:18px; font-weight:900; margin-bottom:6px;">관련 정밀검사</div>
       <p style="font-size:14px; color:oklch(48% 0.015 250); margin:0 0 20px;">{{ clinic.name }} 진단에 활용되는 정밀검사입니다</p>
@@ -274,7 +285,8 @@ class Component extends DCLogic {
       peripheral: ['exam-ncs-closeup.jpg', 'center'], other: ['facility-consult-room.jpg', 'center 60%'],
     };
     const cp = clinicPhotos[key];
-    const clinic = { ...clinics[key], photo: cp ? cp[0] : '', photoPos: cp ? cp[1] : 'center', hasPhoto: !!cp, photoId: `clinic-photo-${key}`, intro, hasIntro: !!intro, diseases, hasArticles: articles.length > 0 };
+    const tmsText = { autonomic: '과민해진 뇌 회로를 조절해 자율신경의 긴장도를 낮추는 데 사용합니다 >', other: '오래된 이명에서 소리를 처리하는 뇌의 과민함을 가라앉히는 데 사용합니다 >', headache: '약으로 잘 조절되지 않는 만성 두통의 보조 치료로 사용합니다 >' }[key];
+    const clinic = { ...clinics[key], hasTms: !!tmsText, tmsText: tmsText || '', photo: cp ? cp[0] : '', photoPos: cp ? cp[1] : 'center', hasPhoto: !!cp, photoId: `clinic-photo-${key}`, intro, hasIntro: !!intro, diseases, hasArticles: articles.length > 0 };
 
     return { clinic };
   }

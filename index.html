@@ -47,6 +47,8 @@
     .doctor-card { grid-template-columns:1fr !important; }
     .doctor-photo { min-height:0 !important; aspect-ratio:4 / 5; }
     .cards-grid-3 { grid-template-columns:1fr !important; }
+    .treat-grid { grid-template-columns:1fr !important; gap:28px !important; }
+    .treat-photo { height:280px !important; }
     .facility-grid { grid-template-columns:1fr 1fr !important; grid-auto-rows:150px !important; }
     .facility-grid figure { grid-column:span 1 !important; grid-row:span 1 !important; }
     .facility-grid figure:first-child { grid-column:span 2 !important; grid-row:span 2 !important; }
@@ -321,6 +323,32 @@
             <div style="font-size:13px; color:oklch(46% 0.13 248); font-weight:700;">검사 자세히 보기 &gt;</div>
           </a>
         </sc-for>
+      </div>
+    </div>
+  </section>
+
+  <!-- TREATMENT -->
+  <section id="treatment" class="section-pad section-pad-top" style="scroll-margin-top:80px; padding:96px 64px; max-width:1280px; margin:0 auto;">
+    <div class="treat-grid" style="display:grid; grid-template-columns:minmax(0, 5fr) minmax(0, 6fr); gap:56px; align-items:center;">
+      <div class="treat-photo" style="height:440px; border-radius:8px; overflow:hidden; background:oklch(94% 0.006 250);">
+        <img src="./assets/photos/treatment-tms.jpg" alt="TMS 코일을 머리에 대고 치료하는 모습" loading="lazy" style="width:100%; height:100%; object-fit:cover; object-position:center 55%; display:block;">
+      </div>
+      <div>
+        <div style="display:inline-block; background:oklch(93% 0.03 195); color:oklch(34% 0.09 195); font-size:12px; font-weight:800; letter-spacing:0.5px; padding:5px 14px; border-radius:20px;">TREATMENT</div>
+        <h2 style="font-size:32px; font-weight:900; margin:12px 0 16px;">경두개자기자극(TMS) 치료</h2>
+        <p style="font-size:16px; color:oklch(40% 0.02 250); margin:0 0 20px;">자기장으로 뇌의 특정 부위를 자극해, 과민해지거나 기능이 떨어진 신경회로를 조절하는 비침습적 치료입니다. 약을 복용하기 어렵거나 약만으로 충분하지 않을 때 함께 고려합니다.</p>
+        <div style="display:flex; flex-wrap:wrap; gap:10px; margin-bottom:28px;">
+          <span style="padding:9px 16px; border-radius:20px; background:oklch(93% 0.045 248); color:oklch(30% 0.12 248); font-size:14px; font-weight:800;">자율신경장애</span>
+          <span style="padding:9px 16px; border-radius:20px; background:oklch(93% 0.045 248); color:oklch(30% 0.12 248); font-size:14px; font-weight:800;">이명</span>
+          <span style="padding:9px 16px; border-radius:20px; background:oklch(93% 0.045 248); color:oklch(30% 0.12 248); font-size:14px; font-weight:800;">두통</span>
+          <span style="padding:9px 16px; border-radius:20px; background:oklch(93% 0.045 248); color:oklch(30% 0.12 248); font-size:14px; font-weight:800;">우울증</span>
+        </div>
+        <div style="display:flex; flex-direction:column; gap:10px; margin-bottom:28px; font-size:15px; color:oklch(30% 0.02 250);">
+          <div>· 수술·마취·바늘 없이 두피 바깥에서 진행</div>
+          <div>· 1회 20~30분, 치료 직후 바로 일상생활</div>
+          <div>· 정량뇌파·자율신경검사로 상태를 확인한 뒤 계획</div>
+        </div>
+        <a href="./tms.html" style="display:inline-block; background:oklch(46% 0.13 248); color:oklch(99% 0.005 90); padding:14px 28px; border-radius:4px; font-size:15px; font-weight:800;">TMS 치료 자세히 보기 &gt;</a>
       </div>
     </div>
   </section>
