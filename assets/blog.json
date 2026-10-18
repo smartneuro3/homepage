@@ -1,0 +1,137 @@
+{
+ "blogs": [
+  {
+   "id": "main",
+   "name": "삼성스마트신경과 대표 블로그",
+   "url": "https://blog.naver.com/smartdr2",
+   "posts": [
+    {
+     "title": "진열대 사이를 걸을 때 유독 힘든 이유 : 마트, 지하철 복잡한 장소에서의 어지럼",
+     "link": "https://blog.naver.com/smartdr2/224404643869",
+     "date": "2026.09.08",
+     "summary": "마트·백화점·대형 쇼핑몰·지하철역처럼 시각적으로 복잡한 장소에 들어가면 어지럼이 심해지는 경우 단순한 눈의 피로만으로 설명되지 않을 수 있습니다. “집에서는 괜찮",
+     "thumb": "https://blogthumb.pstatic.net/MjAyNjA5MDhfMTgw/MDAxNzg4ODM2OTg5MTI3.JotJ3iDH-u13MN5Q_aTjZryP9_41-LrdzbDnkg66EGAg.ArkFM6VpJQTCgiSvrND2kXgCrOGbFK0skFxgu0OV8bAg.PNG/%BD%BA%C5%A9%B8%B0%BC%A6_2026-09-08_120901.png?type=s3"
+    },
+    {
+     "title": "갑자기 어지럽고 심장이 두근거린다면? 기립성 저혈압과 공황장애 어떻게 구분할까",
+     "link": "https://blog.naver.com/smartdr2/224395834530",
+     "date": "2026.08.31",
+     "summary": "갑자기 어지럽다고 모두 공황장애는 아닙니다 어지럼증과 두근거림이 함께 나타나면 많은 분들이 먼저 불안이나 스트레스를 떠올립니다. 특히 심장 검사를 비롯한 여러 검",
+     "thumb": "https://blogthumb.pstatic.net/MjAyNjA4MzFfMTc3/MDAxNzg4MTQyNDkyNzc4.eFw75Xo4nBRmAhLZmnHX-RHWCEBmCdY0NsaPwuwTTDMg.mc3L4-7h4dToPbpxv2yTD51gS1GB2o6wAjNmgcRUHcog.PNG/%BD%BA%C5%A9%B8%B0%BC%A6_2026-08-31_111301.png?type=s3"
+    },
+    {
+     "title": "엉덩이에서 좌골신경이 눌리는 깊은 둔부 증후군 : 허리디스크와 구분하기",
+     "link": "https://blog.naver.com/smartdr2/224389755866",
+     "date": "2026.08.26",
+     "summary": "\"허리가 그렇게 아픈 것도 아닌데 왜 엉덩이부터 다리까지 저릴까요?\" \"오래 앉아 있으면 엉덩이 안쪽이 아프고 다리까지 찌릿해요.\" 이런 증상이 반복된다면 단순한",
+     "thumb": "https://blogthumb.pstatic.net/MjAyNjA4MjVfMjUg/MDAxNzg3NjM5NjA2ODM3.SweKsrex1sOY_Kb8dI0snjAIM6AlJJvITpTAMh98gS0g.8YpBcyuR1Q79u44VlQOjBOBtMQtuhyYlEqMO5GfEv9sg.PNG/%BD%BA%C5%A9%B8%B0%BC%A6_2026-08-25_114114.png?type=s3"
+    }
+   ]
+  },
+  {
+   "id": "busan",
+   "name": "삼성스마트신경과 부산점",
+   "url": "https://blog.naver.com/smartneuro3",
+   "posts": [
+    {
+     "title": "안면마비가 생겼는데 눈이 잘 감기지 않아요, 어떻게 관리해야 할까요?",
+     "link": "https://blog.naver.com/smartneuro3/224436891501",
+     "date": "2026.10.16",
+     "summary": "안면마비가 생긴 뒤 한쪽 눈이 잘 감기지 않거나, 눈이 자꾸 뻑뻑하고 시린 느낌이 든다면 걱정되실 수 있습니다. 안면마비는 얼굴 근육의 움직임뿐 아니라 눈을 감는",
+     "thumb": "https://blogthumb.pstatic.net/MjAyNjEwMTBfMTQ0/MDAxNzkxNTkyNDM2NjYz.DyVbL-2Ib4q4uWJW9VnkhJwmT6NjzDVQM6sDKixkN30g.sEZaaZ_daiMxb0KHcgvNKwMGvq7hbuaKUFjogzivoiwg.PNG/51cd1293-9588-4341-bb67-fe20aacaa290.png?type=s3"
+    },
+    {
+     "title": "손끝이 저리고 감각이 둔해요. 혈액순환 문제일까요?",
+     "link": "https://blog.naver.com/smartneuro3/224436894963",
+     "date": "2026.10.15",
+     "summary": "손이 저리면 흔히 혈액순환이 잘되지 않아서라고 생각합니다. 손을 주무르거나 따뜻하게 하면 괜찮아질 거라고 여기기도 하죠. 하지만 손 저림은 혈액순환 문제뿐 아니라",
+     "thumb": "https://blogthumb.pstatic.net/MjAyNjEwMTBfMTE5/MDAxNzkxNTkyNzM0NTk4.DUhKu2Jl1m-wQUuDLBN4kTiixasavyfRGzJj3n3qjVYg.NkFxFvT-kfvlq1lbV-_haSIth4vqKICbrkzncZaM2Ucg.PNG/b1e3fc16-5a0b-4080-991a-b3d46a5942de.png?type=s3"
+    },
+    {
+     "title": "한쪽 머리만 지끈지끈 아파요. 편두통일까요?",
+     "link": "https://blog.naver.com/smartneuro3/224436893800",
+     "date": "2026.10.14",
+     "summary": "두통이 생기면 흔히 피곤해서 그렇거나 잠을 제대로 자지 못해서라고 생각하기 쉽습니다. 그런데 한쪽 머리가 지끈지끈 아프고, 속이 메스껍거나 빛과 소리까지 불편하게",
+     "thumb": "https://blogthumb.pstatic.net/MjAyNjEwMTBfMTMw/MDAxNzkxNTkyNjMwOTE5.Q3qBebTyc1PTb2PiUbfQBQ_SLADc2dqKoLhEZYBS_Pkg.nF_SueuKaSkl2MdCZ7Qo7qjZczeeeVm_NQPxWqqGBKgg.PNG/afc47941-5da5-478b-82ff-03e899c23eea.png?type=s3"
+    },
+    {
+     "title": "갑자기 한쪽 얼굴이 움직이지 않아요. 안면마비, 초기 증상을 알아두세요",
+     "link": "https://blog.naver.com/smartneuro3/224436889966",
+     "date": "2026.10.13",
+     "summary": "아침에 일어나 거울을 보다가 한쪽 입꼬리가 처져 있거나, 양치할 때 물이 한쪽으로 새고, 한쪽 눈이 잘 감기지 않는다면 당황스러우실 수 있습니다. 이러한 증상은 ",
+     "thumb": "https://blogthumb.pstatic.net/MjAyNjEwMTBfNjcg/MDAxNzkxNTkyMjk0NTA3.M1b6OD9PYn6Fm5JqA8lXUZLHWEo2pGny-lMDoUbNelcg.2cvQ0ECHtsVAv9VBRyShibKS-mTmZe-BcOX58Z7MAF4g.PNG/657add59-3441-411c-8e6e-6a986f424547.png?type=s3"
+    },
+    {
+     "title": "눈을 감으면 몸이 더 흔들려요, 귀에 문제가 있는 걸까요?",
+     "link": "https://blog.naver.com/smartneuro3/224432743148",
+     "date": "2026.10.12",
+     "summary": "균형감각, 전정기관, 발바닥 감각, 시각 정보를 쉽게 풀어내면서도 “왜 눈을 감으면 더 심해지는지”를 중심으로 구성했습니다. 균형은 시각·전정·체성감각이 함께 작",
+     "thumb": "https://blogthumb.pstatic.net/MjAyNjEwMDZfODYg/MDAxNzkxMjUyNTAxMDQz.rLoj5xM9Ab3EQexJCj5yGtnNUvUpUmOws45bSOxOLiwg.0Lv3_QXe2FRwNOcphDiaoJKS81MUe81qoArjc1Ze-NYg.JPEG/KakaoTalk_20250522_164829953_01.jpg?type=s3"
+    },
+    {
+     "title": "계단만 내려가면 다리가 휘청해요. 근력이 약해진 걸까요",
+     "link": "https://blog.naver.com/smartneuro3/224432695671",
+     "date": "2026.10.06",
+     "summary": "계단에서 휘청거리는 느낌이 항상 근력 저하 때문인 것은 아닙니다. 우리 몸의 균형은 근육 하나로 만들어지는 것이 아니라 눈으로 보는 정보, 귀 안쪽의 전정기관, ",
+     "thumb": "https://blogthumb.pstatic.net/MjAyNjEwMDZfNTkg/MDAxNzkxMjUwMTAzOTQ5.BmuNeiXDJnqbrlhxPmZyMMDFGMWrlEQbp0sEDQzLqiYg.HztZkjbIRnUlPShJZTDMQX6ARw9qOC3DuCS7Zn5M6Hkg.PNG/7c7f8db7-0bfb-4d79-8af8-4254ff279341.png?type=s3"
+    }
+   ]
+  },
+  {
+   "id": "director",
+   "name": "원장 블로그",
+   "url": "https://blog.naver.com/smart_neuro",
+   "posts": [
+    {
+     "title": "기면증의 정확한 진단이 필요한 이유 | 졸린 증상, 참지 마시고 검사받으세요 [부산 기면증]",
+     "link": "https://blog.naver.com/smart_neuro/223728597004",
+     "date": "2025.01.17",
+     "summary": "\"아침에 일어나자마자 또 졸립고... 수업시간에 집중하기가 너무 힘들어요.\" \"운전 중에 갑자기 졸음이 쏟아질 때가 있어서 정말 무섭습니다.\" \"하루 종일 잠과 ",
+     "thumb": "https://blogthumb.pstatic.net/MjAyNTAxMTdfMTI2/MDAxNzM3MDgxNTUxNDA0.E7xuLpyOS_VagJdcx-3h7NU20vjdhAbZ_Kl6BzYYy7Eg.VMoc--w1S3lbScCZg6REPMg49cc6zq-ndazeyPGyzs4g.JPEG/IMG_6337.JPG?type=s3"
+    },
+    {
+     "title": "자율신경장애, 내 몸에 맞는 영양소는? | 신경과 전문의가 알려드립니다 [부산 자율신경]",
+     "link": "https://blog.naver.com/smart_neuro/223717699882",
+     "date": "2025.01.07",
+     "summary": "\"아침에 일어나기가 너무 힘드네요...\" \"자꾸 가슴이 두근거리고 불안해요.\" \"손발이 차갑고 소화도 잘 안되는데, 검사해도 특별한 이상이 없대요.\" 매일 이런 ",
+     "thumb": ""
+    },
+    {
+     "title": "이석증 치료 후에도 어지러우신가요? | 숨어있는 '잔존 이석' 제대로 알기 [부산 동래구 이석증]",
+     "link": "https://blog.naver.com/smart_neuro/223717681678",
+     "date": "2025.01.07",
+     "summary": "\"이석증 치료를 받았는데도 아직 살짝 어지러워요. 괜찮아질까요?\" \"병원에서 치료받고 나니 빙글빙글 도는 심한 어지럼증은 없어졌는데, 왠지 모르게 띵한 느낌이 계",
+     "thumb": "https://blogthumb.pstatic.net/MjAyNTAxMDdfMyAg/MDAxNzM2MjQzMjY5MjUx.ypCkz39CDBclMsWJPgNmWMv0q6xvIUGQXXzh-uWdTnIg.ez6oawC5duu4wCw8foAgRFNBsUWY8-YfxoxZdegV8zog.PNG/%28%BC%F6%C1%A4%29%C0%C7%B7%E1%C1%F8%BC%D2%B0%B3_%C8%B2%C0%E7%C3%E1_%B9%DA%BF%F8%C0%E5%B4%D4%C8%AE%C0%CE%BF%EB%2C.png?type=s3"
+    }
+   ]
+  },
+  {
+   "id": "sleep",
+   "name": "부산점 수면센터",
+   "url": "https://blog.naver.com/smartneuro2",
+   "posts": [
+    {
+     "title": "부산 하지불안증후군 — 생리 전후나 임신 중에 밤마다 다리가 심해진다면, 철분부터 봅니다",
+     "link": "https://blog.naver.com/smartneuro2/224428967291",
+     "date": "2026.10.17",
+     "summary": "부산 하지불안증후군 — 생리 전후나 임신 중에 밤마다 다리가 심해진다면, 철분부터 봅니다 다리 증상이 달력을 따라 움직이는 분이 있습니다. 생리가 가까워지면 밤에",
+     "thumb": "https://blogthumb.pstatic.net/MjAyNjEwMDJfMTkz/MDAxNzkwODg4MTE1ODIw.aFRFyvJh7QbP40H5JozHWgPI8nWwK2RkDcZ8kTrbUc8g.yxEbqiuKa-noErBIkjDTIdbItxIr1S5_2AO2sKtGeeog.PNG/01_cover.png?type=s3"
+    },
+    {
+     "title": "부산 소아 수면다원검사 — 아이와 함께 보내는 검사 밤, 부모님이 자주 묻는 다섯 가지",
+     "link": "https://blog.naver.com/smartneuro2/224428966407",
+     "date": "2026.10.16",
+     "summary": "부산 소아 수면다원검사 — 아이와 함께 보내는 검사 밤, 부모님이 자주 묻는 다섯 가지 아이 방에서 코 고는 소리가 납니다. 들여다보면 입을 벌린 채 자고 있습니",
+     "thumb": "https://blogthumb.pstatic.net/MjAyNjEwMDJfMTM3/MDAxNzkwODg3OTUzNDY5.vOEu1gQtMxbp0YDikTaYQLDP10eJqyvvXbIPktOc9TAg.Mm5TvrgAsuLxHiwj0DW77oMonUPY-oej4HlP7iq3kCIg.PNG/01_cover.png?type=s3"
+    },
+    {
+     "title": "동래 노인 수면무호흡 — 부모님 댁에서 보고 온 세 장면, 나이 탓이 아닐 수 있습니다",
+     "link": "https://blog.naver.com/smartneuro2/224428965473",
+     "date": "2026.10.15",
+     "summary": "동래 노인 수면무호흡 — 부모님 댁에서 보고 온 세 장면, 나이 탓이 아닐 수 있습니다 명절이나 주말에 부모님 댁에 며칠 머물다 오면, 평소엔 몰랐던 장면이 눈에",
+     "thumb": "https://blogthumb.pstatic.net/MjAyNjEwMDJfOCAg/MDAxNzkwODg3NzkxMTEx.L222fMo-l6xiiUANb50VwQ8qeoqNczmJH2gk08cL1Xog.ss4ZK1aOXtvAVgmjtGqH_rq3VtBFAQ14V20CwU8QxlEg.PNG/01_cover.png?type=s3"
+    }
+   ]
+  }
+ ]
+}
