@@ -51,7 +51,6 @@
     .treat-photo { height:280px !important; }
     .facility-grid { grid-template-columns:1fr 1fr !important; grid-auto-rows:150px !important; }
     .facility-grid figure { grid-column:span 1 !important; grid-row:span 1 !important; }
-    .facility-grid figure:first-child { grid-column:span 2 !important; grid-row:span 2 !important; }
     .linkrow-grid { grid-template-columns:1fr !important; }
     .type-grid-3 { grid-template-columns:1fr !important; }
     .process-grid-4 { grid-template-columns:1fr 1fr !important; }
@@ -189,8 +188,8 @@
       <h2 style="font-size:32px; font-weight:900; margin:12px 0;">병원 둘러보기</h2>
       <p style="font-size:16px; color:oklch(45% 0.02 250); margin:0;">편안한 공간에서 충분히 상담하고 정밀하게 검사합니다</p>
     </div>
-    <div class="facility-grid" style="display:grid; grid-template-columns:repeat(3, minmax(0, 1fr)); grid-auto-rows:220px; gap:16px;">
-      <sc-for list="{{ facilityPhotos }}" as="f" hint-placeholder-count="5">
+    <div class="facility-grid" style="display:grid; grid-template-columns:repeat(4, minmax(0, 1fr)); grid-auto-rows:220px; gap:16px;">
+      <sc-for list="{{ facilityPhotos }}" as="f" hint-placeholder-count="4">
         <figure style="margin:0; position:relative; border-radius:8px; overflow:hidden; grid-column:{{ f.col }}; grid-row:{{ f.row }}; background:oklch(94% 0.006 250);">
           <img src="./assets/photos/{{ f.file }}" alt="{{ f.label }}" loading="lazy" style="width:100%; height:100%; object-fit:cover; display:block;">
           <figcaption style="position:absolute; left:12px; bottom:12px; font-size:13px; font-weight:700; color:oklch(99% 0.005 90); background:oklch(20% 0.03 250 / 0.6); padding:4px 10px; border-radius:12px;">{{ f.label }}</figcaption>
@@ -650,10 +649,9 @@ class Component extends DCLogic {
       ],
 
       facilityPhotos: [
-        { file: 'facility-entrance.jpg', label: '병원 입구', col: 'span 2', row: 'span 2' },
+        { file: 'facility-entrance.jpg', label: '병원 입구', col: 'span 1', row: 'span 1' },
         { file: 'facility-lobby-1.jpg', label: '접수·로비', col: 'span 1', row: 'span 1' },
-        { file: 'facility-lobby-2.jpg', label: '대기 공간', col: 'span 1', row: 'span 1' },
-        { file: 'facility-waiting.jpg', label: '대기실', col: 'span 2', row: 'span 1' },
+        { file: 'facility-waiting.jpg', label: '대기 공간', col: 'span 1', row: 'span 1' },
         { file: 'facility-consult-room.jpg', label: '진료실', col: 'span 1', row: 'span 1' },
       ],
       equipmentItems: [
