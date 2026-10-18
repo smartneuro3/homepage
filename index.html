@@ -47,6 +47,9 @@
     .doctor-card { grid-template-columns:1fr !important; }
     .doctor-photo { min-height:0 !important; aspect-ratio:4 / 5; }
     .cards-grid-3 { grid-template-columns:1fr !important; }
+    .facility-grid { grid-template-columns:1fr 1fr !important; grid-auto-rows:150px !important; }
+    .facility-grid figure { grid-column:span 1 !important; grid-row:span 1 !important; }
+    .facility-grid figure:first-child { grid-column:span 2 !important; grid-row:span 2 !important; }
     .linkrow-grid { grid-template-columns:1fr !important; }
     .type-grid-3 { grid-template-columns:1fr !important; }
     .process-grid-4 { grid-template-columns:1fr 1fr !important; }
@@ -177,6 +180,23 @@
     </div>
   </section>
 
+  <!-- FACILITY -->
+  <section id="facility" class="section-pad" style="padding:0 64px 96px; max-width:1280px; margin:0 auto;">
+    <div style="text-align:center; margin-bottom:40px;">
+      <div style="display:inline-block; background:oklch(93% 0.03 195); color:oklch(34% 0.09 195); font-size:12px; font-weight:800; letter-spacing:0.5px; padding:5px 14px; border-radius:20px;">FACILITY</div>
+      <h2 style="font-size:32px; font-weight:900; margin:12px 0;">병원 둘러보기</h2>
+      <p style="font-size:16px; color:oklch(45% 0.02 250); margin:0;">편안한 공간에서 충분히 상담하고 정밀하게 검사합니다</p>
+    </div>
+    <div class="facility-grid" style="display:grid; grid-template-columns:repeat(3, minmax(0, 1fr)); grid-auto-rows:220px; gap:16px;">
+      <sc-for list="{{ facilityPhotos }}" as="f" hint-placeholder-count="5">
+        <figure style="margin:0; position:relative; border-radius:8px; overflow:hidden; grid-column:{{ f.col }}; grid-row:{{ f.row }}; background:oklch(94% 0.006 250);">
+          <img src="./assets/photos/{{ f.file }}" alt="{{ f.label }}" loading="lazy" style="width:100%; height:100%; object-fit:cover; display:block;">
+          <figcaption style="position:absolute; left:12px; bottom:12px; font-size:13px; font-weight:700; color:oklch(99% 0.005 90); background:oklch(20% 0.03 250 / 0.6); padding:4px 10px; border-radius:12px;">{{ f.label }}</figcaption>
+        </figure>
+      </sc-for>
+    </div>
+  </section>
+
   <!-- LOCATION -->
   <section id="location" class="section-pad" style="scroll-margin-top:80px; padding:0 64px 96px; max-width:1280px; margin:0 auto;">
     <div class="location-grid" style="display:grid; grid-template-columns:1fr 1fr; gap:64px;">
@@ -262,10 +282,13 @@
       <div class="cards-grid-3 clinics-grid" style="display:grid; grid-template-columns:repeat(4, 1fr); gap:20px;">
         <sc-for list="{{ specialties }}" as="item" hint-placeholder-count="8">
           <a href="{{ item.href }}" style="display:block; position:relative; background:oklch(99% 0.005 90); border:1px solid oklch(89% 0.008 250); border-top:3px solid oklch(46% 0.13 248); border-radius:6px; padding:32px; color:oklch(24% 0.02 250); box-shadow:0 1px 3px oklch(0% 0 0 / 0.04); transition:box-shadow .2s, transform .2s;" style-hover="border-color:oklch(46% 0.13 248); box-shadow:0 10px 24px oklch(0% 0 0 / 0.08); transform:translateY(-2px);">
-            <div style="position:absolute; top:20px; right:24px; font-size:28px; font-weight:900; color:oklch(93% 0.02 248);">{{ item.num }}</div>
-            <div style="width:44px; height:44px; border-radius:50%; background:oklch(92% 0.02 248); display:flex; align-items:center; justify-content:center; margin-bottom:20px;">
-              <div style="width:16px; height:16px; border-radius:50%; background:oklch(46% 0.13 248);"></div>
-            </div>
+            <div style="position:absolute; top:12px; right:12px; z-index:2; font-size:12px; font-weight:900; color:oklch(30% 0.1 248); background:oklch(99% 0.005 90 / 0.92); padding:3px 9px; border-radius:10px;">{{ item.num }}</div>
+            <sc-if value="{{ item.thumb }}" hint-placeholder-val="{{ true }}">
+              <div style="margin:-32px -32px 20px; height:150px; overflow:hidden; border-radius:3px 3px 0 0; background:oklch(94% 0.006 250);"><img src="./assets/photos/{{ item.thumb }}" alt="" loading="lazy" style="width:100%; height:100%; object-fit:cover; object-position:{{ item.thumbPos }}; display:block;"></div>
+            </sc-if>
+            <sc-if value="{{ item.noThumb }}" hint-placeholder-val="{{ false }}">
+              <div style="margin:-32px -32px 20px; height:150px; border-radius:3px 3px 0 0; background:oklch(95% 0.02 195); display:flex; align-items:center; justify-content:center; font-size:14px; font-weight:700; color:oklch(40% 0.08 195);">{{ item.name }}</div>
+            </sc-if>
             <div style="font-size:18px; font-weight:700; margin-bottom:8px;">{{ item.name }}</div>
             <div class="clamp-2" style="font-size:14px; color:oklch(45% 0.02 250); margin-bottom:12px;">{{ item.desc }}</div>
             <div style="font-size:13px; color:oklch(46% 0.13 248); font-weight:700;">자세히 보기 &gt;</div>
@@ -286,10 +309,13 @@
       <div class="cards-grid-3" style="display:grid; grid-template-columns:repeat(3, 1fr); gap:24px;">
         <sc-for list="{{ equipmentItems }}" as="item" hint-placeholder-count="9">
           <a href="{{ item.href }}" style="display:block; position:relative; background:oklch(99% 0.005 90); border:1px solid oklch(89% 0.008 250); border-top:3px solid oklch(58% 0.09 195); border-radius:6px; padding:32px; color:oklch(24% 0.02 250); box-shadow:0 1px 3px oklch(0% 0 0 / 0.04); transition:box-shadow .2s, transform .2s;" style-hover="border-color:oklch(46% 0.13 248); box-shadow:0 10px 24px oklch(0% 0 0 / 0.08); transform:translateY(-2px);">
-            <div style="position:absolute; top:20px; right:24px; font-size:28px; font-weight:900; color:oklch(90% 0.025 195);">{{ item.num }}</div>
-            <div style="width:44px; height:44px; border-radius:8px; background:oklch(92% 0.03 195); display:flex; align-items:center; justify-content:center; margin-bottom:20px;">
-              <div style="width:16px; height:16px; background:oklch(58% 0.09 195);"></div>
-            </div>
+            <div style="position:absolute; top:12px; right:12px; z-index:2; font-size:12px; font-weight:900; color:oklch(30% 0.1 248); background:oklch(99% 0.005 90 / 0.92); padding:3px 9px; border-radius:10px;">{{ item.num }}</div>
+            <sc-if value="{{ item.thumb }}" hint-placeholder-val="{{ true }}">
+              <div style="margin:-32px -32px 20px; height:150px; overflow:hidden; border-radius:3px 3px 0 0; background:oklch(94% 0.006 250);"><img src="./assets/photos/{{ item.thumb }}" alt="" loading="lazy" style="width:100%; height:100%; object-fit:cover; object-position:{{ item.thumbPos }}; display:block;"></div>
+            </sc-if>
+            <sc-if value="{{ item.noThumb }}" hint-placeholder-val="{{ false }}">
+              <div style="margin:-32px -32px 20px; height:150px; border-radius:3px 3px 0 0; background:oklch(95% 0.02 195); display:flex; align-items:center; justify-content:center; font-size:14px; font-weight:700; color:oklch(40% 0.08 195);">{{ item.name }}</div>
+            </sc-if>
             <div style="font-size:17px; font-weight:700; margin-bottom:8px;">{{ item.name }}</div>
             <div class="clamp-2" style="font-size:14px; color:oklch(45% 0.02 250); margin-bottom:12px;">{{ item.desc }}</div>
             <div style="font-size:13px; color:oklch(46% 0.13 248); font-weight:700;">검사 자세히 보기 &gt;</div>
@@ -477,6 +503,16 @@ class Component extends DCLogic {
     const ON = 'oklch(46% 0.13 248)';
     const OFF = 'oklch(90% 0.01 250)';
     const HALF = 'conic-gradient(oklch(46% 0.13 248) 0deg 180deg, oklch(90% 0.01 250) 180deg 360deg)';
+    const thumbs = {
+      'c-headache': ['exam-tcd-scene.jpg', 'center 35%'], 'c-dizziness': ['exam-vng-scene.jpg', 'center 45%'],
+      'c-sleep': ['clinic-sleep-pap.jpg', 'center 30%'], 'c-autonomic': ['exam-photo-ans-0.webp', 'center'],
+      'c-dementia': ['facility-consult-room.jpg', 'center 60%'], 'c-stroke': ['exam-carotid-scene.jpg', 'center 30%'],
+      'c-peripheral': ['exam-ncs-closeup.jpg', 'center'], 'c-other': ['facility-consult-room.jpg', 'center 60%'],
+      'e-tcd': ['exam-tcd-scene.jpg', 'center 35%'], 'e-carotid': ['exam-carotid-scene.jpg', 'center 30%'],
+      'e-ans': ['exam-photo-ans-0.webp', 'center'], 'e-eeg': ['exam-photo-eeg-0.webp', 'center'],
+      'e-vng': ['exam-vng-scene.jpg', 'center 45%'], 'e-psg': ['exam-photo-psg-0.webp', 'center'],
+      'e-mslt': ['exam-photo-psg-1.webp', 'center'], 'e-ncs': ['exam-ncs-scene.jpg', 'center 45%'],
+    };
     const specialties = [
       { slug: 'headache', name: '두통클리닉', desc: '긴장성두통·편두통·군발두통 등 원인별 맞춤 진료' },
       { slug: 'dizziness', name: '어지럼증클리닉', desc: '말초성·중추성 어지럼증 정밀 감별 진료' },
@@ -486,7 +522,10 @@ class Component extends DCLogic {
       { slug: 'stroke', name: '뇌혈관클리닉', desc: '뇌경색·뇌출혈 위험인자 관리와 재발 예방' },
       { slug: 'peripheral', name: '말초신경질환클리닉', desc: '손발 저림·감각 이상·안면마비 등 말초신경 이상 정밀 진단' },
       { slug: 'other', name: '기타 신경질환클리닉', desc: '이명·손떨림·머리떨림·근육떨림 등 신경 증상 진료' },
-    ].map((s, i) => ({ ...s, href: `./clinic.html?slug=${s.slug}`, num: String(i + 1).padStart(2, '0') }));
+    ].map((s, i) => {
+      const t = thumbs['c-' + s.slug];
+      return { ...s, href: `./clinic.html?slug=${s.slug}`, num: String(i + 1).padStart(2, '0'), thumb: t ? t[0] : '', thumbPos: t ? t[1] : 'center', noThumb: !t };
+    });
 
     const heroPhotos = [1, 2, 3].map((n, i) => ({
       id: `hero-photo-${n}`,
@@ -582,6 +621,13 @@ class Component extends DCLogic {
         },
       ],
 
+      facilityPhotos: [
+        { file: 'facility-entrance.jpg', label: '병원 입구', col: 'span 2', row: 'span 2' },
+        { file: 'facility-lobby-1.jpg', label: '접수·로비', col: 'span 1', row: 'span 1' },
+        { file: 'facility-lobby-2.jpg', label: '대기 공간', col: 'span 1', row: 'span 1' },
+        { file: 'facility-waiting.jpg', label: '대기실', col: 'span 2', row: 'span 1' },
+        { file: 'facility-consult-room.jpg', label: '진료실', col: 'span 1', row: 'span 1' },
+      ],
       equipmentItems: [
         { slug: 'tcd', name: '뇌혈류초음파', desc: '두개골을 열지 않고도 뇌혈관의 혈류 속도와 저항을 측정해 두통·어지럼증·뇌졸중 위험의 원인을 확인하는 비침습적 검사입니다.' },
         { slug: 'carotid', name: '경동맥초음파', desc: '목 동맥의 혈관벽 상태와 협착 여부를 확인해 뇌혈관질환 위험을 평가합니다.' },
@@ -592,7 +638,10 @@ class Component extends DCLogic {
         { slug: 'mslt', name: '다중수면잠복기검사(MSLT)', desc: '낮잠에 드는 속도와 렘수면 출현을 기록해 기면증·특발성 과다수면증을 진단합니다.' },
         { slug: 'ep', name: '유발전위검사', desc: '빛·소리·전기 자극이 뇌까지 전달되는 과정을 기록해 시각·청각·감각 경로의 이상을 확인합니다.' },
         { slug: 'ncs', name: '신경전도/근전도검사', desc: '신경 전달 속도와 근육의 전기 활동을 측정해 손발 저림 등 말초신경 문제의 원인과 위치를 가립니다.' },
-      ].map((e, i) => ({ ...e, href: `./exam.html?slug=${e.slug}`, num: String(i + 1).padStart(2, '0') })),
+      ].map((e, i) => {
+        const t = thumbs['e-' + e.slug];
+        return { ...e, href: `./exam.html?slug=${e.slug}`, num: String(i + 1).padStart(2, '0'), thumb: t ? t[0] : '', thumbPos: t ? t[1] : 'center', noThumb: !t };
+      }),
 
       notices: [
         { tag: '공지', title: '추석 연휴 진료 일정 안내', date: '2026.07.10' },
