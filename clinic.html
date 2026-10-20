@@ -303,14 +303,6 @@ class Component extends DCLogic {
     const tmsText = { autonomic: '과민해진 뇌 회로를 조절해 자율신경의 긴장도를 낮추는 데 사용합니다 >', other: '오래된 이명에서 소리를 처리하는 뇌의 과민함을 가라앉히는 데 사용합니다 >', headache: '약으로 잘 조절되지 않는 만성 두통의 보조 치료로 사용합니다 >' }[key];
     const clinicFigures = {
       autonomic: [{ src: 'info-autonomic-symptoms.jpg', caption: '자율신경장애에서 나타날 수 있는 다양한 증상 (삼성스마트신경과 제작)', href: './disease.html?d=dysautonomia' }],
-      dizziness: [
-        { src: 'dz-bppv.jpg', caption: '이석증 — 떨어져 나온 이석이 반고리관 안에서 움직입니다', href: './disease.html?d=bppv' },
-        { src: 'dz-meniere.jpg', caption: '메니에르병 — 속귀의 내림프액이 늘어납니다', href: './disease.html?d=meniere' },
-        { src: 'dz-neuritis.jpg', caption: '전정신경염 — 평형을 전달하는 신경에 염증이 생깁니다', href: './disease.html?d=vestibular-neuritis' },
-        { src: 'dz-vm.jpg', caption: '전정편두통 — 편두통 회로가 어지럼 처리 영역을 예민하게 만듭니다', href: './disease.html?d=vestibular-migraine' },
-        { src: 'dz-pppd.jpg', caption: 'PPPD — 눈·귀·몸의 감각을 통합하는 뇌가 과민해집니다', href: './disease.html?d=pppd' },
-        { src: 'dz-autonomic.jpg', caption: '자율신경성 어지럼 — 교감·부교감신경의 균형이 흔들립니다', href: './clinic.html?slug=autonomic' },
-      ],
     };
     const figs = clinicFigures[key] || [];
     const clinic = { ...clinics[key], figures: figs, figCols: figs.length > 1 ? 'repeat(3, minmax(0, 1fr))' : '1fr', figGap: figs.length ? '40px' : '0', hasTms: !!tmsText, tmsText: tmsText || '', photo: cp ? cp[0] : '', photoPos: cp ? cp[1] : 'center', hasPhoto: !!cp, photoId: `clinic-photo-${key}`, intro, hasIntro: !!intro, diseases, hasArticles: articles.length > 0 };
