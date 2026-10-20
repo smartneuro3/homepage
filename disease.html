@@ -60,7 +60,7 @@
       <sc-for list="{{ art.blocks }}" as="b" hint-placeholder-count="6">
         <sc-if value="{{ b.isImg }}" hint-placeholder-val="{{ false }}">
           <figure style="margin:20px 0 24px;">
-            <img src="./assets/photos/{{ b.src }}" alt="{{ b.caption }}" loading="lazy" style="display:block; max-width:100%; max-height:620px; width:auto; height:auto; margin:0 auto; border-radius:8px; border:1px solid oklch(89% 0.008 250); background:oklch(99% 0.003 250);">
+            <a href="./assets/photos/{{ b.src }}" target="_blank" rel="noopener" title="크게 보기" style="display:block; cursor:zoom-in;"><img src="./assets/photos/{{ b.src }}" alt="{{ b.caption }}" loading="lazy" style="display:block; max-width:100%; max-height:620px; width:auto; height:auto; margin:0 auto; border-radius:8px; border:1px solid oklch(89% 0.008 250); background:oklch(99% 0.003 250);"></a>
             <figcaption style="font-size:13px; color:oklch(45% 0.02 250); margin-top:8px; line-height:1.6; text-align:center;">{{ b.caption }}</figcaption>
           </figure>
         </sc-if>
