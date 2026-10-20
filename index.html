@@ -62,7 +62,8 @@
     .consult-btns { grid-template-columns:1fr !important; }
     .blog-tabs { grid-template-columns:1fr 1fr !important; }
     .blog-links { grid-template-columns:repeat(2, minmax(0, 1fr)) !important; gap:10px !important; }
-    .blog-links a { height:72px !important; padding:0 14px !important; gap:10px !important; }
+    .blog-links a { height:76px !important; padding:0 12px !important; gap:8px !important; }
+    .blog-links a span span:first-child, .blog-tab-name { font-size:14px !important; }
     .treat-grid { grid-template-columns:1fr !important; gap:28px !important; }
     .treat-photo { height:280px !important; }
     .facility-grid { grid-template-columns:1fr 1fr !important; grid-auto-rows:150px !important; }
@@ -405,7 +406,7 @@
     <div class="blog-tabs" role="tablist" style="display:grid; grid-template-columns:repeat(4, minmax(0, 1fr)); gap:12px; margin-bottom:24px;">
       <sc-for list="{{ blogTabs }}" as="t" hint-placeholder-count="4">
         <button role="tab" onClick="{{ t.onSelect }}" style="display:flex; flex-direction:column; align-items:center; justify-content:center; gap:4px; height:76px; padding:0 12px; border-radius:8px; border:1px solid {{ t.border }}; background:{{ t.bg }}; color:{{ t.color }}; cursor:pointer; font-family:inherit;">
-          <span style="font-family:'NanumSquareNeo','Noto Sans KR',sans-serif; font-size:17px; font-weight:800;">{{ t.name }}</span>
+          <span class="blog-tab-name" style="font-family:'NanumSquareNeo','Noto Sans KR',sans-serif; font-size:17px; font-weight:800; line-height:1.3; text-align:center;">{{ t.name }}</span>
           <span style="font-size:12px; color:{{ t.subColor }};">{{ t.sub }}</span>
         </button>
       </sc-for>
@@ -465,32 +466,32 @@
       <a href="https://blog.naver.com/smartdr2" target="_blank" rel="noopener" style="display:flex; align-items:center; gap:14px; height:84px; box-sizing:border-box; padding:0 22px; background:#03C75A; border-radius:8px; color:white;" style-hover="opacity:0.92;">
         <svg width="22" height="22" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M12.5 0v11.4L7.5 0H0v20h7.5V8.6L12.5 20H20V0h-7.5Z" fill="white"/></svg>
         <span style="display:flex; flex-direction:column; gap:2px; min-width:0;">
-          <span style="font-family:'NanumSquareNeo','Noto Sans KR',sans-serif; font-size:17px; font-weight:800; white-space:nowrap;">대표 블로그</span>
-          <span style="font-size:12px; font-weight:500; opacity:0.9; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;">삼성스마트신경과</span>
+          <span style="font-family:'NanumSquareNeo','Noto Sans KR',sans-serif; font-size:17px; font-weight:800; line-height:1.3;">삼성스마트신경과 대표</span>
+          <span style="font-size:12px; font-weight:500; opacity:0.9; white-space:nowrap;">네이버 블로그</span>
         </span>
         <span style="font-size:18px; font-weight:700; margin-left:auto;">&gt;</span>
       </a>
       <a href="https://blog.naver.com/smartneuro3" target="_blank" rel="noopener" style="display:flex; align-items:center; gap:14px; height:84px; box-sizing:border-box; padding:0 22px; background:#03C75A; border-radius:8px; color:white;" style-hover="opacity:0.92;">
         <svg width="22" height="22" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M12.5 0v11.4L7.5 0H0v20h7.5V8.6L12.5 20H20V0h-7.5Z" fill="white"/></svg>
         <span style="display:flex; flex-direction:column; gap:2px; min-width:0;">
-          <span style="font-family:'NanumSquareNeo','Noto Sans KR',sans-serif; font-size:17px; font-weight:800; white-space:nowrap;">부산점 블로그</span>
-          <span style="font-size:12px; font-weight:500; opacity:0.9; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;">삼성스마트신경과 부산점</span>
+          <span style="font-family:'NanumSquareNeo','Noto Sans KR',sans-serif; font-size:17px; font-weight:800; line-height:1.3;">삼성스마트신경과 부산점</span>
+          <span style="font-size:12px; font-weight:500; opacity:0.9; white-space:nowrap;">네이버 블로그</span>
         </span>
         <span style="font-size:18px; font-weight:700; margin-left:auto;">&gt;</span>
       </a>
       <a href="https://blog.naver.com/smart_neuro" target="_blank" rel="noopener" style="display:flex; align-items:center; gap:14px; height:84px; box-sizing:border-box; padding:0 22px; background:#03C75A; border-radius:8px; color:white;" style-hover="opacity:0.92;">
         <svg width="22" height="22" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M12.5 0v11.4L7.5 0H0v20h7.5V8.6L12.5 20H20V0h-7.5Z" fill="white"/></svg>
         <span style="display:flex; flex-direction:column; gap:2px; min-width:0;">
-          <span style="font-family:'NanumSquareNeo','Noto Sans KR',sans-serif; font-size:17px; font-weight:800; white-space:nowrap;">원장 블로그</span>
-          <span style="font-size:12px; font-weight:500; opacity:0.9; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;">황재춘 원장</span>
+          <span style="font-family:'NanumSquareNeo','Noto Sans KR',sans-serif; font-size:17px; font-weight:800; line-height:1.3;">황재춘 원장 블로그</span>
+          <span style="font-size:12px; font-weight:500; opacity:0.9; white-space:nowrap;">네이버 블로그</span>
         </span>
         <span style="font-size:18px; font-weight:700; margin-left:auto;">&gt;</span>
       </a>
       <a href="https://blog.naver.com/smartneuro2" target="_blank" rel="noopener" style="display:flex; align-items:center; gap:14px; height:84px; box-sizing:border-box; padding:0 22px; background:#03C75A; border-radius:8px; color:white;" style-hover="opacity:0.92;">
         <svg width="22" height="22" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M12.5 0v11.4L7.5 0H0v20h7.5V8.6L12.5 20H20V0h-7.5Z" fill="white"/></svg>
         <span style="display:flex; flex-direction:column; gap:2px; min-width:0;">
-          <span style="font-family:'NanumSquareNeo','Noto Sans KR',sans-serif; font-size:17px; font-weight:800; white-space:nowrap;">수면센터 블로그</span>
-          <span style="font-size:12px; font-weight:500; opacity:0.9; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;">부산점 수면센터</span>
+          <span style="font-family:'NanumSquareNeo','Noto Sans KR',sans-serif; font-size:17px; font-weight:800; line-height:1.3;">삼성스마트신경과 수면센터</span>
+          <span style="font-size:12px; font-weight:500; opacity:0.9; white-space:nowrap;">네이버 블로그</span>
         </span>
         <span style="font-size:18px; font-weight:700; margin-left:auto;">&gt;</span>
       </a>
@@ -659,8 +660,8 @@ class Component extends DCLogic {
       { name: '원장 블로그', url: 'https://blog.naver.com/smart_neuro', posts: [] },
       { name: '부산점 수면센터', url: 'https://blog.naver.com/smartneuro2', posts: [] },
     ];
-    const tabLabels = ['대표 블로그', '부산점 블로그', '원장 블로그', '수면센터 블로그'];
-    const tabSubs = ['삼성스마트신경과', '삼성스마트신경과 부산점', '황재춘 원장', '부산점 수면센터'];
+    const tabLabels = ['삼성스마트신경과 대표', '삼성스마트신경과 부산점', '황재춘 원장 블로그', '삼성스마트신경과 수면센터'];
+    const tabSubs = ['네이버 블로그', '네이버 블로그', '네이버 블로그', '네이버 블로그'];
     const bi = Math.min(this.state.blogTab ?? 1, blogs.length - 1);
     const curBlog = blogs[bi];
     const blogTabs = blogs.map((b, i) => ({
