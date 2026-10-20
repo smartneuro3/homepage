@@ -274,7 +274,7 @@ class Component extends DCLogic {
     const articles = Object.keys(A).filter(k => A[k].parent === key)
       .map(k => ({ title: A[k].title, summary: A[k].summary, href: `./disease.html?d=${k}` }));
     const typeToArticle = {
-      '편두통': 'migraine', '군발두통': 'cluster', '삼차신경통': 'trigeminal',
+      '편두통': 'migraine', '군발두통': 'cluster', '삼차신경통': 'trigeminal', '경추성두통': 'cervicogenic', '긴장형두통': 'tension',
       '이석증': 'bppv', '전정신경염': 'vestibular-neuritis', '메니에르병': 'meniere', '전정편두통': 'vestibular-migraine', 'PPPD(지속적체위지각어지럼)': 'pppd',
       '코골이·수면무호흡': 'sleep-apnea', '렘수면행동장애': 'rbd', '과다수면·기면증': 'hypersomnia', '불면증': 'insomnia', '하지불안증후군': 'restless-legs',
       '자율신경 실조증': 'dysautonomia', '체위성 빈맥증후군': 'pots',
