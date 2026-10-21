@@ -207,8 +207,8 @@
       <h2 style="font-size:36px; font-weight:900; margin:12px 0;">병원 둘러보기</h2>
       <p style="font-size:16px; color:oklch(45% 0.02 250); margin:0;"><b style="color:oklch(24% 0.02 250);">편안한 공간</b>에서 충분히 상담하고 <b style="color:oklch(24% 0.02 250);">정밀하게</b> 검사합니다</p>
     </div>
-    <div class="facility-grid" style="display:grid; grid-template-columns:repeat(4, minmax(0, 1fr)); grid-auto-rows:220px; gap:16px;">
-      <sc-for list="{{ facilityPhotos }}" as="f" hint-placeholder-count="4">
+    <div class="facility-grid" style="display:grid; grid-template-columns:repeat(3, minmax(0, 1fr)); grid-auto-rows:260px; gap:16px;">
+      <sc-for list="{{ facilityPhotos }}" as="f" hint-placeholder-count="6">
         <figure style="margin:0; position:relative; border-radius:8px; overflow:hidden; grid-column:{{ f.col }}; grid-row:{{ f.row }}; background:oklch(94% 0.006 250);">
           <img src="./assets/photos/{{ f.file }}" alt="{{ f.label }}" loading="lazy" style="width:100%; height:100%; object-fit:cover; display:block;">
           <figcaption style="position:absolute; left:12px; bottom:12px; font-size:13px; font-weight:700; color:oklch(99% 0.005 90); background:oklch(20% 0.03 250 / 0.6); padding:4px 10px; border-radius:12px;">{{ f.label }}</figcaption>
@@ -776,6 +776,8 @@ class Component extends DCLogic {
         { file: 'facility-lobby-1.jpg', label: '접수·로비', col: 'span 1', row: 'span 1' },
         { file: 'facility-waiting.jpg', label: '대기 공간', col: 'span 1', row: 'span 1' },
         { file: 'facility-consult-room.jpg', label: '진료실', col: 'span 1', row: 'span 1' },
+        { file: 'facility-psg-room.jpg', label: '수면다원검사실', col: 'span 1', row: 'span 1' },
+        { file: 'facility-xray-room.jpg', label: 'X-ray실', col: 'span 1', row: 'span 1' },
       ],
       equipmentItems: [
         { slug: 'tcd', name: '뇌혈류초음파', desc: '두개골을 열지 않고도 뇌혈관의 혈류 속도와 저항을 측정해 두통·어지럼증·뇌졸중 위험의 원인을 확인하는 비침습적 검사입니다.' },
