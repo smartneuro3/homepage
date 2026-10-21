@@ -605,6 +605,16 @@ class Component extends DCLogic {
       naver.maps.Event.addListener(marker, 'click', () => info.getMap() ? info.close() : info.open(map, marker));
       return true;
     };
+    // 키 인증 실패 시 빈 지도 대신 안내와 길찾기 링크를 보여 줍니다.
+    window.navermap_authFailure = () => {
+      const el = document.getElementById('naver-map');
+      if (!el) return;
+      el.dataset.ready = '1';
+      el.innerHTML = '<a href="' + PLACE_URL + '" target="_blank" rel="noopener" style="display:flex; flex-direction:column; align-items:center; justify-content:center; gap:10px; height:100%; min-height:420px; text-decoration:none; color:#2A2F38; text-align:center; padding:24px;">'
+        + '<span style="font-size:18px; font-weight:800;">삼성스마트신경과 부산점</span>'
+        + '<span style="font-size:14px; color:#5A606A;">부산광역시 동래구 중앙대로 1523 SK허브스카이 2층</span>'
+        + '<span style="margin-top:8px; padding:12px 20px; border-radius:6px; background:#03C75A; color:#fff; font-weight:800;">네이버 지도에서 보기 &gt;</span></a>';
+    };
     if (!document.getElementById('naver-map-sdk')) {
       const sc = document.createElement('script');
       sc.id = 'naver-map-sdk';
