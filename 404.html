@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>페이지를 찾을 수 없습니다 | 삼성스마트신경과 부산점</title>
+<meta name="robots" content="noindex">
+<style>
+  body { margin:0; font-family:'Noto Sans KR', -apple-system, 'Apple SD Gothic Neo', sans-serif; background:#FCFBF9; color:#2A2F38; word-break:keep-all; }
+  .wrap { max-width:560px; margin:0 auto; padding:72px 24px; text-align:center; }
+  img { height:44px; width:auto; }
+  h1 { font-size:24px; margin:40px 0 12px; }
+  p { font-size:16px; line-height:1.7; color:#5A606A; margin:0 0 28px; }
+  .btns { display:flex; gap:12px; justify-content:center; flex-wrap:wrap; }
+  a.btn { display:inline-flex; align-items:center; justify-content:center; min-width:160px; height:52px; padding:0 20px; border-radius:6px; font-size:16px; font-weight:700; text-decoration:none; }
+  .home { background:#2A5BA8; color:#fff; }
+  .tel { background:#fff; color:#2A5BA8; border:1px solid #2A5BA8; }
+  small { display:block; margin-top:28px; color:#8A9099; font-size:13px; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <img id="logo" src="" alt="삼성스마트신경과">
+  <h1>홈페이지가 새롭게 바뀌었습니다</h1>
+  <p>찾으시는 페이지의 주소가 바뀌었거나 더 이상 없는 페이지입니다.<br>잠시 후 새 홈페이지 첫 화면으로 이동합니다.</p>
+  <div class="btns">
+    <a class="btn home" id="home" href="/">홈으로 가기</a>
+    <a class="btn tel" href="tel:051-558-5898">전화 051-558-5898</a>
+  </div>
+  <small>삼성스마트신경과 부산점 · 부산광역시 동래구 중앙대로 1523 SK허브스카이 2층</small>
+</div>
+<script>
+  // GitHub 기본 주소(/homepage/)와 병원 도메인(/) 모두에서 동작하도록 기준 경로를 계산합니다.
+  var base = /github\.io$/.test(location.hostname) ? '/homepage/' : '/';
+  document.getElementById('home').href = base;
+  document.getElementById('logo').src = base + 'assets/logo-wordmark.svg';
+  setTimeout(function () { location.replace(base); }, 4000);
+</script>
+</body>
+</html>
