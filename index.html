@@ -608,7 +608,9 @@ class Component extends DCLogic {
     if (!document.getElementById('naver-map-sdk')) {
       const sc = document.createElement('script');
       sc.id = 'naver-map-sdk';
-      sc.src = 'https://oapi.map.naver.com/openapi/v3/maps.js?ncpKeyId=csccokyics';
+      // 병원 도메인(smartneuro.co.kr)에서는 새 키, GitHub 기본 주소에서는 기존 키를 사용합니다.
+      const mapKey = /smartneuro\.co\.kr$/.test(location.hostname) ? 'a6hxu8eo7u' : 'csccokyics';
+      sc.src = 'https://oapi.map.naver.com/openapi/v3/maps.js?ncpKeyId=' + mapKey;
       document.head.appendChild(sc);
     }
     let tries = 0;
