@@ -259,11 +259,11 @@
         <div class="doctor-photo" style="min-height:320px; position:relative; background:oklch(92% 0.01 250);">
           <img src="./assets/photos/{{ doc.photoId }}.webp" alt="{{ doc.name }} 프로필 사진" loading="lazy" style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover; object-position:center 18%; display:block;">
         </div>
-        <div style="padding:40px 40px 40px 0; display:flex; flex-direction:column; justify-content:center;">
+        <div style="padding:40px 40px 40px 0; display:flex; flex-direction:column; justify-content:center; min-width:0;">
           <div style="font-size:22px; font-weight:900; margin-bottom:8px;">{{ doc.name }}</div>
-          <div style="display:flex; align-items:center; gap:10px; margin-bottom:20px;">
+          <div style="display:flex; flex-wrap:wrap; align-items:center; gap:8px 10px; margin-bottom:20px;">
             <span style="font-size:15px; font-weight:700; color:oklch(46% 0.13 248);">{{ doc.title }}</span>
-            <sc-if value="{{ doc.tag }}" hint-placeholder-val="{{ true }}"><span style="background:oklch(93% 0.03 195); color:oklch(30% 0.09 195); font-size:12px; font-weight:800; padding:3px 10px; border-radius:20px;">{{ doc.tag }}</span></sc-if>
+            <sc-if value="{{ doc.tag }}" hint-placeholder-val="{{ true }}"><span style="background:oklch(93% 0.03 195); color:oklch(30% 0.09 195); font-size:12px; font-weight:800; padding:3px 10px; border-radius:20px; line-height:1.6; max-width:100%; overflow-wrap:anywhere;">{{ doc.tag }}</span></sc-if>
             <sc-if value="{{ doc.badge }}" hint-placeholder-val="{{ false }}"><span style="background:oklch(46% 0.13 248); color:oklch(99% 0.005 90); font-size:12px; font-weight:800; padding:3px 10px; border-radius:20px;">{{ doc.badge }}</span></sc-if>
           </div>
           <sc-for list="{{ doc.creds }}" as="cred" hint-placeholder-count="4">
@@ -715,7 +715,7 @@ class Component extends DCLogic {
           photoId: 'doctor-photo-hwang',
           name: '황재춘 원장',
           title: '신경과 전문의',
-          tag: '뇌혈관질환·두통·어지러움·수면장애·자율신경장애',
+          tag: '뇌혈관질환·\u200b두통·\u200b어지러움·\u200b수면장애·\u200b자율신경장애',
           hasSchedule: true,
           scheduleNote: '매주 수요일 오후는 휴진입니다.',
           schedule: [
@@ -737,7 +737,7 @@ class Component extends DCLogic {
           photoId: 'doctor-photo-yeo',
           name: '여승현 원장',
           title: '신경과 전문의',
-          tag: '말초신경·치매·두통·어지러움·수면장애·자율신경장애',
+          tag: '말초신경·\u200b치매·\u200b두통·\u200b어지러움·\u200b수면장애·\u200b자율신경장애',
           hasSchedule: true,
           scheduleNote: '토요일 격주 진료 (해당 월 안내일 휴진)',
           schedule: [
@@ -756,7 +756,7 @@ class Component extends DCLogic {
           photoId: 'doctor-photo-eun',
           name: '은정익 원장',
           title: '신경과 전문의',
-          tag: '두통·뇌전증·신경면역질환·임상신경생리',
+          tag: '두통·\u200b뇌전증·\u200b신경면역질환·\u200b임상신경생리',
           badge: '2026년 9월 진료 시작',
           hasSchedule: true,
           scheduleNote: '화요일 오전 · 목요일 오후 휴진, 토요일은 매주 진료합니다.',
