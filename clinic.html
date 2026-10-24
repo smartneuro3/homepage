@@ -25,8 +25,8 @@
   body { margin:0; background:oklch(99% 0.004 90); }
   * { box-sizing:border-box; font-family:'Noto Sans KR', sans-serif; word-break:keep-all; overflow-wrap:break-word; }
   h1, h2, .brand-font { font-weight:900; }
-  a { color:oklch(46% 0.13 248); text-decoration:none; }
-  a:hover { color:oklch(38% 0.13 248); }
+  a { color:oklch(50% 0.13 248); text-decoration:none; }
+  a:hover { color:oklch(43% 0.13 248); }
   @media (max-width: 860px) {
     .clinic-photo { height:220px !important; }
     .sub-header .brand-logo { height:30px !important; }
@@ -52,7 +52,7 @@
       <img class="brand-logo" src="./assets/logo-wordmark.svg" alt="삼성스마트신경과 Samsung SMART Neurology Clinic" style="height:46px; width:auto; display:block; flex-shrink:0;">
       <span class="branch-label" style="font-family:\'NanumSquareNeo\',\'Noto Sans KR\',sans-serif; font-size:17px; font-weight:800; color:oklch(99% 0.005 90); background:oklch(52% 0.09 195); padding:4px 10px; border-radius:6px; margin-left:12px; white-space:nowrap;">부산점</span>
     </a>
-    <a href="./index.html#reserve" style="background:oklch(46% 0.13 248); color:oklch(99% 0.005 90); padding:12px 22px; border-radius:4px; font-size:16px; font-weight:800;" style-hover="background:oklch(38% 0.13 248);">진료상담</a>
+    <a href="./index.html#reserve" style="background:oklch(50% 0.13 248); color:oklch(99% 0.005 90); padding:12px 22px; border-radius:4px; font-size:16px; font-weight:800;" style-hover="background:oklch(43% 0.13 248);">진료상담</a>
   </header>
 
   <div class="content-wrap" style="max-width:1080px; margin:0 auto; padding:48px 64px 96px;">
@@ -106,7 +106,7 @@
             <a href="{{ t.href }}" style="display:flex; flex-direction:column; gap:6px; background:oklch(97% 0.012 248); border:1px solid oklch(88% 0.035 248); border-radius:6px; padding:20px; color:oklch(24% 0.02 250);">
               <span style="font-size:15px; font-weight:700;">{{ t.name }}</span>
               <span style="font-size:13px; color:oklch(42% 0.02 250);">{{ t.desc }}</span>
-              <span style="font-size:13px; font-weight:700; color:oklch(46% 0.13 248); margin-top:4px;">자세히 보기 &gt;</span>
+              <span style="font-size:13px; font-weight:700; color:oklch(50% 0.13 248); margin-top:4px;">자세히 보기 &gt;</span>
             </a>
           </sc-if>
           <sc-if value="{{ t.plain }}" hint-placeholder-val="{{ true }}">
@@ -123,7 +123,7 @@
       <div style="font-size:13px; font-weight:700; color:oklch(58% 0.09 195); margin-bottom:16px;">진단 및 치료 절차</div>
       <div class="grid-4" style="display:grid; grid-template-columns:repeat(4, 1fr); gap:16px;">
         <sc-for list="{{ clinic.process }}" as="step" hint-placeholder-count="4">
-          <div style="border-top:2px solid oklch(46% 0.13 248); padding-top:10px;">
+          <div style="border-top:2px solid oklch(50% 0.13 248); padding-top:10px;">
             <div style="font-size:13px; color:oklch(35% 0.02 250);">{{ step }}</div>
           </div>
         </sc-for>
@@ -146,16 +146,16 @@
       <p style="font-size:14px; color:oklch(48% 0.015 250); margin:0 0 20px;">{{ clinic.name }} 진단에 활용되는 정밀검사입니다</p>
       <div class="grid-3" style="display:grid; grid-template-columns:repeat(3, 1fr); gap:20px;">
         <sc-for list="{{ clinic.exams }}" as="ex" hint-placeholder-count="3">
-          <a href="{{ ex.href }}" style="display:block; background:oklch(96% 0.006 90); border:1px solid oklch(89% 0.008 250); border-radius:6px; padding:24px; color:oklch(24% 0.02 250);" style-hover="border-color:oklch(46% 0.13 248);">
+          <a href="{{ ex.href }}" style="display:block; background:oklch(96% 0.006 90); border:1px solid oklch(89% 0.008 250); border-radius:6px; padding:24px; color:oklch(24% 0.02 250);" style-hover="border-color:oklch(50% 0.13 248);">
             <div style="font-size:15px; font-weight:700; margin-bottom:6px;">{{ ex.name }}</div>
-            <div style="font-size:13px; color:oklch(46% 0.13 248); font-weight:700;">검사 자세히 보기 &gt;</div>
+            <div style="font-size:13px; color:oklch(50% 0.13 248); font-weight:700;">검사 자세히 보기 &gt;</div>
           </a>
         </sc-for>
       </div>
     </div>
 
     <div style="margin-top:56px; text-align:center;">
-      <a href="./index.html#reserve" style="display:inline-block; background:oklch(46% 0.13 248); color:oklch(99% 0.005 90); padding:16px 40px; border-radius:4px; font-size:16px; font-weight:900;" style-hover="background:oklch(38% 0.13 248);">진료상담 문의하기</a>
+      <a href="./index.html#reserve" style="display:inline-block; background:oklch(50% 0.13 248); color:oklch(99% 0.005 90); padding:16px 40px; border-radius:4px; font-size:16px; font-weight:900;" style-hover="background:oklch(43% 0.13 248);">진료상담 문의하기</a>
     </div>
   </div>
 

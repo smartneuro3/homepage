@@ -24,8 +24,8 @@
   body { margin:0; background:oklch(99% 0.004 90); }
   * { box-sizing:border-box; font-family:'Noto Sans KR', sans-serif; word-break:keep-all; overflow-wrap:break-word; }
   h1, h2, .brand-font { font-weight:900; }
-  a { color:oklch(46% 0.13 248); text-decoration:none; }
-  a:hover { color:oklch(38% 0.13 248); }
+  a { color:oklch(50% 0.13 248); text-decoration:none; }
+  a:hover { color:oklch(43% 0.13 248); }
   @media (max-width: 860px) {
     .sub-header .brand-logo { height:30px !important; }
     .sub-header .branch-label { font-size:12px !important; padding:3px 7px !important; margin-left:8px !important; }
@@ -49,7 +49,7 @@
       <img class="brand-logo" src="./assets/logo-wordmark.svg" alt="삼성스마트신경과 Samsung SMART Neurology Clinic" style="height:46px; width:auto; display:block; flex-shrink:0;">
       <span class="branch-label" style="font-family:\'NanumSquareNeo\',\'Noto Sans KR\',sans-serif; font-size:17px; font-weight:800; color:oklch(99% 0.005 90); background:oklch(52% 0.09 195); padding:4px 10px; border-radius:6px; margin-left:12px; white-space:nowrap;">부산점</span>
     </a>
-    <a href="./index.html#reserve" style="background:oklch(46% 0.13 248); color:oklch(99% 0.005 90); padding:12px 22px; border-radius:4px; font-size:16px; font-weight:800;" style-hover="background:oklch(38% 0.13 248);">진료상담</a>
+    <a href="./index.html#reserve" style="background:oklch(50% 0.13 248); color:oklch(99% 0.005 90); padding:12px 22px; border-radius:4px; font-size:16px; font-weight:800;" style-hover="background:oklch(43% 0.13 248);">진료상담</a>
   </header>
 
   <div class="content-wrap" style="max-width:860px; margin:0 auto; padding:48px 64px 96px;">
@@ -102,7 +102,7 @@
             </sc-if>
             <sc-for list="{{ b.items }}" as="it" hint-placeholder-count="3">
               <div style="display:flex; gap:12px; align-items:flex-start; padding:7px 0; font-size:15px; line-height:1.7; color:oklch(30% 0.02 250);">
-                <span style="flex-shrink:0; width:22px; height:22px; margin-top:2px; border-radius:50%; background:oklch(46% 0.13 248); color:oklch(99% 0.005 90); font-size:12px; font-weight:700; display:flex; align-items:center; justify-content:center;">{{ it.n }}</span>
+                <span style="flex-shrink:0; width:22px; height:22px; margin-top:2px; border-radius:50%; background:oklch(50% 0.13 248); color:oklch(99% 0.005 90); font-size:12px; font-weight:700; display:flex; align-items:center; justify-content:center;">{{ it.n }}</span>
                 <span><sc-for list="{{ it.segs }}" as="s" hint-placeholder-count="1"><span style="font-weight:{{ s.w }}; color:{{ s.c }}; background:{{ s.bg }};">{{ s.t }}</span></sc-for></span>
               </div>
             </sc-for>
@@ -123,7 +123,7 @@
     <div style="margin-top:48px; background:oklch(96% 0.006 90); border-radius:8px; padding:32px; text-align:center;">
       <div style="font-size:18px; font-weight:900; margin-bottom:8px;">TMS 치료가 맞는지 먼저 상담해 보세요</div>
       <div style="font-size:14px; color:oklch(45% 0.02 250); margin-bottom:20px;">신경과 전문의 3인이 진료합니다 · 051-558-5898</div>
-      <a href="./index.html#reserve" style="display:inline-block; background:oklch(46% 0.13 248); color:oklch(99% 0.005 90); padding:14px 36px; border-radius:4px; font-size:16px; font-weight:900;">진료상담 문의하기</a>
+      <a href="./index.html#reserve" style="display:inline-block; background:oklch(50% 0.13 248); color:oklch(99% 0.005 90); padding:14px 36px; border-radius:4px; font-size:16px; font-weight:900;">진료상담 문의하기</a>
     </div>
   </div>
 

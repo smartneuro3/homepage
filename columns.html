@@ -24,8 +24,8 @@
   body { margin:0; background:oklch(99% 0.004 90); }
   * { box-sizing:border-box; font-family:'Noto Sans KR', sans-serif; word-break:keep-all; overflow-wrap:break-word; }
   h1, h2, .brand-font { font-weight:900; }
-  a { color:oklch(46% 0.13 248); text-decoration:none; }
-  a:hover { color:oklch(38% 0.13 248); }
+  a { color:oklch(50% 0.13 248); text-decoration:none; }
+  a:hover { color:oklch(43% 0.13 248); }
   @media (max-width: 860px) {
     .sub-header .brand-logo { height:30px !important; }
     .sub-header .branch-label { font-size:12px !important; padding:3px 7px !important; margin-left:8px !important; }
@@ -43,7 +43,7 @@
       <img class="brand-logo" src="./assets/logo-wordmark.svg" alt="삼성스마트신경과 Samsung SMART Neurology Clinic" style="height:46px; width:auto; display:block; flex-shrink:0;">
       <span class="branch-label" style="font-family:\'NanumSquareNeo\',\'Noto Sans KR\',sans-serif; font-size:17px; font-weight:800; color:oklch(99% 0.005 90); background:oklch(52% 0.09 195); padding:4px 10px; border-radius:6px; margin-left:12px; white-space:nowrap;">부산점</span>
     </a>
-    <a href="./index.html#reserve" style="background:oklch(46% 0.13 248); color:oklch(99% 0.005 90); padding:12px 22px; border-radius:4px; font-size:16px; font-weight:800;" style-hover="background:oklch(38% 0.13 248);">진료상담</a>
+    <a href="./index.html#reserve" style="background:oklch(50% 0.13 248); color:oklch(99% 0.005 90); padding:12px 22px; border-radius:4px; font-size:16px; font-weight:800;" style-hover="background:oklch(43% 0.13 248);">진료상담</a>
   </header>
 
   <div class="content-wrap" style="max-width:800px; margin:0 auto; padding:48px 64px 96px;">
@@ -58,7 +58,7 @@
       <h2 style="font-size:22px; font-weight:900; margin:40px 0 16px;">{{ g.name }}</h2>
       <div class="col-grid" style="display:grid; grid-template-columns:repeat(2, minmax(0, 1fr)); gap:16px;">
         <sc-for list="{{ g.posts }}" as="p" hint-placeholder-count="4">
-          <a href="./disease.html?d={{ p.slug }}" style="display:flex; gap:14px; align-items:center; padding:12px; background:oklch(99% 0.005 90); border:1px solid oklch(89% 0.008 250); border-radius:8px; color:oklch(24% 0.02 250);" style-hover="border-color:oklch(46% 0.13 248);">
+          <a href="./disease.html?d={{ p.slug }}" style="display:flex; gap:14px; align-items:center; padding:12px; background:oklch(99% 0.005 90); border:1px solid oklch(89% 0.008 250); border-radius:8px; color:oklch(24% 0.02 250);" style-hover="border-color:oklch(50% 0.13 248);">
             <div style="width:84px; height:84px; flex-shrink:0; border-radius:6px; overflow:hidden; background:oklch(95% 0.02 248); display:flex; align-items:center; justify-content:center;">
               <sc-if value="{{ p.thumb }}" hint-placeholder-val="{{ true }}"><img src="./assets/photos/{{ p.thumb }}" alt="" loading="lazy" style="width:100%; height:100%; object-fit:cover; display:block;"></sc-if>
               <sc-if value="{{ p.noThumb }}" hint-placeholder-val="{{ false }}"><span style="font-size:13px; font-weight:800; color:oklch(40% 0.1 248); text-align:center; padding:4px;">{{ g.short }}</span></sc-if>
