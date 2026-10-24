@@ -234,6 +234,7 @@ class Component extends DCLogic {
       vng: [['exam-vng-scene.jpg', 'center 45%'], ['exam-vng-scene2.jpg', 'center 40%'], ...old(2).map(f => [f, 'center'])],
       ncs: [['exam-ncs-scene.jpg', 'center 45%'], ['exam-ncs-closeup.jpg', 'center']],
       ans: [['exam-ans-scene.jpg', 'center 40%'], ...old(2).map(f => [f, 'center'])], eeg: old(2).map(f => [f, 'center']), psg: [['exam-psg-scene.jpg', 'center 30%'], ...old(2).map(f => [f, 'center'])],
+      mslt: [['facility-psg-room.jpg', 'center 55%']],
     };
     const set = photoSets[sk] || [];
     const idx = set.length ? this.state.photoIdx % set.length : 0;
