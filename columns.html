@@ -8,6 +8,7 @@
 <!-- 검색엔진 대표 주소: www.smartneuro.co.kr -->
 <link rel="canonical" href="https://www.smartneuro.co.kr/columns.html">
 <script src="./support.js"></script>
+<script src="./content.js"></script>
 </head>
 <body>
 <x-dc>
@@ -31,6 +32,7 @@
     .sub-header > a:last-child { padding:8px 12px !important; font-size:13px !important; white-space:nowrap; }
     .content-wrap { padding:32px 24px 64px !important; }
     h1 { font-size:24px !important; }
+    .col-grid { grid-template-columns:1fr !important; }
   }
 </style>
 </helmet>
@@ -51,10 +53,22 @@
     <div style="font-size:14px; font-weight:700; color:oklch(58% 0.09 195); letter-spacing:1px;">COLUMN</div>
     <h1 style="font-size:32px; font-weight:900; margin:12px 0 32px;">원장칼럼</h1>
 
-    <sc-for list="{{ columnPosts }}" as="p" hint-placeholder-count="6">
-      <div style="padding:20px 0; border-bottom:1px solid oklch(89% 0.008 250);">
-        <div style="font-size:16px; font-weight:700; margin-bottom:6px;">{{ p.title }}</div>
-        <div style="font-size:15px; color:oklch(45% 0.02 250);">{{ p.excerpt }}</div>
+    <p style="font-size:16px; color:oklch(45% 0.02 250); margin:-16px 0 32px;">진료실에서 자주 받는 질문을 질환별로 정리했습니다.</p>
+    <sc-for list="{{ groups }}" as="g" hint-placeholder-count="4">
+      <h2 style="font-size:22px; font-weight:900; margin:40px 0 16px;">{{ g.name }}</h2>
+      <div class="col-grid" style="display:grid; grid-template-columns:repeat(2, minmax(0, 1fr)); gap:16px;">
+        <sc-for list="{{ g.posts }}" as="p" hint-placeholder-count="4">
+          <a href="./disease.html?d={{ p.slug }}" style="display:flex; gap:14px; align-items:center; padding:12px; background:oklch(99% 0.005 90); border:1px solid oklch(89% 0.008 250); border-radius:8px; color:oklch(24% 0.02 250);" style-hover="border-color:oklch(46% 0.13 248);">
+            <div style="width:84px; height:84px; flex-shrink:0; border-radius:6px; overflow:hidden; background:oklch(95% 0.02 248); display:flex; align-items:center; justify-content:center;">
+              <sc-if value="{{ p.thumb }}" hint-placeholder-val="{{ true }}"><img src="./assets/photos/{{ p.thumb }}" alt="" loading="lazy" style="width:100%; height:100%; object-fit:cover; display:block;"></sc-if>
+              <sc-if value="{{ p.noThumb }}" hint-placeholder-val="{{ false }}"><span style="font-size:13px; font-weight:800; color:oklch(40% 0.1 248); text-align:center; padding:4px;">{{ g.short }}</span></sc-if>
+            </div>
+            <div style="min-width:0;">
+              <div style="font-size:16px; font-weight:800; margin-bottom:4px;">{{ p.title }}</div>
+              <div style="font-size:13px; color:oklch(45% 0.02 250); line-height:1.5; display:-webkit-box; -webkit-line-clamp:2; -webkit-box-orient:vertical; overflow:hidden;">{{ p.summary }}</div>
+            </div>
+          </a>
+        </sc-for>
       </div>
     </sc-for>
   </div>
@@ -68,14 +82,22 @@
 <script type="text/x-dc" data-dc-script>
 class Component extends DCLogic {
   renderVals() {
-    return {
-      columnPosts: [
-        { title: '만성두통, 방치하면 안 되는 이유', excerpt: '두통 유형별 원인과 치료 시기를 알아봅니다.' },
-        { title: '어지럼증, 이석증일까 뇌질환일까', excerpt: '증상만으로 구별하기 어려운 어지럼증의 감별점.' },
-        { title: '코골이와 수면무호흡의 차이', excerpt: '수면다원검사가 필요한 신호들을 정리했습니다.' },
-        { title: '치매 조기 발견을 위한 자가 체크리스트', excerpt: '가족이 먼저 알아챌 수 있는 초기 증상들.' },
-      ],
-    };
+    // 홈페이지의 질환 글(content.js)을 분야별로 모아 보여 줍니다.
+    const A = window.SN_ARTICLES || {};
+    const order = [
+      ['headache', '두통', '두통'], ['dizziness', '어지럼증', '어지럼증'], ['sleep', '수면장애', '수면'],
+      ['autonomic', '자율신경장애', '자율신경'], ['peripheral', '말초신경질환', '말초신경'], ['other', '기타 신경질환', '기타'],
+    ];
+    const groups = order.map(([key, name, short]) => ({
+      name, short,
+      posts: Object.entries(A)
+        .filter(([slug, a]) => a.parent === key)
+        .map(([slug, a]) => {
+          const img = (a.blocks || []).find(b => b.t === 'img');
+          return { slug, title: a.title, summary: a.summary, thumb: img ? img.src : '', noThumb: !img };
+        }),
+    })).filter(g => g.posts.length);
+    return { groups };
   }
 }
 

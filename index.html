@@ -114,7 +114,7 @@
       <a href="#doctors" style="font-size:17px; font-weight:700; color:oklch(24% 0.02 250);">의료진</a>
       <a href="#specialties" style="font-size:17px; font-weight:700; color:oklch(24% 0.02 250);">진료과목</a>
       <a href="#equipment" style="font-size:17px; font-weight:700; color:oklch(24% 0.02 250);">정밀검사</a>
-      <a href="#community" style="font-size:17px; font-weight:700; color:oklch(24% 0.02 250);">공지·건강정보</a>
+      <a href="#youtube" style="font-size:17px; font-weight:700; color:oklch(24% 0.02 250);">공지·건강정보</a>
     </nav>
     <div style="display:flex; align-items:center; gap:12px;">
       <a href="tel:051-558-5898" style="font-size:14px; font-weight:700; color:oklch(30% 0.1 248); display:none;" class="phone-label">051-000-0000</a>
@@ -133,7 +133,7 @@
       <a href="#doctors" onClick="{{ closeMobileMenu }}" style="padding:18px 24px; font-size:18px; font-weight:700; color:oklch(24% 0.02 250); border-bottom:1px solid oklch(93% 0.006 90);">의료진</a>
       <a href="#specialties" onClick="{{ closeMobileMenu }}" style="padding:18px 24px; font-size:18px; font-weight:700; color:oklch(24% 0.02 250); border-bottom:1px solid oklch(93% 0.006 90);">진료과목</a>
       <a href="#equipment" onClick="{{ closeMobileMenu }}" style="padding:18px 24px; font-size:18px; font-weight:700; color:oklch(24% 0.02 250); border-bottom:1px solid oklch(93% 0.006 90);">정밀검사</a>
-      <a href="#community" onClick="{{ closeMobileMenu }}" style="padding:18px 24px; font-size:18px; font-weight:700; color:oklch(24% 0.02 250);">공지·건강정보</a>
+      <a href="#youtube" onClick="{{ closeMobileMenu }}" style="padding:18px 24px; font-size:18px; font-weight:700; color:oklch(24% 0.02 250);">공지·건강정보</a>
     </nav>
   </sc-if>
 
@@ -401,6 +401,39 @@
     </div>
   </section>
 
+  <!-- YOUTUBE -->
+  <section id="youtube" class="section-pad section-pad-top" style="scroll-margin-top:80px; padding:96px 64px 0; max-width:1280px; margin:0 auto;">
+    <div style="display:flex; justify-content:space-between; align-items:flex-end; gap:24px; flex-wrap:wrap; margin-bottom:28px;">
+      <div>
+        <div style="display:inline-block; background:oklch(93% 0.03 195); color:oklch(34% 0.09 195); font-family:'NanumSquareNeo','Noto Sans KR',sans-serif; font-size:12px; font-weight:800; letter-spacing:1px; padding:6px 14px; border-radius:20px;">YOUTUBE</div>
+        <h2 style="font-size:36px; font-weight:900; margin:12px 0 8px;">유튜브 · Dr.황재춘의 신경쓰이네</h2>
+        <p style="font-size:16px; color:oklch(45% 0.02 250); margin:0;">신경과 전문의가 <b style="color:oklch(24% 0.02 250);">영상으로 쉽게</b> 설명해 드립니다</p>
+      </div>
+      <a href="{{ ytUrl }}" target="_blank" rel="noopener" style="display:inline-flex; align-items:center; gap:8px; padding:12px 20px; border-radius:6px; background:#FF0000; color:white; font-size:15px; font-weight:800; white-space:nowrap;" style-hover="opacity:0.92;">
+        <svg width="20" height="14" viewBox="0 0 28 20" fill="none" aria-hidden="true"><path d="M27.4 3.1c-.3-1.2-1.3-2.1-2.5-2.4C22.7 0 14 0 14 0S5.3 0 3.1.7C1.9 1 .9 1.9.6 3.1 0 5.3 0 10 0 10s0 4.7.6 6.9c.3 1.2 1.3 2.1 2.5 2.4C5.3 20 14 20 14 20s8.7 0 10.9-.7c1.2-.3 2.2-1.2 2.5-2.4.6-2.2.6-6.9.6-6.9s0-4.7-.6-6.9Z" fill="white"/><path d="M11 14.5V5.5L18.5 10 11 14.5Z" fill="#FF0000"/></svg>
+        유튜브 채널 바로가기
+      </a>
+    </div>
+    <div class="cards-grid-3" style="display:grid; grid-template-columns:repeat(3, minmax(0, 1fr)); gap:20px;">
+      <sc-for list="{{ ytVideos }}" as="v" hint-placeholder-count="3">
+        <a href="{{ v.link }}" target="_blank" rel="noopener" style="display:flex; flex-direction:column; background:oklch(99% 0.005 90); border:1px solid oklch(89% 0.008 250); border-radius:8px; overflow:hidden; color:oklch(24% 0.02 250);" style-hover="border-color:oklch(46% 0.13 248);">
+          <div style="position:relative; aspect-ratio:16 / 9; background:oklch(20% 0.01 250); overflow:hidden;">
+            <img src="{{ v.thumb }}" alt="" loading="lazy" style="width:100%; height:100%; object-fit:cover; display:block;">
+            <span style="position:absolute; left:50%; top:50%; transform:translate(-50%, -50%); width:60px; height:42px; border-radius:12px; background:#FF0000; display:flex; align-items:center; justify-content:center; box-shadow:0 2px 10px rgb(0 0 0 / 0.3);"><svg width="18" height="20" viewBox="0 0 18 20" fill="none" aria-hidden="true"><path d="M0 0v20l18-10L0 0Z" fill="white"/></svg></span>
+          </div>
+          <div style="padding:18px 20px 20px; display:flex; flex-direction:column; gap:8px;">
+            <span class="clamp-2" style="font-size:16px; font-weight:800; line-height:1.5;">{{ v.title }}</span>
+            <span class="clamp-2" style="font-size:13px; color:oklch(45% 0.02 250); line-height:1.6;">{{ v.summary }}</span>
+            <span style="font-size:12px; color:oklch(55% 0.015 250);">{{ v.date }}</span>
+          </div>
+        </a>
+      </sc-for>
+    </div>
+    <sc-if value="{{ ytEmpty }}" hint-placeholder-val="{{ false }}">
+      <div style="padding:32px; text-align:center; color:oklch(45% 0.02 250); font-size:15px;">최신 영상을 불러오는 중입니다. <a href="{{ ytUrl }}" target="_blank" rel="noopener" style="font-weight:700;">유튜브에서 보기 &gt;</a></div>
+    </sc-if>
+  </section>
+
   <!-- BLOG -->
   <section id="blog" class="section-pad section-pad-top" style="scroll-margin-top:80px; padding:96px 64px 0; max-width:1280px; margin:0 auto;">
     <div style="display:flex; justify-content:space-between; align-items:flex-end; gap:24px; flex-wrap:wrap; margin-bottom:28px;">
@@ -443,9 +476,47 @@
     </sc-if>
   </section>
 
+  <!-- COLUMN (원장칼럼: 홈페이지 질환 글 미리보기) -->
+  <section id="column" class="section-pad section-pad-top" style="scroll-margin-top:80px; padding:96px 64px 0; max-width:1280px; margin:0 auto;">
+    <div style="display:flex; justify-content:space-between; align-items:flex-end; gap:24px; flex-wrap:wrap; margin-bottom:28px;">
+      <div>
+        <div style="display:inline-block; background:oklch(93% 0.03 195); color:oklch(34% 0.09 195); font-family:'NanumSquareNeo','Noto Sans KR',sans-serif; font-size:12px; font-weight:800; letter-spacing:1px; padding:6px 14px; border-radius:20px;">COLUMN</div>
+        <h2 style="font-size:36px; font-weight:900; margin:12px 0 8px;">원장칼럼</h2>
+        <p style="font-size:16px; color:oklch(45% 0.02 250); margin:0;">진료실에서 자주 받는 질문을 <b style="color:oklch(24% 0.02 250);">질환별로 정리</b>했습니다</p>
+      </div>
+      <a href="./columns.html" style="display:inline-flex; align-items:center; gap:8px; padding:12px 20px; border-radius:6px; background:oklch(46% 0.13 248); color:white; font-size:15px; font-weight:800; white-space:nowrap;" style-hover="background:oklch(38% 0.13 248);">
+        전체 칼럼 보기 &gt;
+      </a>
+    </div>
+    <div class="blog-tabs" role="tablist" style="display:grid; grid-template-columns:repeat(4, minmax(0, 1fr)); gap:12px; margin-bottom:24px;">
+      <sc-for list="{{ colTabs }}" as="t" hint-placeholder-count="4">
+        <button role="tab" onClick="{{ t.onSelect }}" style="display:flex; align-items:center; justify-content:center; height:56px; padding:0 12px; border-radius:8px; border:1px solid {{ t.border }}; background:{{ t.bg }}; color:{{ t.color }}; cursor:pointer; font-family:'NanumSquareNeo','Noto Sans KR',sans-serif; font-size:17px; font-weight:800;">{{ t.name }}</button>
+      </sc-for>
+    </div>
+    <div class="cards-grid-3" style="display:grid; grid-template-columns:repeat(3, minmax(0, 1fr)); gap:20px;">
+      <sc-for list="{{ colPosts }}" as="c" hint-placeholder-count="3">
+        <a href="./disease.html?d={{ c.slug }}" style="display:flex; flex-direction:column; background:oklch(99% 0.005 90); border:1px solid oklch(89% 0.008 250); border-radius:8px; overflow:hidden; color:oklch(24% 0.02 250);" style-hover="border-color:oklch(46% 0.13 248);">
+          <div style="height:170px; background:oklch(95% 0.02 248); overflow:hidden; display:flex; align-items:center; justify-content:center;">
+            <sc-if value="{{ c.thumb }}" hint-placeholder-val="{{ true }}">
+              <img src="./assets/photos/{{ c.thumb }}" alt="" loading="lazy" style="width:100%; height:100%; object-fit:cover; object-position:center 30%; display:block;">
+            </sc-if>
+            <sc-if value="{{ c.noThumb }}" hint-placeholder-val="{{ false }}">
+              <span style="font-family:'NanumSquareNeo','Noto Sans KR',sans-serif; font-size:24px; font-weight:900; color:oklch(40% 0.1 248);">{{ c.title }}</span>
+            </sc-if>
+          </div>
+          <div style="padding:18px 20px 20px; display:flex; flex-direction:column; gap:8px;">
+            <span style="font-size:12px; font-weight:800; color:oklch(52% 0.09 195);">{{ c.cat }}</span>
+            <span class="clamp-2" style="font-size:16px; font-weight:800; line-height:1.5;">{{ c.title }}</span>
+            <span class="clamp-2" style="font-size:13px; color:oklch(45% 0.02 250); line-height:1.6;">{{ c.summary }}</span>
+          </div>
+        </a>
+      </sc-for>
+    </div>
+  </section>
+
   <!-- COMMUNITY -->
   <section id="community" class="section-pad section-pad-top" style="scroll-margin-top:80px; padding:96px 64px;">
-    <div class="community-grid" style="max-width:1280px; margin:0 auto; display:grid; grid-template-columns:1fr 1fr; gap:64px;">
+    <div class="community-grid" style="max-width:1280px; margin:0 auto;">
       <div>
         <div style="display:flex; justify-content:space-between; align-items:baseline; margin-bottom:24px;">
           <h2 style="font-size:24px; font-weight:900; margin:0;">공지사항</h2>
@@ -459,61 +530,8 @@
           </div>
         </sc-for>
       </div>
-      <div>
-        <div style="display:flex; justify-content:space-between; align-items:baseline; margin-bottom:24px;">
-          <h2 style="font-size:24px; font-weight:900; margin:0;">원장칼럼</h2>
-          <a href="./columns.html" style="font-size:13px; color:oklch(48% 0.015 250);">더보기 &gt;</a>
-        </div>
-        <sc-for list="{{ columnPosts }}" as="p" hint-placeholder-count="4">
-          <div style="padding:16px 0; border-bottom:1px solid oklch(89% 0.008 250);">
-            <div class="clamp-2" style="font-size:15px; font-weight:700; margin-bottom:4px;">{{ p.title }}</div>
-            <div class="clamp-2" style="font-size:13px; color:oklch(48% 0.015 250);">{{ p.excerpt }}</div>
-          </div>
-        </sc-for>
-      </div>
     </div>
 
-    <div class="blog-links" style="max-width:1280px; margin:56px auto 0; display:grid; grid-template-columns:repeat(4, minmax(0, 1fr)); gap:16px;">
-      <a href="https://blog.naver.com/smartdr2" target="_blank" rel="noopener" style="display:flex; align-items:center; gap:14px; height:84px; box-sizing:border-box; padding:0 22px; background:#03C75A; border-radius:8px; color:white;" style-hover="opacity:0.92;">
-        <svg width="22" height="22" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M12.5 0v11.4L7.5 0H0v20h7.5V8.6L12.5 20H20V0h-7.5Z" fill="white"/></svg>
-        <span style="display:flex; flex-direction:column; gap:2px; min-width:0;">
-          <span style="font-family:'NanumSquareNeo','Noto Sans KR',sans-serif; font-size:17px; font-weight:800; line-height:1.3;">삼성스마트신경과 대표</span>
-          <span style="font-size:12px; font-weight:500; opacity:0.9; white-space:nowrap;">네이버 블로그</span>
-        </span>
-        <span style="font-size:18px; font-weight:700; margin-left:auto;">&gt;</span>
-      </a>
-      <a href="https://blog.naver.com/smartneuro3" target="_blank" rel="noopener" style="display:flex; align-items:center; gap:14px; height:84px; box-sizing:border-box; padding:0 22px; background:#03C75A; border-radius:8px; color:white;" style-hover="opacity:0.92;">
-        <svg width="22" height="22" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M12.5 0v11.4L7.5 0H0v20h7.5V8.6L12.5 20H20V0h-7.5Z" fill="white"/></svg>
-        <span style="display:flex; flex-direction:column; gap:2px; min-width:0;">
-          <span style="font-family:'NanumSquareNeo','Noto Sans KR',sans-serif; font-size:17px; font-weight:800; line-height:1.3;">삼성스마트신경과 부산점</span>
-          <span style="font-size:12px; font-weight:500; opacity:0.9; white-space:nowrap;">네이버 블로그</span>
-        </span>
-        <span style="font-size:18px; font-weight:700; margin-left:auto;">&gt;</span>
-      </a>
-      <a href="https://blog.naver.com/smart_neuro" target="_blank" rel="noopener" style="display:flex; align-items:center; gap:14px; height:84px; box-sizing:border-box; padding:0 22px; background:#03C75A; border-radius:8px; color:white;" style-hover="opacity:0.92;">
-        <svg width="22" height="22" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M12.5 0v11.4L7.5 0H0v20h7.5V8.6L12.5 20H20V0h-7.5Z" fill="white"/></svg>
-        <span style="display:flex; flex-direction:column; gap:2px; min-width:0;">
-          <span style="font-family:'NanumSquareNeo','Noto Sans KR',sans-serif; font-size:17px; font-weight:800; line-height:1.3;">황재춘 원장 블로그</span>
-          <span style="font-size:12px; font-weight:500; opacity:0.9; white-space:nowrap;">네이버 블로그</span>
-        </span>
-        <span style="font-size:18px; font-weight:700; margin-left:auto;">&gt;</span>
-      </a>
-      <a href="https://blog.naver.com/smartneuro2" target="_blank" rel="noopener" style="display:flex; align-items:center; gap:14px; height:84px; box-sizing:border-box; padding:0 22px; background:#03C75A; border-radius:8px; color:white;" style-hover="opacity:0.92;">
-        <svg width="22" height="22" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M12.5 0v11.4L7.5 0H0v20h7.5V8.6L12.5 20H20V0h-7.5Z" fill="white"/></svg>
-        <span style="display:flex; flex-direction:column; gap:2px; min-width:0;">
-          <span style="font-family:'NanumSquareNeo','Noto Sans KR',sans-serif; font-size:17px; font-weight:800; line-height:1.3;">삼성스마트신경과 수면센터</span>
-          <span style="font-size:12px; font-weight:500; opacity:0.9; white-space:nowrap;">네이버 블로그</span>
-        </span>
-        <span style="font-size:18px; font-weight:700; margin-left:auto;">&gt;</span>
-      </a>
-    </div>
-    <div style="max-width:1280px; margin:16px auto 0;">
-      <a href="https://www.youtube.com/@Dr.smartneuro" style="display:flex; align-items:center; gap:16px; padding:24px 28px; background:#FF0000; border:1px solid #FF0000; border-radius:6px; color:white;" style-hover="opacity:0.92;">
-        <svg width="28" height="20" viewBox="0 0 28 20" fill="none"><path d="M27.4 3.1c-.3-1.2-1.3-2.1-2.5-2.4C22.7 0 14 0 14 0S5.3 0 3.1.7C1.9 1 .9 1.9.6 3.1 0 5.3 0 10 0 10s0 4.7.6 6.9c.3 1.2 1.3 2.1 2.5 2.4C5.3 20 14 20 14 20s8.7 0 10.9-.7c1.2-.3 2.2-1.2 2.5-2.4.6-2.2.6-6.9.6-6.9s0-4.7-.6-6.9Z" fill="white"/><path d="M11 14.5V5.5L18.5 10 11 14.5Z" fill="#FF0000"/></svg>
-        <span style="font-size:16px; font-weight:900;">유튜브 Dr.황재춘의 신경쓰이네</span>
-        <span style="font-size:13px; font-weight:700; margin-left:auto;">채널 바로가기 &gt;</span>
-      </a>
-    </div>
   </section>
 
   <!-- NONPAYMENT (법정 고지, 최하단) -->
@@ -579,7 +597,7 @@
 </x-dc>
 <script type="text/x-dc" data-dc-script data-props="{&quot;showFloatingMenu&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;동작&quot;}}">
 class Component extends DCLogic {
-  state = { mobileMenuOpen: false, heroIdx: 0, blogTab: 1, blogData: null };
+  state = { mobileMenuOpen: false, heroIdx: 0, blogTab: 1, colTab: 0, blogData: null };
 
   componentDidMount() {
     this._heroTimer = setInterval(() => {
@@ -700,8 +718,42 @@ class Component extends DCLogic {
     }));
     const blogPosts = (curBlog.posts || []).slice(0, 3);
 
+    const yt = (this.state.blogData && this.state.blogData.youtube) || { url: 'https://www.youtube.com/@Dr.smartneuro', videos: [] };
+    const ytVideos = (yt.videos || []).slice(0, 3);
+
+    // 원장칼럼: 홈페이지 질환 글 가운데 분야별 대표 3편 (전체 목록은 columns.html)
+    const colCats = [
+      { name: '두통', posts: [
+        { slug: 'migraine', title: '혈관성 편두통', thumb: 'hd-migraine.jpg', summary: '뇌 회로가 예민해져 생기는 가장 흔한 두통입니다. 원리, 유발 요인, 급성기·예방 치료까지 정리했습니다.' },
+        { slug: 'tension', title: '긴장형두통', thumb: 'hd-tension.jpg', summary: '머리를 띠로 조이듯 묵직하게 아픈, 가장 흔한 두통입니다. 스트레스·자세·수면과 밀접합니다.' },
+        { slug: 'cervicogenic', title: '경추성두통', thumb: 'hd-cervicogenic.jpg', summary: '목뼈와 목 주변 조직의 문제가 머리 통증으로 이어지는 두통입니다.' } ] },
+      { name: '어지럼증', posts: [
+        { slug: 'bppv', title: '이석증', thumb: 'dz-bppv.jpg', summary: '귀 가장 안쪽인 내이의 이석기관에서 이석이 이탈하면서 생기는 질환입니다.' },
+        { slug: 'vestibular-migraine', title: '전정편두통', thumb: 'dz-vm.jpg', summary: '두통 없이 어지럼증만 반복되기도 하는, 편두통의 또 다른 얼굴입니다.' },
+        { slug: 'pppd', title: '지속적 체위지각 어지럼증 (PPPD)', thumb: 'dz-pppd.jpg', summary: '원인 질환은 나았는데 어지럼증만 몇 달째 이어지는, 만성 어지럼증입니다.' } ] },
+      { name: '수면장애', posts: [
+        { slug: 'insomnia', title: '불면증', thumb: 'sl-insomnia.jpg', summary: '잠들기 어렵거나 자주 깨는 일이 오래 이어져 낮 생활에 지장을 주는 상태입니다.' },
+        { slug: 'sleep-apnea', title: '코골이와 수면무호흡증', thumb: 'sl-apnea.jpg', summary: '자는 동안 기도가 좁아지거나 막혀 코를 골고 숨이 멈추는 질환입니다.' },
+        { slug: 'restless-legs', title: '하지불안증후군', thumb: 'sl-rls.jpg', summary: '누우면 다리가 불편해 자꾸 움직이게 되고, 그 때문에 잠을 이루지 못하는 질환입니다.' } ] },
+      { name: '자율신경 · 기타', posts: [
+        { slug: 'dysautonomia', title: '자율신경실조증', thumb: 'dz-autonomic.jpg', summary: '검사는 정상인데 두근거림·어지럼·소화불량이 함께 오는 자율신경 조절의 문제입니다.' },
+        { slug: 'tinnitus', title: '이명', thumb: 'qeeg-tinnitus.jpg', summary: '조용할수록 더 크게 들리는 소리. 귀에서 시작해 뇌의 문제로 이어지는 과정을 설명합니다.' },
+        { slug: 'brain-hypersensitivity', title: '뇌과민증후군', thumb: '', summary: '몸에는 이상이 없는데 뇌가 신호를 과하게 받아들여 여러 증상이 함께 나타나는 상태입니다.' } ] },
+    ];
+    const ci = this.state.colTab ?? 0;
+    const colTabs = colCats.map((c, i) => ({
+      name: c.name,
+      bg: i === ci ? 'oklch(46% 0.13 248)' : 'oklch(99% 0.005 90)',
+      color: i === ci ? 'oklch(99% 0.005 90)' : 'oklch(30% 0.02 250)',
+      border: i === ci ? 'oklch(46% 0.13 248)' : 'oklch(85% 0.01 250)',
+      onSelect: () => this.setState({ colTab: i }),
+    }));
+    const colPosts = colCats[ci].posts.map(p => ({ ...p, cat: colCats[ci].name, noThumb: !p.thumb }));
+
     return {
       blogTabs, blogPosts, blogUrl: curBlog.url, blogName: tabLabels[bi], blogEmpty: blogPosts.length === 0,
+      ytVideos, ytUrl: yt.url, ytEmpty: ytVideos.length === 0,
+      colTabs, colPosts,
       specialties,
       heroPhotos,
       weekDays: ['월', '화', '수', '목', '금', '토'],
@@ -828,12 +880,6 @@ class Component extends DCLogic {
         { category: '제증명수수료', item: '진단서 등 각종 증명서', price: '항목별 상이' },
       ],
 
-      columnPosts: [
-        { title: '만성두통, 방치하면 안 되는 이유', excerpt: '두통 유형별 원인과 치료 시기를 알아봅니다.' },
-        { title: '어지럼증, 이석증일까 뇌질환일까', excerpt: '증상만으로 구별하기 어려운 어지럼증의 감별점.' },
-        { title: '코골이와 수면무호흡의 차이', excerpt: '수면다원검사가 필요한 신호들을 정리했습니다.' },
-        { title: '치매 조기 발견을 위한 자가 체크리스트', excerpt: '가족이 먼저 알아챌 수 있는 초기 증상들.' },
-      ],
     };
   }
 }
